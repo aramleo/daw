@@ -5,8 +5,12 @@
             <div class="container">
               <h1 class="display-3">Huertos Urbanos</h1>
               <p class="lead">Cultiva tus propios alimentos</p>
+              <?php
+                include("includes/alimentos.php");
+              ?>        
             </div>
           </div>
+
 <?php
   include("template/footer.php");
 ?>        
