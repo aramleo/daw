@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-6 col-lg-3">
+<div class="row g-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/acelga.jpg"
                 class="card-img-top" alt="..." />
@@ -8,16 +8,16 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/alcachofa.jpg"
                 class="card-img-top" alt="..." />
             <div class="card-body">
-                <h5 class="card-title">Alcachofa</h5>
+                <h5 class="card-title text-wrap">Alcachofa</h5>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/apio.jpg"
                 class="card-img-top" alt="..." />
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/berenjena.jpg"
                 class="card-img-top" alt="..." />
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/brocoli.jpg"
                 class="card-img-top" alt="..." />
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/cebolla.jpg"
                 class="card-img-top" alt="..." />
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/cebollin.jpg"
                 class="card-img-top" alt="..." />
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/coliflor.jpg"
                 class="card-img-top" alt="..." />
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/espinaca.jpg"
                 class="card-img-top" alt="..." />
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/haba.jpg"
                 class="card-img-top" alt="..." />
@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/hinojo.jpg"
                 class="card-img-top" alt="..." />
@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/kale.jpg"
                 class="card-img-top" alt="..." />
@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/lechuga.jpg"
                 class="card-img-top" alt="..." />
@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/melon.jpg"
                 class="card-img-top" alt="..." />
@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/patata.jpg"
                 class="card-img-top" alt="..." />
@@ -134,7 +134,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/pepino.jpg"
                 class="card-img-top" alt="..." />
@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/pimiento.jpg"
                 class="card-img-top" alt="..." />
@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/puerro.jpg"
                 class="card-img-top" alt="..." />
@@ -161,7 +161,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/rabano.jpg"
                 class="card-img-top" alt="..." />
@@ -170,7 +170,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-2">
         <div class="card">
             <img src="img/repollo.jpg"
                 class="card-img-top" alt="..." />
@@ -179,7 +179,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/rucula.jpg"
                 class="card-img-top" alt="..." />
@@ -188,7 +188,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/sandia.jpg"
                 class="card-img-top" alt="..." />
@@ -197,7 +197,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/tomate.jpg"
                 class="card-img-top" alt="..." />
@@ -206,7 +206,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/zanahoria.jpg"
                 class="card-img-top" alt="..." />
