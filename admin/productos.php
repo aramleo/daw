@@ -30,7 +30,7 @@ $resultados = consultar($conn);
                 <td><?php echo $resultado->id;?></td>
                 <td><?php echo $resultado->nombre;?></td>
                 <td><?php echo $resultado->imagen;?></td>
-                <td>Editar | Borrar</td>
+                <td><a href="agregar.php"><button type="text" class="btn btn-primary">Editar</button></a><button type="text" class="btn btn-danger">Borrar</button></td>
             </tr>
             <?php
         } ?> 
