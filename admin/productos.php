@@ -15,9 +15,8 @@ $resultados = consultar($conn);
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre</th>
-                <th>Imagen</th>
+                <th>Estación</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -27,9 +26,8 @@ $resultados = consultar($conn);
     
         ?>
             <tr>
-                <td><?php echo $resultado->id;?></td>
                 <td><?php echo $resultado->nombre;?></td>
-                <td><?php echo $resultado->imagen;?></td>
+                <td><?php echo $resultado->estacion;?></td>
                 <td><a href="agregar.php"><button type="text" class="btn btn-primary">Editar</button></a><button type="text" class="btn btn-danger">Borrar</button></td>
             </tr>
             <?php

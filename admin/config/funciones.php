@@ -1,7 +1,7 @@
 <?php
 
 function consultar($conn){
-    $sql = "SELECT * FROM pelicula";
+    $sql = "SELECT * FROM productos";
     $query = $conn -> prepare($sql);
     $query -> execute();
     $results = $query -> fetchAll(PDO::FETCH_OBJ);
