@@ -14,12 +14,17 @@ include("template/cabecera.php");
         <div class="card-body">
         <form method="post" enctype="multipart/form-data">
       <div class="mb-3">
-        <label for="id" class="form-label">ID:</label>
-        <input type="text" class="form-control" name="id" id="id" placeholder="ID">
-      </div>
-      <div class="mb-3">
         <label for="nombre" class="form-label">Nombre Producto:</label>
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Estación:</label>
+        <select name="estacion" id="estacion" class="form-control">
+          <option value="1">Primavera</option>
+          <option value="2">Verano</option>
+          <option value="3">Otoño</option>
+          <option value="4">Invierno</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="txtImagen" class="form-label">Imagen:</label>
