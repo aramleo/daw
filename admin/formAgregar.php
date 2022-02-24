@@ -1,6 +1,8 @@
 <?php 
+session_start();
 
 include("template/cabecera.php");
+
 
 ?>
 
@@ -10,9 +12,8 @@ include("template/cabecera.php");
         <div class="card-header">
             Datos del producto
         </div>
-        
         <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
+        <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre Producto:</label>
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
@@ -31,14 +32,24 @@ include("template/cabecera.php");
         <input type="file" class="form-control" id="txtImagen" name="txtImagen" placeholder="Nombre del producto">
       </div>
         <div class="btn-group" role="group" aria-label="">
-            <button type="submit" name="accion" value="Agregar" class="btn btn-success">Agregar</button>
-            <a href="productos.php"><input type="button" value="Cancelar" class="btn btn-info"></a>
+            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+            <a href="productos.php"><input type="button" value="Volver" class="btn btn-info"></a>
         </div>
     </form>
         </div>
     </div>    
     </div>
-    
+    <!-- alerta error -->
+    <?php
+      if (isset($_SESSION['error'])){
+        ?>  
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error'];?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+      }
+    ?>
 <?php
 
 include("template/pie.php");

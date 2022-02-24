@@ -1,13 +1,14 @@
 <?php    
 include 'template/cabecera.php';
-require_once 'config/conexion.php';
+include 'config/conexion.php';
 include 'config/funciones.php';
 
-$resultados = consultar($conn);
+$consulta = new Funciones();
+$resultados = $consulta->consultar($conn);
 
 ?>
 <div>
-    <a href="agregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
+    <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
 </div>
 <div class="card">
     <div class="card-title">
@@ -37,10 +38,6 @@ $resultados = consultar($conn);
         </tbody>
     </table>
 </div>
-
-
-
-
 
 <?php 
 
