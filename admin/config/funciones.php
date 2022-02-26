@@ -12,7 +12,7 @@ class Funciones{
 
     public function consultar($conn){
         $this->conexion = $conn;
-        $sql = "SELECT * FROM productos";
+        $sql = "SELECT p.ID, p.nombre, e.estacion FROM `productos` AS p JOIN `estaciones` AS e on p.estacion = e.id_estacion ORDER BY p.nombre;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
@@ -28,12 +28,24 @@ class Funciones{
             $sql = "INSERT INTO productos (nombre, estacion) VALUES (?,?)";
             $stmt = $this->conexion -> prepare($sql);
             $stmt -> execute([$this->nombre, $this->estacion]);
+            $resultado = 1;
         }catch(Exception $e){
-            if($e->getCode()==23000){
-                $resultado = 'Registro duplicado';
-            }
+            $resultado = $e->getCode();
         }      
         return $resultado;
+    }
+
+    public function editar($conn, $id){
+        $this->conexion = $conn;
+        $sql = "SELECT p.ID, p.nombre, e.estacion FROM `productos` AS p JOIN `estaciones` AS e on p.estacion = e.id_estacion WHERE p.ID = $id;";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function actualizar($conn, $id, $nombre, $estacion){
+
     }
 }
 

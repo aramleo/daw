@@ -1,7 +1,15 @@
 <?php 
 session_start();
 include("template/cabecera.php");
+include("config/funciones.php");
+include("config/conexion.php");
 
+$dato = $_GET['id'];
+
+$editar = new Funciones();
+$datos = $editar->editar($conn, $dato);
+var_dump($datos);
+echo $datos[0]['estacion'];
 ?>
 
 <div class="col-md-5 mt-3">
@@ -11,26 +19,26 @@ include("template/cabecera.php");
             Datos del producto
         </div>
         <div class="card-body">
-        <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
+        <form action="editarProducto.php" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre Producto:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
+        <input type="text" class="form-control" id="nombre" name="nombre" value ="<?php echo $datos[0]['nombre'];?>">
       </div>
       <div class="mb-3">
         <label for="nombre" class="form-label">Estación:</label>
         <select name="estacion" id="estacion" class="form-control">
           <option value="1">Primavera</option>
-          <option value="2">Verano</option>
+          <option value="2" selected>Verano</option>
           <option value="3">Otoño</option>
           <option value="4">Invierno</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="txtImagen" class="form-label">Imagen:</label>
-        <input type="file" class="form-control" id="txtImagen" name="txtImagen" placeholder="Nombre del producto">
+        <input type="file" class="form-control" id="txtImagen" name="txtImagen" >
       </div>
         <div class="btn-group" role="group" aria-label="">
-            <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
+            <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
             <a class="btn btn-info mx-3" href="productos.php" role="button">Volver</a>
         </div>
     </form>
