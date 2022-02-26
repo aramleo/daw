@@ -4,12 +4,10 @@ include("template/cabecera.php");
 include("config/funciones.php");
 include("config/conexion.php");
 
-$dato = $_GET['id'];
-
-$editar = new Funciones();
-$datos = $editar->editar($conn, $dato);
-var_dump($datos);
-echo $datos[0]['estacion'];
+$actual = new Funciones();
+$datos = $actual->editar($conn, $_GET['id']);
+$estacion = $datos[0]['estacion'];
+$nombre = $datos[0]['nombre'];
 ?>
 
 <div class="col-md-5 mt-3">
@@ -22,15 +20,42 @@ echo $datos[0]['estacion'];
         <form action="editarProducto.php" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre Producto:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" value ="<?php echo $datos[0]['nombre'];?>">
+        <input type="text" class="form-control" id="nombre" name="nombre" value ="<?php echo $nombre;?>">
       </div>
       <div class="mb-3">
         <label for="nombre" class="form-label">Estación:</label>
         <select name="estacion" id="estacion" class="form-control">
-          <option value="1">Primavera</option>
-          <option value="2" selected>Verano</option>
-          <option value="3">Otoño</option>
-          <option value="4">Invierno</option>
+          <?php
+          switch ($estacion) {
+            case '1':
+              ?><option value="1" selected>Primavera</option>
+              // <option value="2">Verano</option>
+              // <option value="3">Otoño</option>
+              // <option value="4">Invierno</option>
+              <?php
+              break;
+            case '2':
+              ?><option value="1">Primavera</option>
+              // <option value="2" selected>Verano</option>
+              // <option value="3">Otoño</option>
+              // <option value="4">Invierno</option>
+              <?php
+              break;
+            case '3':
+              ?><option value="1">Primavera</option>
+              // <option value="2">Verano</option>
+              // <option value="3" selected>Otoño</option>
+              // <option value="4">Invierno</option>
+              <?php
+              break;
+            default:
+            ?><option value="1">Primavera</option>
+            // <option value="2">Verano</option>
+            // <option value="3">Otoño</option>
+            // <option value="4" selected>Invierno</option>
+            <?php
+              break;
+          }?>
         </select>
       </div>
       <div class="mb-3">
@@ -45,7 +70,7 @@ echo $datos[0]['estacion'];
         </div>
     </div>    
     </div>
-    <!-- alerta error registro -->
+    <!-- alerta error registro comprobar después -->
     <?php
       if (isset($_SESSION['error']) && !empty($_SESSION['error'])){
         ?>  

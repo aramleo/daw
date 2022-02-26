@@ -37,7 +37,7 @@ class Funciones{
 
     public function editar($conn, $id){
         $this->conexion = $conn;
-        $sql = "SELECT p.ID, p.nombre, e.estacion FROM `productos` AS p JOIN `estaciones` AS e on p.estacion = e.id_estacion WHERE p.ID = $id;";
+        $sql = "SELECT * FROM `productos` WHERE ID = $id;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
