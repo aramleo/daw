@@ -8,22 +8,23 @@
     <?php 
       include("includes/slide.php");
     ?>
-    <div class="texto">
+    <div class="card">
+      <div class="card-body">
       <h3>¿Qué es un huerto urbano?</h3>
-      <p>
+      <p class="lh-lg text-justify">
         Los huertos urbanos son espacios al aire libre o de interior
         (balcones,azoteas, terrazas) destinados al cultivo de verduras,
         hortalizas, frutas, legumbres, plantas aromáticas o hierbas medicinales,
         entre otras, a escala doméstica.
       </p>
       <h3>Un poco de historia</h3>
-      <p>
+      <p class="lh-lg text-justify">
         Los primeros huertos urbanos aparecen en el siglo XIX durante la
         revolución industrial para ofrecer a los trabajadores de las fabrican
         alternativas para mejorar la calidad de vida de estos.Fomentados por
         asociaciones benéficas, por la iglesia y por humanistas.
       </p>
-      <p>
+      <p class="lh-lg text-justify">
         Posteriormente, en el siglo XX, durante la Primera y Segunda Guerra
         Mundial, ante la escasez de alimentos se sembraban huertos pequeños de
         autoconsumo con los que poder acceder a los alimentos. Se ofertaban por
@@ -32,18 +33,11 @@
         pequeños huertos conocidos como Dig for Victory en Gran Bretaña, o
         Victory Gardens en Estados Unidos.
       </p>
-      <p>
-        A partir de los años 70, vuelve a aparecer esta idea local, de
-        integración social y educación ambiental, con la aparición de
-        asociaciones ecologistas y comunitarias. En el momento actual es un
-        instrumento de mejora ambiental y social, colaborando en la
-        sostenibilidad urbana, la contaminación , la lucha contra el cambio
-        climático y la calidad de vida.
+      <p class="lh-lg text-justify">
+        A partir de los años 70, vuelve a aparecer esta idea local, de integración social y educación ambiental, con la aparición de asociaciones ecologistas y comunitarias. En el momento actual es un instrumento de mejora ambiental y social, colaborando en la sostenibilidad urbana, la contaminación , la lucha contra el cambio climático y la calidad de vida.
       </p>
-    </div>
-    <div id="alimentos">
       <h3>¿Qué alimentos podríamos plantar?</h3>
-      <p>
+      <p class="lh-lg text-justify">
         Dependiendo de la época del año y la temperatura anual del lugar donde
         tengamos nuestros huerto urbano, tenemos los siguientes alimentos:
       </p>
@@ -51,9 +45,9 @@
         <?php
                 include("includes/alimentos.php");
               ?>
+      </div>     
       </div>
     </div>
-
     <?php
   include("template/footer.php");
 ?>
