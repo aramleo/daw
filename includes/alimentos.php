@@ -5,7 +5,7 @@
                 <h4 class="card-title">Alimentos para plantar</h4>
             </div>
             <div class="col">
-                <img class="img-thumbnail rounded float-end" src="img/alimentos/logo2.png" alt="" />
+                <img class="img-thumbnail rounded float-end" src="img/alimentos/logo.png" alt="" />
             </div>
         </div>
     </div>
