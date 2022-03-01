@@ -14,28 +14,31 @@ $resultados = $consulta->consultar($conn);
     <div class="card-title">
         <h5>Lista de productos</h5>
     </div>
-    <table class="table table-hover">
+    <table id="productos" class="display" style="width:100%">
         <thead>
             <tr>
-                <th scope="col" class="text-center">Nombre</th>
-                <th scope="col" class="text-center">Estación</th>
-                <th scope="col" colspan="2" class="text-center">Acciones</th>
+                <th>Nombre</th>
+                <th>Estacion</th>
+                <th class='text-center'>Accion</th>
             </tr>
         </thead>
         <tbody>
-            <?php
+        <?php
             foreach ($resultados as $resultado){
         
             ?>
             <tr>
-                <td scope='row' class="ps-4"><?php echo $resultado->nombre;?></td>
-                <td class="text-center"><?php echo $resultado->estacion;?></td>
-                <td class="text-center"><a href="editar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></td>
-                <td class="text-center"><a href="borrar.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a></td>
+                <td><?php echo $resultado->nombre;?></td>
+                <td><?php echo $resultado->estacion;?></td>
+                <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
-            <?php
-            } ?> 
+        <?php
+            } 
+        ?> 
         </tbody>
+        <tfoot>
+        </tfoot>
     </table>
 </div>
 
@@ -44,3 +47,5 @@ $resultados = $consulta->consultar($conn);
 include("template/pie.php");
 
 ?>
+
+

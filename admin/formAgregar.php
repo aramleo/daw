@@ -1,8 +1,6 @@
 <?php 
 session_start();
-
 include("template/cabecera.php");
-
 
 ?>
 
@@ -33,15 +31,15 @@ include("template/cabecera.php");
       </div>
         <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
-            <a href="productos.php"><input type="button" value="Volver" class="btn btn-info"></a>
+            <a class="btn btn-info mx-3" href="productos.php" role="button">Volver</a>
         </div>
     </form>
         </div>
     </div>    
     </div>
-    <!-- alerta error -->
+    <!-- alerta error registro -->
     <?php
-      if (isset($_SESSION['error'])){
+      if (isset($_SESSION['error']) && !empty($_SESSION['error'])){
         ?>  
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>¡Error!</strong> <?php echo $_SESSION['error'];?>
@@ -49,6 +47,18 @@ include("template/cabecera.php");
     </div>
     <?php
       }
+      $_SESSION['error']='';
+    ?>
+    <?php
+      if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])){
+        ?>  
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['registro'];?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+      }
+      $_SESSION['registro']='';
     ?>
 <?php
 
