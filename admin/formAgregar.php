@@ -27,7 +27,7 @@ include("template/cabecera.php");
       </div>
       <div class="mb-3">
         <label for="txtImagen" class="form-label">Imagen:</label>
-        <input type="file" class="form-control" id="txtImagen" name="txtImagen" placeholder="Nombre del producto">
+        <input type="text" class="form-control" id="txtImagen" name="txtImagen" placeholder="Nombre del producto">
       </div>
         <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
@@ -53,7 +53,7 @@ include("template/cabecera.php");
       if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])){
         ?>  
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>¡Error!</strong> <?php echo $_SESSION['registro'];?>
+      <strong>OK! </strong> <?php echo $_SESSION['registro'];?>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <?php

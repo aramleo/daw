@@ -1,4 +1,6 @@
 <?php
+
+  session_start();
   include("template/header.php");
 ?>
 <div class="p-5 bg-light">
