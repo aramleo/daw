@@ -8,6 +8,7 @@ include 'config/funciones.php';
 
 $consulta = new Funciones();
 $resultados = $consulta->consultar($conn);
+// print_r($resultados);
 
 ?>
 <div>
@@ -22,6 +23,7 @@ $resultados = $consulta->consultar($conn);
             <tr>
                 <th>Nombre</th>
                 <th>Estacion</th>
+                <th>Mes</th>
                 <th>Imagen</th>
                 <th class='text-center'>Accion</th>
             </tr>
@@ -34,6 +36,7 @@ $resultados = $consulta->consultar($conn);
             <tr>
                 <td><?php echo $resultado->nombre;?></td>
                 <td><?php echo $resultado->estacion;?></td>
+                <td><?php echo $resultado->mes;?></td>
                 <td><?php echo $resultado->img;?></td>
                 <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
                 <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>

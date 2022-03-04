@@ -9,20 +9,21 @@ class Funciones{
     }
 
     public function consultar($conn){
-        $sql = "SELECT p.ID, p.nombre, e.estacion, p.img FROM `productos` AS p JOIN `estaciones` AS e on p.estacion = e.id_estacion ORDER BY p.nombre;";
+        $sql = "SELECT p.ID, p.nombre, e.estacion, m.mes, p.img FROM `productos` AS p JOIN `estaciones` AS e JOIN `meses` AS m on p.estacion = e.id_estacion AND p.clave_mes= m.id_mes ORDER BY p.nombre;";
         $query = $conn -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
     
-    public function agregar($conn, $nombre, $estacion, $imagen){
+    public function agregar($conn, $nombre, $estacion, $mes, $imagen){
         $resultado = null;
         try{
-            $sql = "INSERT INTO productos (nombre, estacion, img) VALUES (:nombre,:estacion,:img)";
+            $sql = "INSERT INTO productos (nombre, estacion, img, clave_mes) VALUES (:nombre,:estacion,:mes,:img)";
             $stmt = $conn -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':estacion', $estacion);
+            $stmt ->bindParam(':mes', $mes);
             $stmt ->bindParam(':img', $imagen);
             $stmt -> execute();
             $resultado = 1;
@@ -40,13 +41,14 @@ class Funciones{
         return $results;
     }
 
-    public function actualizar($conn, $id, $nombre, $estacion, $imagen){
+    public function actualizar($conn, $id, $nombre, $estacion, $mes, $imagen){
         $resultado = null;
         try{
-            $sql = "UPDATE `productos` SET `nombre`=:nombre , `estacion`=:estacion, `img`=:img WHERE ID = $id;";
+            $sql = "UPDATE `productos` SET `nombre`=:nombre , `estacion`=:estacion, `clave_mes`=:mes, `img`=:img WHERE ID = $id;";
             $stmt = $conn -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':estacion', $estacion);
+            $stmt ->bindParam(':mes', $mes);
             $stmt ->bindParam(':img', $imagen);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';

@@ -22,7 +22,6 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link active" aria-current="page" href="login.php">Login</a>
-                    <a class="nav-link active" aria-current="page" href="registro.php">Registro</a>
                     <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de
                     </a>
                 </div>
@@ -32,6 +31,3 @@
     <div class="container-fluid !direction !spacing">
         <b5-row></b5-row>
     </div>
-</body>
-
-</html>

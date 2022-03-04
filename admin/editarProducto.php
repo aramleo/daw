@@ -5,7 +5,7 @@ include("config/conexion.php");
 include("config/funciones.php");
 
 
-if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['actualizar'])){
+if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['actualizar'])){
   $envio= 'No se pueden enviar datos vacios';
   $_SESSION['error']=$envio;
   header('Location: formEditar.php');
@@ -13,9 +13,10 @@ if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) |
   $id=$_POST['ID'];
   $nombre=$_POST['nombre'];
   $estacion=$_POST['estacion'];
+  $mes=$_POST['mes'];
   $imagen = $_POST['imagen'];
   $actualizar = new Funciones();
-  $datos = $actualizar->actualizar($conn, $id, $nombre, $estacion, $imagen);
+  $datos = $actualizar->actualizar($conn, $id, $nombre, $estacion, $mes, $imagen);
   print_r($datos);
   if($datos === false){
     $datos = 'El registro no se ha actualizado';

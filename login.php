@@ -4,7 +4,7 @@
 ?>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 py-5">
+      <div class="col-md-6 py-5">
       <div class="card">
           <div class="card">
             <div class="card-header">Login</div>
@@ -37,10 +37,12 @@
             </div>
           </div>
         </div>
+        <div class="mt-5">
+          ¿No eres usuario?
+          <a href="registro.php"><button type="button" class="btn btn-info">Regístrate</button></a>
+        </div>
       </div>
-      <div class="col-md-4 p-5">
-      </div>
-      <div class="col-md-4 p-5">
+      <div class="col-md-6 p-5">
         <div class="card">
           <img class="card-img-top" src="img\alimentos\fruits-vegetable-logo-fruits-vegetable-fruit-vegetable-food-nut-bowl-png-clip-art.png" alt="Card image cap">
           <div class="card-body">
@@ -56,8 +58,6 @@
         </div>
       </div>
     </div>
-    ¿No eres usuario?
-    <button type="button" class="btn btn-info">Regístrate</button>
   </div>
  
 <?php
