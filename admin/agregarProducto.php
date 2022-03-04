@@ -14,7 +14,7 @@ if(empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) 
     $estacion = $_POST['estacion'];
     $mes = $_POST['mes'];
     $agregar = new Funciones();
-    $resultados = $agregar->agregar($conn, $nombre, $estacion, $mes);
+    $resultados = $agregar->agregar($conn, $nombre, $estacion, $mes, $imagen);
     if($resultados == 23000){
         $envio = 'Registro duplicado';
         $_SESSION['error']=$envio;
