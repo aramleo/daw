@@ -1,20 +1,20 @@
 <?php
 
-include('../template/header.php');
-require_once 'bFuncion.php'; 
-include ('../admin/config/conexion.php');
+include('template/header.php');
+require_once 'blog/bFuncion.php'; 
+include ('admin/config/conexion.php');
 
 ?>
-<div class="header">
-  <h2>Blog Name</h2>
+<div class="header text-center mt-3 mb-6">
+  <h2>Blog Huertos Urbanos</h2>
 </div>
 
 <div class="row">
   <div class="mx-3 vw-100">
-    <div class="card">
+    <div class="card-title">
     <?php
         $posts = getPosts($conn);
-        require 'templates/list.php';
+        require 'blog/lista.php';
     ?>
     </div>
   </div>
@@ -30,6 +30,5 @@ include ('../admin/config/conexion.php');
   </ul>
 </div>
 <?php
-include('../template/footer.php');
-
+include('template/footer.php');
 ?>

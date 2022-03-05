@@ -2,7 +2,7 @@
 
 
 function getPosts($conn){	
-	$sql="SELECT id, title FROM post ORDER BY id desc";
+	$sql="SELECT id, titulo FROM blog ORDER BY id desc";
 	$query = $conn -> prepare($sql);
     $query -> execute();
     $results = $query -> fetchAll(PDO::FETCH_ASSOC);
@@ -11,8 +11,9 @@ function getPosts($conn){
 
 function getPostById($conn, $id)
 {
-    $sql = "SELECT date, title, content, author FROM post WHERE id = :id;";
+    $sql = "SELECT id, titulo, fecha, texto, imagen FROM blog WHERE id = :id;";
     $query = $conn -> prepare($sql);
+    $query->bindParam(':id', $id);
     $query -> execute();
     $results = $query -> fetchAll(PDO::FETCH_ASSOC);
     return $results;

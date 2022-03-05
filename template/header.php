@@ -22,6 +22,7 @@
             <div class="collapse navbar-collapse" id="menuID">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
                     <a class="nav-link active" aria-current="page" href="login.php">Login</a>
                     <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de
                     </a>
