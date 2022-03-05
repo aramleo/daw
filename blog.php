@@ -1,14 +1,11 @@
 <?php
 
-use admin\config\BD;
-
+require_once 'admin/config/funciones.php';
+use admin\config\Clase;
 include('template/header.php');
-require_once 'blog/bFuncion.php';
-// require_once("admin/config/conexion.php");
 
-$conex = new BD\Conexion;
-$conn = $conex->conexion();
 
+$llamada = new Clase\Funciones;
 
 ?>
 <div class="header text-center mt-3 mb-6">
@@ -19,7 +16,7 @@ $conn = $conex->conexion();
   <div class="mx-3 vw-100">
     <div class="card-title">
       <?php
-      $posts = getPosts($conn);
+      $posts = $llamada->getPosts();
       require 'blog/lista.php';
       ?>
     </div>

@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include("template/cabecera.php");
-
+// var_dump($_SESSION);
 ?>
 
 <div class="col-md-5 mt-3">
@@ -43,8 +43,8 @@ include("template/cabecera.php");
         </select>
       </div>
       <div class="mb-3">
-        <label for="txtImagen" class="form-label">Imagen:</label>
-        <input type="text" class="form-control" id="txtImagen" name="txtImagen" placeholder="Nombre del producto">
+        <label for="imagen" class="form-label">Imagen:</label>
+        <input type="text" class="form-control" id="imagen" name="imagen" placeholder="Nombre del producto">
       </div>
         <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

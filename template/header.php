@@ -38,16 +38,17 @@ use admin\config\Clase;
 $comprobarUsuario = new Clase\Funciones();
 if (!$comprobarUsuario->comprobarSesion()) {
 ?>
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="./">Home</a>
                     <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
                     <a class="nav-link active" aria-current="page" href="login.php">Login</a>
-                    <a class="nav-link active" aria-current="page" href="registro.php">Registro</a>
                     <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de</a>
 <?php
     } else {
 ?>
-                    <a class="nav-link active" aria-current="page" href="./home.php">Inicio</a>
-                    <form action="./index.php" method="post">
+                    <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
+                    <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de</a>
+                    <form action="./" method="post">
                         <input type="hidden" name="logout" value="true" />
                         <input type="submit" value="Logout" />
                     </form>

@@ -1,9 +1,12 @@
 <?php
 
 
-require_once 'bFuncion.php';
-include '../admin/config/conexion.php';
-$post = getPostById($conn, $_GET['id']);
+require_once '../admin/config/funciones.php';
+
+use admin\config\Clase;
+$consultas = new Clase\Funciones;
+
+$post = $consultas->getPostById($_GET['id']);
 
 include 'cabeza.php';
 

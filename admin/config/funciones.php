@@ -2,7 +2,7 @@
 
 namespace admin\config\Clase;
 
-require_once('admin/config/conexion.php');
+require_once(__DIR__.'\conexion.php');
 
 use admin\config\BD\Conexion;
 use PDO;
@@ -16,22 +16,22 @@ class Funciones{
     public function  __construct(){
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
-        $this->url = 'http://localhost/andres/daw/';
+        $this->url = 'http://localhost/daw/';
     }
 
-    public function consultar($conn){
+    public function consultar(){
         $sql = "SELECT p.ID, p.nombre, e.estacion, m.mes, p.img FROM `productos` AS p JOIN `estaciones` AS e JOIN `meses` AS m on p.estacion = e.id_estacion AND p.clave_mes= m.id_mes ORDER BY p.nombre;";
-        $query = $conn -> prepare($sql);
+        $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
     
-    public function agregar($conn, $nombre, $estacion, $mes, $imagen){
+    public function agregar($nombre, $estacion, $mes, $imagen){
         $resultado = null;
         try{
-            $sql = "INSERT INTO productos (nombre, estacion, img, clave_mes) VALUES (:nombre,:estacion,:mes,:img)";
-            $stmt = $conn -> prepare($sql);
+            $sql = "INSERT INTO productos (nombre, estacion, clave_mes, img) VALUES (:nombre,:estacion,:mes,:img)";
+            $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':estacion', $estacion);
             $stmt ->bindParam(':mes', $mes);
@@ -44,19 +44,19 @@ class Funciones{
         return $resultado;
     }
 
-    public function editar($conn, $id){
+    public function editar($id){
         $sql = "SELECT * FROM `productos` WHERE ID = $id;";
-        $query = $conn -> prepare($sql);
+        $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
 
-    public function actualizar($conn, $id, $nombre, $estacion, $mes, $imagen){
+    public function actualizar($id, $nombre, $estacion, $mes, $imagen){
         $resultado = null;
         try{
             $sql = "UPDATE `productos` SET `nombre`=:nombre , `estacion`=:estacion, `clave_mes`=:mes, `img`=:img WHERE ID = $id;";
-            $stmt = $conn -> prepare($sql);
+            $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':estacion', $estacion);
             $stmt ->bindParam(':mes', $mes);
@@ -70,12 +70,12 @@ class Funciones{
         return $resultado;
     }
 
-    public function borrar($conn, $id){
+    public function borrar($id){
         $envio = $id;
         $resultado = null;
         try{
             $sql = "DELETE FROM `productos` WHERE ID = :id;";
-            $stmt = $conn -> prepare($sql);
+            $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':id', $id);
             $resultado = $stmt ->execute();
             if($resultado === true){
@@ -148,6 +148,25 @@ class Funciones{
         unset($_COOKIE['password']);
         setCookie('email', "", time()-3600);
         setCookie('password', "", time()-3600);
+    }
+
+    
+    public function getPosts(){	
+        $sql="SELECT id, titulo FROM blog ORDER BY id desc";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+    
+    public function getPostById($id)
+    {
+        $sql = "SELECT id, titulo, fecha, texto, imagen FROM blog WHERE id = :id;";
+        $query = $this->conexion-> prepare($sql);
+        $query->bindParam(':id', $id);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
     }
 }
 

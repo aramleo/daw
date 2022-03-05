@@ -1,15 +1,15 @@
 <?php    
 
-session_start();
+// session_start();
+include ("config/funciones.php");
+
+
+use admin\config\Clase;
+
+$consulta = new Clase\Funciones;
+$resultados = $consulta->consultar();
 
 include 'template/cabecera.php';
-include 'config/conexion.php';
-include 'config/funciones.php';
-
-$consulta = new Funciones();
-$resultados = $consulta->consultar($conn);
-// print_r($resultados);
-
 ?>
 <div>
     <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>

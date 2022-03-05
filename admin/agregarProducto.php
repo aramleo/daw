@@ -2,8 +2,10 @@
 
 session_start();
 
-include 'config/conexion.php';
-include 'config/funciones.php';
+include ("config/funciones.php");
+
+
+use admin\config\Clase;
 
 if(empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['agregar'])){
     $envio= 'No se pueden enviar datos vacios';
@@ -13,12 +15,13 @@ if(empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) 
     $nombre = $_POST['nombre'];
     $estacion = $_POST['estacion'];
     $mes = $_POST['mes'];
-    $agregar = new Funciones();
-    $resultados = $agregar->agregar($conn, $nombre, $estacion, $mes, $imagen);
+    $imagen= $_POST['imagen'];
+    $agregar = new Clase\Funciones;
+    $resultados = $agregar->agregar($nombre, $estacion, $mes, $imagen);
     if($resultados == 23000){
         $envio = 'Registro duplicado';
-        $_SESSION['error']=$envio;
-        header('Location: formAgregar.php');
+        $_SESSION['error']= $envio;
+        // header('Location: formAgregar.php');
     }else{
         $_SESSION['registro']='Registro insertado';
         header('Location: formAgregar.php');

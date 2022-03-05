@@ -3,11 +3,13 @@
 session_start();
 include("template/cabecera.php");
 include("config/funciones.php");
-include("config/conexion.php");
+
+
+use admin\config\Clase;
 
 // Variables que recogemos de la función editar en funciones.php
-$actual = new Funciones();
-$datos = $actual->editar($conn, $_GET['id']);
+$actual = new Clase\Funciones;
+$datos = $actual->editar($_GET['id']);
 $estacion = $datos[0]['estacion'];
 $nombre = $datos[0]['nombre'];
 $mes = $datos[0]['clave_mes'];
