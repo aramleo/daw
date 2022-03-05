@@ -26,6 +26,9 @@
                 <a class="nav-link" href="productos.php">Productos</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../index.php">Vista página</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="cerrar.php">Salir</a>
             </li>
         </ul>

@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include("template/header.php");
 
   require_once("admin/config/funciones.php");
@@ -15,27 +16,44 @@
     }
   }
 ?>
-          <div class="p-5 bg-light">
-            <div class="container">
-              <h1 class="display-3"> Registro</h1>
-              <p class="lead">Regístrate para acceder a la zona premium</p>
-              <form action="<?=$_SERVER['PHP_SELF']?>" method="post" >
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" />
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" />
-                </div>
-                <div class="mb-3">
-                  <label for="confirmacion" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="confirmacion" name="confirmacion" />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 p-5">
+      <div class="card">
+        <div class="card">
+          <div class="card-header">Registro de usuarios</div>
+          <p class="lead">Regístrate para acceder a la zona premium</p>
+          <div class="card-body">
+            <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+              <div class="form-group py-3">
+                <label for="usuario">Usuario: </label>
+                <input type="text" class="form-control" id=usuario name="usuario" required placeholder="Introduce usuario" />
+              </div>
+              <div class="form-group py-3">
+                <label for="email">Correo electrónico: </label>
+                <input type="text" class="form-control" id="email" name="email" required placeholder="Introduce tu correo electrónico" />
+              </div>
+              <div class="form-group py-3">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Contraseña" />
+              </div>
+              <div class="form-group py-3">
+                <label for="confirmacion">Confirmación contraseña:</label>
+                <input type="password" class="form-control" name="confirmacion" required placeholder="Vuelve a introducir tu contraseña" />
+              </div>
+              <div class="py-3">
+                <button type="submit" class="btn btn-primary">
+                  Registro
+                </button>
+              </div>
+            </form>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
-  include("template/footer.php");
-?>        
+include("template/footer.php");
+?>

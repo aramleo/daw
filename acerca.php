@@ -7,6 +7,9 @@
               <p class="lead">Empresa que gestiona la creación de Huertos Urbanos, su mantenimiento y el suministro de 
                 materiales para su funcionamiento.
               </p>
+              <div>
+                Ponemos a tu disposición servicios de creación y mantenimiento de huertos urbanos con los mejores profesionales del sector.
+              </div>
             </div>
           </div>
 <?php
