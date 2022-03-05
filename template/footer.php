@@ -1,4 +1,4 @@
-<div class="container-fluid fixed-bottom">
+<div class="container-fluid">
 <div class="row w-vh">
     <div class="col bg-success text-white text-center">
       <div class="d-flex align-items-end">
