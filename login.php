@@ -8,25 +8,16 @@
       <div class="card">
           <div class="card">
             <div class="card-header">Login</div>
+            <p class="lead">Inicia sesión para entrar a la zona premium</p>
             <div class="card-body">
-              <form method="POST">
+              <form action="./home.php" method="post">
                 <div class="form-group py-3">
-                  <label for="usuarioAdmin">Usuario: </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="usuario"
-                    placeholder="Introduce usuario"
-                  />
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control" id="email" />
                 </div>
                 <div class="form-group py-3">
                   <label for="password">Contraseña:</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    placeholder="Contraseña"
-                  />
+                  <input type="password" name="password" class="form-control" id="password" />
                 </div>
                 <div class="py-3">
                   <button type="submit" class="btn btn-primary">

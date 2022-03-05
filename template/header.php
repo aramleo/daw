@@ -1,3 +1,16 @@
+<?php
+require_once("admin/config/funciones.php");
+use admin\config\Clase;
+
+  if (isset($_POST['logout'])) {
+    $logout = filter_input(INPUT_POST, 'logout', FILTER_VALIDATE_BOOLEAN);
+    if ($logout == true) {
+      $vaciarCookie = new Clase\Funciones;
+      $vaciarCookie->logout();
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,11 +34,28 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="menuID">
                 <div class="navbar-nav">
+<?php
+$comprobarUsuario = new Clase\Funciones();
+if (!$comprobarUsuario->comprobarSesion()) {
+?>
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
                     <a class="nav-link active" aria-current="page" href="login.php">Login</a>
-                    <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de
-                    </a>
+                    <a class="nav-link active" aria-current="page" href="registro.php">Registro</a>
+                    <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de</a>
+<?php
+    } else {
+?>
+                    <a class="nav-link active" aria-current="page" href="./home.php">Inicio</a>
+                    <form action="./index.php" method="post">
+                        <input type="hidden" name="logout" value="true" />
+                        <input type="submit" value="Logout" />
+                    </form>
+<?php
+    }
+?>
+                    
+
                 </div>
             </div>
         </div>
