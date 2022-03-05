@@ -4,16 +4,15 @@ namespace admin\config\BD;
 
 use PDO;
 use PDOException;
-
-class Conexion {
+Class Conexion {
 
     private $datos;
-    private $username = "";
+    private $username = "root";
     private $password = "";
     private $dbname = 'huertos';
 
     public function __construct() {
-        $this->datos =  "mysql:host=127.0.0.1;dbname=$this->dbname";
+        $this->datos = "mysql:host=127.0.0.1;dbname=$this->dbname";
     }
 
     /**

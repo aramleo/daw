@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  // session_start();
   include("template/header.php");
 
   require_once("admin/config/funciones.php");
@@ -17,12 +17,12 @@
   }
 ?>
 <div class="container">
+<p class="lead">Regístrate para acceder a la zona premium</p>
   <div class="row">
     <div class="col-md-6 p-5">
       <div class="card">
         <div class="card">
           <div class="card-header">Registro de usuarios</div>
-          <p class="lead">Regístrate para acceder a la zona premium</p>
           <div class="card-body">
             <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
               <div class="form-group py-3">

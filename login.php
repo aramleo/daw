@@ -3,12 +3,12 @@
   include("template/header.php");
 ?>
   <div class="container">
+  <p class="lead">Inicia sesión para entrar a la zona premium</p>
     <div class="row">
       <div class="col-md-6 py-5">
       <div class="card">
           <div class="card">
             <div class="card-header">Login</div>
-            <p class="lead">Inicia sesión para entrar a la zona premium</p>
             <div class="card-body">
               <form action="./home.php" method="post">
                 <div class="form-group py-3">
