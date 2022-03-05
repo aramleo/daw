@@ -1,7 +1,7 @@
 <?php
 
-$datos = "mysql:host=localhost;dbname=huertos";
+$datos = "mysql:host=127.0.0.1;dbname=huertos";
 $username = "root";
-$password = "";
+$password = "vICTOR_76";
 
 ?>
