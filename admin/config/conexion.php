@@ -8,8 +8,8 @@ use PDOException;
 class Conexion {
 
     private $datos;
-    private $username = "root";
-    private $password = "vICTOR_76";
+    private $username = "";
+    private $password = "";
     private $dbname = 'huertos';
 
     public function __construct() {
