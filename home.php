@@ -9,13 +9,34 @@
 
     $comprobarUsuario = new Clase\Funciones();
 
+    $message = "";
+
     // comprobamos que no está vacio y es válido.
-    if (!empty($email) && !empty($password) && $comprobarUsuario->comprobarUsuario($email) == 1) {
-        session_start();
-        $_SESSION["email"]  = $email;
-        setcookie('email', $email);
-        $_SESSION["password"] = $password;
-        setcookie('password', $password);
+    if (!empty($email) && !empty($password) && $comprobarUsuario->comprobarUsuario($email)[1] == 1) {
+        $comprobarPassword = $comprobarUsuario->comprobarUsuario($email)[0];
+        if (password_verify($password, $comprobarPassword['password'])) {
+            session_start();
+            $_SESSION["email"]  = $email;
+            setcookie('email', $email);
+            $_SESSION["password"] = $password;
+            setcookie('password', $password);
+        } else {
+            $message = "Contraseña inválida!!!";
+        }
+    } else if ($comprobarUsuario->comprobarUsuario($email)[1] == 0) {
+        $message = 'Usuario no válido!!!';  
+    } else if (empty($email) || empty($password)) {
+        if (empty($email)) {
+            $message .= "Email vacio!!!";
+        }
+        if (empty($password)) {
+            $message .= " Contraseña vacia!!!";
+        }
+    }
+    setcookie('message', trim($message));
+    $_COOKIE['message'] = trim($message);
+    if (!empty($_COOKIE['message'])) {
+        $comprobarUsuario->redireccion('login.php');
     }
     include("template/header.php");
     if ($comprobarUsuario->comprobarSesion()) {

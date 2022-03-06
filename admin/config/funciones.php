@@ -109,7 +109,7 @@ class Funciones{
             $sql = "INSERT INTO `usuarios` (email, password) VALUES (:email, :password);";
             $query = $this->conexion -> prepare($sql);
             $query -> bindParam(':email', $email);
-            $query -> bindParam(':password', $password);
+            $query -> bindParam(':password', password_hash($password, PASSWORD_BCRYPT));
             $query -> execute();
             $resultado = 1;
         }catch(Exception $e){
@@ -128,9 +128,12 @@ class Funciones{
         $query = $this->conexion -> prepare($sql);
         $query -> bindParam(':email', $email);
         $query -> execute();
-        // $result = $query -> fetchAll(PDO::FETCH_ASSOC);
-        // return $result;
-        return $query->rowCount();
+        $result = $query -> fetchAll(PDO::FETCH_ASSOC);
+        if ($query->rowCount() === 1) {
+            return array($result[0], $query->rowCount());
+        } else {
+            return array('', 0);
+        }
     }
 
     public function redireccion($url) {

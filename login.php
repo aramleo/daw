@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  // session_start();
   include("template/header.php");
 ?>
   <div class="container">
@@ -10,14 +10,16 @@
           <div class="card">
             <div class="card-header">Login</div>
             <div class="card-body">
-              <form action="./home.php" method="post">
+              <form action="./home.php" method="post" id="form">
                 <div class="form-group py-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" />
+                  <input type="email" name="email" class="form-control" id="email" required/>
+                  <div id="erroremail"></div>
                 </div>
-                <div class="form-group py-3">
-                  <label for="password">Contraseña:</label>
-                  <input type="password" name="password" class="form-control" id="password" />
+                <div class="form-group mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" name="password" class="form-control" id="password" required/>
+                  <div id="errorpassword"></div>
                 </div>
                 <div class="py-3">
                   <button type="submit" class="btn btn-primary">
@@ -25,6 +27,16 @@
                   </button>
                 </div>
               </form>
+<?php
+  if (!empty($_COOKIE['message'])) {
+?>
+              <div>
+                <?=$_COOKIE['message']?>
+              </div>
+<?php
+    setcookie('message', "");
+  }
+?>
             </div>
           </div>
         </div>
@@ -50,6 +62,7 @@
       </div>
     </div>
   </div>
+  <script src="./admin/js/validacion.js"></script>
  
 <?php
   include("template/footer.php");

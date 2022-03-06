@@ -5,17 +5,19 @@
   require_once("admin/config/funciones.php");
   use admin\config\Clase;
 
-  if (isset($_POST['email']) && isset($_POST['password'])) {
+  if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['usuario'])) {
     // filtramos los campos que vienen del formulario de login.
+    $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if (!empty($email) && !empty($password)) {
       $registrarUsuario = new Clase\Funciones;
-      $registrarUsuario->registrarUsuario($email, $password);
+      $registrarUsuario->registrarUsuario($usuario, $email, $password);
       $registrarUsuario->redireccion('login.php');
     }
   }
 ?>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6 p-4">
@@ -27,7 +29,7 @@
             <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
               <div class="form-group py-3">
                 <label for="usuario">Usuario: </label>
-                <input type="text" class="form-control" id=usuario name="usuario" required placeholder="Introduce usuario" />
+                <input type="text" class="form-control" id="usuario" name="usuario" required placeholder="Introduce usuario" />
               </div>
               <div class="form-group py-3">
                 <label for="email">Correo electrónico: </label>
@@ -53,6 +55,7 @@
     </div>
   </div>
 </div>
+<script src="./admin/js/validacion.js"></script>
 
 <?php
 include("template/footer.php");
