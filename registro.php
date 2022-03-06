@@ -22,20 +22,21 @@
               <form action="<?=$_SERVER['PHP_SELF']?>" method="post" >
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" />
+                  <input type="email" class="form-control" id="email" name="email" required />
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" />
+                  <input type="password" class="form-control" id="password" name="password" required />
                 </div>
                 <div class="mb-3">
                   <label for="confirmacion" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="confirmacion" name="confirmacion" />
+                  <input type="password" class="form-control" id="confirmacion" name="confirmacion" required />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
+          <script src="./admin/js/validacion.js"></script>
 <?php
   include("template/footer.php");
 ?>        
