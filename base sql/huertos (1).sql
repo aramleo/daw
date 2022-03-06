@@ -1,5 +1,4 @@
 
-
 CREATE TABLE `alquileres` (
   `id` int(11) NOT NULL,
   `referencia` varchar(25) NOT NULL,
@@ -7,6 +6,27 @@ CREATE TABLE `alquileres` (
   `metros` int(10) NOT NULL,
   `imagen` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `fecha` date NOT NULL,
+  `texto` longtext NOT NULL,
+  `imagen` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `blog`
+--
+
+INSERT INTO `blog` (`id`, `titulo`, `fecha`, `texto`, `imagen`) VALUES
+(1, 'Primer Post', '2022-03-05', 'dfasdfadfsdfsdfsadfasfasdfasdfasdfasdfasfasfasdfasdfasdfsdfsdfkdcc   ksdfksdkaskfk kasdjfskjkasdfksadfkjasdfjkasdkjasdfk  kasdfjkskkasfjksdf jjasdkfjvksjkasdkassajdvjv kjasdjfjvj kasdfksvkjsdfjksadjfksdfkdf', 'iamgen.png');
 
 -- --------------------------------------------------------
 
@@ -125,6 +145,12 @@ ALTER TABLE `alquileres`
   ADD UNIQUE KEY `referencia` (`referencia`);
 
 --
+-- Indices de la tabla `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `estaciones`
 --
 ALTER TABLE `estaciones`
@@ -169,6 +195,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `alquileres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `meses`

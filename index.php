@@ -1,4 +1,6 @@
 <?php
+
+  session_start();
   include("template/header.php");
 ?>
 <div class="p-5 bg-light">
@@ -50,8 +52,9 @@
       </div>     
       </div>
     </div>
-    <?php
-  include("template/footer.php");
-?>
+    
   </div>
 </div>
+<?php
+  include("template/footer.php");
+?>
