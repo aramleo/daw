@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  // session_start();
   include("template/header.php");
 ?>
   <div class="container">
@@ -10,7 +10,7 @@
           <div class="card">
             <div class="card-header">Login</div>
             <div class="card-body">
-              <form action="./home.php" method="post">
+              <form action="./home.php" method="post" id="form">
                 <div class="form-group py-3">
                   <label for="email" class="form-label">Email</label>
                   <input type="email" name="email" class="form-control" id="email" required/>
