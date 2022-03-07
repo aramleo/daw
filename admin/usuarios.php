@@ -1,7 +1,7 @@
 <?php    
 
 // session_start();
-include ("./config/funciones.php");
+include ("config/funciones.php");
 
 
 use admin\config\Clase;
@@ -9,10 +9,10 @@ use admin\config\Clase;
 $consulta = new Clase\Funciones;
 $resultados = $consulta->consultar();
 
-include './template/cabecera.php';
+include 'template/cabecera.php';
 ?>
 <div>
-    <a href="productos/formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
+    <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
 </div>
 <div class="card">
     <div class="card-title">
@@ -38,8 +38,8 @@ include './template/cabecera.php';
                 <td><?php echo $resultado->estacion;?></td>
                 <td><?php echo $resultado->mes;?></td>
                 <td><?php echo $resultado->img;?></td>
-                <td class='text-center'><a href="productos/formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                <a href="productos/borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
+                <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
         <?php
             } 
@@ -70,7 +70,7 @@ if(isset($_SESSION['editado']) && !empty($_SESSION['editado'])){
     <?php
     $_SESSION['editado']='';
 }
-include("./template/pie.php");
+include("template/pie.php");
 
 ?>
 

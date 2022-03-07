@@ -20,13 +20,19 @@
     <nav class="navbar navbar-expand navbar-light bg-light">
         <ul class="nav navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="inicio.php">Inicio</a>
+                <a class="nav-link" href="./">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="productos.php">Productos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">Vista página</a>
+                <a class="nav-link" href="alquileres.php">Alquileres</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../">Vista página</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="cerrar.php">Salir</a>

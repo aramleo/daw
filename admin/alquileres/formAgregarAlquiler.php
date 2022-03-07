@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("template/cabecera.php");
+include("../template/cabecera.php");
 // var_dump($_SESSION);
 ?>
 
@@ -48,7 +48,7 @@ include("template/cabecera.php");
       </div>
         <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
-            <a class="btn btn-info mx-3" href="productos.php" role="button">Volver</a>
+            <a class="btn btn-info mx-3" href="../productos.php" role="button">Volver</a>
         </div>
     </form>
         </div>
@@ -79,7 +79,7 @@ include("template/cabecera.php");
     ?>
 <?php
 
-include("template/pie.php");
+include("../template/pie.php");
 
 ?>
 

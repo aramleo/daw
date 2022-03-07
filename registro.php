@@ -1,20 +1,20 @@
 <?php
-  // session_start();
+  session_start();
   include("template/header.php");
 
   require_once("admin/config/funciones.php");
   use admin\config\Clase;
 
-  if (isset($_POST['email']) && isset($_POST['password'])) {
-    // filtramos los campos que vienen del formulario de login.
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if (!empty($email) && !empty($password)) {
-      $registrarUsuario = new Clase\Funciones;
-      $registrarUsuario->registrarUsuario($email, $password);
-      $registrarUsuario->redireccion('login.php');
-    }
-  }
+  // if (isset($_POST['email']) && isset($_POST['password'])) {
+  //   // filtramos los campos que vienen del formulario de login.
+  //   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  //   $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  //   if (!empty($email) && !empty($password)) {
+  //     $registrarUsuario = new Clase\Funciones;
+  //     $registrarUsuario->registrarUsuario($email, $password);
+  //     $registrarUsuario->redireccion('login.php');
+  //   }
+  // }
 ?>
 <div class="container">
   <div class="row">

@@ -163,7 +163,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-2">
+    <div class="col-md-4 col-lg-2">
         <div class="card">
             <img src="img/alimentos/repollo.jpg" class="card-img-top" alt="..." />
             <div class="card-body">
