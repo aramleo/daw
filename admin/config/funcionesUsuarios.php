@@ -2,7 +2,7 @@
 
 namespace admin\config\Clase;
 
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 use admin\config\BD\Conexion;
 use PDO;

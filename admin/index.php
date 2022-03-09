@@ -19,7 +19,7 @@ include('template/cabecera.php');
                 <div class="card-body">
                     <h5 class="card-title">Alquileres</h5>
                     <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
-                    <a href="alquileres/alquileres.php" class="btn btn-primary">Alquileres</a>
+                    <a href="alquileres.php" class="btn btn-primary">Alquileres</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@ include('template/cabecera.php');
                 <div class="card-body">
                     <h5 class="card-title">Usuarios</h5>
                     <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
-                    <a href="usuarios/usuarios.php" class="btn btn-primary">Usuarios</a>
+                    <a href="usuarios.php" class="btn btn-primary">Usuarios</a>
                 </div>
             </div>
         </div>
