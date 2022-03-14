@@ -1,8 +1,8 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
 session_start();
-include("template/cabecera.php");
-include("config/funciones.php");
+include("../template/cabecera.php");
+include("../config/funciones.php");
 
 
 use admin\config\Clase;
@@ -284,6 +284,6 @@ $_SESSION['error'] = '';
 
 <?php
 
-include("template/pie.php");
+include("../template/pie.php");
 
 ?>

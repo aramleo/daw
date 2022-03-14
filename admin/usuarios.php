@@ -1,30 +1,30 @@
 <?php    
 
 // session_start();
-include ("./config/funciones.php");
+include ("config/funcionesUsuarios.php");
 
 
 use admin\config\Clase;
 
-$consulta = new Clase\Funciones;
-$resultados = $consulta->consultar();
+$consulta = new Clase\FuncionesUsuarios;
+$resultados = $consulta->consultarUsuario();
 
-include './template/cabecera.php';
+include 'template/cabecera.php';
 ?>
 <div>
-    <a href="productos/formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
+    <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar usuario</button></a>
 </div>
 <div class="card">
     <div class="card-title">
-        <h5>Lista de productos</h5>
+        <h5>Lista de usuarios</h5>
     </div>
     <table id="productos" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Estacion</th>
-                <th>Mes</th>
-                <th>Imagen</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Rol</th>
                 <th class='text-center'>Accion</th>
             </tr>
         </thead>
@@ -35,11 +35,11 @@ include './template/cabecera.php';
             ?>
             <tr>
                 <td><?php echo $resultado->nombre;?></td>
-                <td><?php echo $resultado->estacion;?></td>
-                <td><?php echo $resultado->mes;?></td>
-                <td><?php echo $resultado->img;?></td>
-                <td class='text-center'><a href="productos/formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                <a href="productos/borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
+                <td><?php echo $resultado->email;?></td>
+                <td><?php echo $resultado->password;?></td>
+                <td><?php echo $resultado->rol;?></td>
+                <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
         <?php
             } 
@@ -70,7 +70,7 @@ if(isset($_SESSION['editado']) && !empty($_SESSION['editado'])){
     <?php
     $_SESSION['editado']='';
 }
-include("./template/pie.php");
+include("template/pie.php");
 
 ?>
 

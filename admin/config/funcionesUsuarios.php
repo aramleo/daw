@@ -2,13 +2,13 @@
 
 namespace admin\config\Clase;
 
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 use admin\config\BD\Conexion;
 use PDO;
 use Exception;
 
-class Funciones{
+class FuncionesUsuarios{
 
     private $conexion;
     private $url;
@@ -19,8 +19,8 @@ class Funciones{
         $this->url = 'http://localhost/daw/';
     }
     // Consultar productos
-    public function consultar(){
-        $sql = "SELECT p.ID, p.nombre, e.estacion, m.mes, p.img FROM `productos` AS p JOIN `estaciones` AS e JOIN `meses` AS m on p.estacion = e.id_estacion AND p.clave_mes= m.id_mes ORDER BY p.nombre;";
+    public function consultarUsuario(){
+        $sql = "SELECT u.id_usuario, u.nombre, u.email, u.password, r.rol FROM `usuarios` AS u JOIN `roles` AS r on u.clave_rol = r.id_rol ORDER BY u.nombre;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);

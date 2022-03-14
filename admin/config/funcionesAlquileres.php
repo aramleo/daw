@@ -8,7 +8,7 @@ use admin\config\BD\Conexion;
 use PDO;
 use Exception;
 
-class Funciones{
+class FuncionesAlquileres{
 
     private $conexion;
     private $url;
@@ -19,8 +19,8 @@ class Funciones{
         $this->url = 'http://localhost/daw/';
     }
     // Consultar productos
-    public function consultar(){
-        $sql = "SELECT p.ID, p.nombre, e.estacion, m.mes, p.img FROM `productos` AS p JOIN `estaciones` AS e JOIN `meses` AS m on p.estacion = e.id_estacion AND p.clave_mes= m.id_mes ORDER BY p.nombre;";
+    public function consultarAlquiler(){
+        $sql = "SELECT id, referencia, localidad,metros, imagen FROM `alquileres` ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);

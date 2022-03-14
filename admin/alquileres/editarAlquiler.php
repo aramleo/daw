@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-include("config/funciones.php");
+include("../config/funciones.php");
 
 use admin\config\Clase;
 
@@ -26,6 +26,6 @@ if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) |
   }
   if($datos === 'Registro actualizado'){
     $_SESSION['editado'] = 'El registro ha sido actualizado';
-    header('Location: productos.php');
+    header('Location: ../productos.php');
   }
 }

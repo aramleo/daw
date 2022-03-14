@@ -1,59 +1,42 @@
 <?php
-    if($_POST){
-        header('location: inicio.php');
-    }
+include('template/cabecera.php');
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </head>
-
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 py-5">
-        </div>
-        <div class="col-md-4 p-5">
-          <div class="card">
-            <div class="card">
-              <div class="card-header">Login Administrador</div>
-              <div class="card-body">
-                <form method="POST">
-                  <div class="form-group py-3">
-                    <label for="usuarioAdmin">Usuario: </label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="usuario"
-                      placeholder="Introduce usuario"
-                    />
-                  </div>
-                  <div class="form-group py-3">
-                    <label for="password">Contraseña:</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="Contraseña"
-                    />
-                  </div>
-                  <div class="py-3">
-                    <button type="submit" class="btn btn-primary">
-                      Iniciar sesión
-                    </button>
-                  </div>
-                </form>
-              </div>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="../img/semillas.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Productos</h5>
+                    <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                    <a href="productos.php" class="btn btn-primary">Productos</a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="../img/alquiler.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Alquileres</h5>
+                    <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                    <a href="alquileres.php" class="btn btn-primary">Alquileres</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="../img/user.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Usuarios</h5>
+                    <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                    <a href="usuarios.php" class="btn btn-primary">Usuarios</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
-</html>
+</div>
+<?php
+
+include('template/pie.php');
+
+?>
