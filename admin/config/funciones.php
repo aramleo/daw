@@ -1,12 +1,6 @@
 <?php
 
-namespace admin\config\Clase;
-
 require_once(__DIR__.'\conexion.php');
-
-use admin\config\BD\Conexion;
-use PDO;
-use Exception;
 
 class Funciones{
 
@@ -14,9 +8,8 @@ class Funciones{
     private $url;
 
     public function  __construct(){
-        $bd = new Conexion;
+        $bd = new Conexion();
         $this->conexion = $bd->conexion();
-        $this->url = 'http://localhost/daw/';
     }
     // Consultar productos
     public function consultar(){
@@ -150,28 +143,7 @@ class Funciones{
         setCookie('password', "", time()-3600);
     }
 
-    // Funciones para el blog 
-
-    public function getPosts(){	
-        $sql="SELECT id, titulo FROM blog ORDER BY id desc";
-        $query = $this->conexion -> prepare($sql);
-        $query -> execute();
-        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
-    
-    public function getPostById($id)
-    {
-        $sql = "SELECT id, titulo, fecha, texto, imagen FROM blog WHERE id = :id;";
-        $query = $this->conexion-> prepare($sql);
-        $query->bindParam(':id', $id);
-        $query -> execute();
-        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
-
-    // Funciones de Usuario
-
+   
 
 }
 

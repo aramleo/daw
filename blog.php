@@ -1,11 +1,10 @@
 <?php
 
-require_once 'admin/config/funciones.php';
-use admin\config\Clase;
+require_once 'admin/config/funcionesBlog.php';
 include('template/header.php');
 
 
-$llamada = new Clase\Funciones;
+$llamada = new Funciones;
 
 ?>
 <div class="header text-center mt-3 mb-6">

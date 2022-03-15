@@ -1,20 +1,15 @@
 <?php    
 
-// session_start();
+session_start();
 include ("config/funcionesUsuarios.php");
 
-
-use admin\config\Clase;
-
-$consulta = new Clase\FuncionesUsuarios;
+$consulta = new FuncionesUsuarios;
 $resultados = $consulta->consultarUsuario();
 
 include 'template/cabecera.php';
 ?>
-<div>
-    <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar usuario</button></a>
-</div>
-<div class="card">
+
+<div class="card mt-5">
     <div class="card-title">
         <h5>Lista de usuarios</h5>
     </div>
@@ -23,7 +18,6 @@ include 'template/cabecera.php';
             <tr>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Rol</th>
                 <th class='text-center'>Accion</th>
             </tr>
@@ -36,10 +30,9 @@ include 'template/cabecera.php';
             <tr>
                 <td><?php echo $resultado->nombre;?></td>
                 <td><?php echo $resultado->email;?></td>
-                <td><?php echo $resultado->password;?></td>
                 <td><?php echo $resultado->rol;?></td>
-                <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
+                <td class='text-center'><a href="usuarios/formEditarUsuario.php?id=<?php echo $resultado->id_usuario;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                <a href="borrarProducto.php?id=<?php echo $resultado->id_usuario;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
         <?php
             } 

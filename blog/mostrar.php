@@ -1,10 +1,9 @@
 <?php
 
 
-require_once '../admin/config/funciones.php';
+require_once '../admin/config/funcionesBlog.php';
 
-use admin\config\Clase;
-$consultas = new Clase\Funciones;
+$consultas = new Funciones;
 
 $post = $consultas->getPostById($_GET['id']);
 

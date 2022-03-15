@@ -1,12 +1,11 @@
 <?php    
 
 // session_start();
+
 include ("./config/funciones.php");
 
 
-use admin\config\Clase;
-
-$consulta = new Clase\Funciones;
+$consulta = new Funciones;
 $resultados = $consulta->consultar();
 
 include './template/cabecera.php';
@@ -42,7 +41,8 @@ include './template/cabecera.php';
                 <a href="productos/borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
         <?php
-            } 
+            }
+            $_SESSION['editado']='';
         ?> 
         </tbody>
         <tfoot>
@@ -51,6 +51,7 @@ include './template/cabecera.php';
 </div>
 
 <?php
+
 if(isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])){
     ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -68,7 +69,7 @@ if(isset($_SESSION['editado']) && !empty($_SESSION['editado'])){
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <?php
-    $_SESSION['editado']='';
+    
 }
 include("./template/pie.php");
 

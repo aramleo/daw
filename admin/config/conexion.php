@@ -1,9 +1,5 @@
 <?php
 
-namespace admin\config\BD;
-
-use PDO;
-use PDOException;
 Class Conexion {
 
     private $datos;
