@@ -2,25 +2,22 @@
 //Comenzamos la sesión para registrar errores y usuarios
 session_start();
 include("../template/cabecera.php");
-include("../config/funciones.php");
-
-
-use admin\config\Clase;
+include("../config/funcionesAlquileres.php");
 
 // Variables que recogemos de la función editar en funciones.php
-$actual = new Clase\Funciones;
+$actual = new FuncionesAlquileres;
 $datos = $actual->editar($_GET['id']);
-$estacion = $datos[0]['estacion'];
-$nombre = $datos[0]['nombre'];
-$mes = $datos[0]['clave_mes'];
-$imagen = $datos[0]['img'];
-$id = $datos[0]['ID'];
+$referencia = $datos[0]['referencia'];
+$localidad = $datos[0]['localidad'];
+$metros = $datos[0]['metros'];
+$imagen = $datos[0]['imagen'];
+$id = $datos[0]['id'];
 ?>
 
 <div class="col-md-5 mt-3">
   <div class="card">
     <div class="card-header">
-      Datos del producto
+      Datos del Alquiler
     </div>
     <div class="card-body">
       <form action="editarProducto.php" method="post" enctype="multipart/form-data">
@@ -30,232 +27,16 @@ $id = $datos[0]['ID'];
         </div>
         <!-- Introducción del nombre para actualizar -->
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre Producto:</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
+          <label for="nombre" class="form-label">Referencia:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $referencia; ?>" required>
         </div>
         <div class="mb-3">
-          <label for="nombre" class="form-label">Estación:</label>
-          <select name="estacion" id="estacion" class="form-control">
-            <?php
-            switch ($estacion) {
-              case '1':
-            ?><option value="1" selected>Primavera</option>
-                <option value="2">Verano</option>
-                <option value="3">Otoño</option>
-                <option value="4">Invierno</option>
-              <?php
-                break;
-              case '2':
-              ?><option value="1">Primavera</option>
-                <option value="2" selected>Verano</option>
-                <option value="3">Otoño</option>
-                <option value="4">Invierno</option>
-              <?php
-                break;
-              case '3':
-              ?><option value="1">Primavera</option>
-                <option value="2">Verano</option>
-                <option value="3" selected>Otoño</option>
-                <option value="4">Invierno</option>
-              <?php
-                break;
-              default:
-              ?><option value="1">Primavera</option>
-                <option value="2">Verano</option>
-                <option value="3">Otoño</option>
-                <option value="4" selected>Invierno</option>
-            <?php
-                break;
-            } ?>
-          </select>
+        <label for="nombre" class="form-label">Localidad:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $localidad; ?>" required>
         </div>
         <div class="mb-3">
-          <label for="mes" class="form-label">Mes:</label>
-          <select name="mes" id="mes" class="form-control">
-            <?php
-            switch ($mes) {
-              case '1':
-                ?><option value="1" selected>Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                  <?php
-                    break;
-              case '2':
-                ?><option value="1">Enero</option>
-                <option value="2" selected>Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '3':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3" selected>Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '4':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4" selected>Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '5':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5" selected>Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '6':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6" selected>Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '7':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7" selected>Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '8':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8" selected>Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '9':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9" selected>Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '10':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10" selected>Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              case '11':
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11" selected>Noviembre</option>
-                <option value="12">Diciembre</option>
-                <?php
-                  break;
-              default:
-                ?><option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12" selected>Diciembre</option>
-              <?php
-                  break;
-            } ?>
-          </select>
+          <label for="nombre" class="form-label">Metros:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $metros; ?>" required>
         </div>
         <div class="mb-3">
           <label for="txtImagen" class="form-label">Imagen:</label>
@@ -263,7 +44,7 @@ $id = $datos[0]['ID'];
         </div>
         <div class="btn-group" role="group" aria-label="">
           <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
-          <a class="btn btn-info mx-3" href="productos.php" role="button">Volver</a>
+          <a class="btn btn-info mx-3" href="../alquileres.php" role="button">Volver</a>
         </div>
       </form>
     </div>

@@ -1,31 +1,26 @@
 <?php 
 session_start();
 
-include("../config/funciones.php");
-
-use admin\config\Clase;
+include("../config/funcionesUsuarios.php");
 
 
-if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['actualizar'])){
+if(empty($_POST['id']) || empty($_POST['nombre']) || empty($_POST['email']) || empty($_POST['rol']) || empty($_POST['actualizar'])){
   $envio= 'No se pueden enviar datos vacios';
   $_SESSION['error']=$envio;
-  header('Location: formEditar.php');
-}else{
-  $id=$_POST['ID'];
+  header('Location: formEditarUsuario.php');
+}
+else{
+  $id=$_POST['id'];
   $nombre=$_POST['nombre'];
-  $estacion=$_POST['estacion'];
-  $mes=$_POST['mes'];
-  $imagen = $_POST['imagen'];
-  $actualizar = new Clase\Funciones;
-  $datos = $actualizar->actualizar($id, $nombre, $estacion, $mes, $imagen);
-  if($datos === false){
-    $datos = 'El registro no se ha actualizado';
-    header('Location: formEditar.php');
-    $_SESSION['error'] = $datos;
-    header('Location: formAgregar.php');
+  $email=$_POST['email'];
+  $rol=$_POST['rol'];
+  $actualizar = new FuncionesUsuarios;
+  $datos = $actualizar->actualizar($id, $nombre, $email, $rol);
   }
   if($datos === 'Registro actualizado'){
     $_SESSION['editado'] = 'El registro ha sido actualizado';
-    header('Location: ../productos.php');
+    header('Location: ../usuarios.php');
+  }else{
+    $_SESSION['error'] = $datos;
+    header('Location: formEditarUsuario.php');
   }
-}

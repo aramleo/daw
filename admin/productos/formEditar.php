@@ -8,7 +8,7 @@ include("../config/funciones.php");
 use admin\config\Clase;
 
 // Variables que recogemos de la función editar en funciones.php
-$actual = new Clase\Funciones;
+$actual = new Funciones;
 $datos = $actual->editar($_GET['id']);
 $estacion = $datos[0]['estacion'];
 $nombre = $datos[0]['nombre'];
@@ -263,7 +263,7 @@ $id = $datos[0]['ID'];
         </div>
         <div class="btn-group" role="group" aria-label="">
           <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
-          <a class="btn btn-info mx-3" href="productos.php" role="button">Volver</a>
+          <a class="btn btn-info mx-3" href="../productos.php" role="button">Volver</a>
         </div>
       </form>
     </div>

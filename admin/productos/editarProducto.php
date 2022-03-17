@@ -3,8 +3,6 @@ session_start();
 
 include("../config/funciones.php");
 
-use admin\config\Clase;
-
 
 if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['actualizar'])){
   $envio= 'No se pueden enviar datos vacios';
@@ -16,7 +14,7 @@ if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) |
   $estacion=$_POST['estacion'];
   $mes=$_POST['mes'];
   $imagen = $_POST['imagen'];
-  $actualizar = new Clase\Funciones;
+  $actualizar = new Funciones;
   $datos = $actualizar->actualizar($id, $nombre, $estacion, $mes, $imagen);
   if($datos === false){
     $datos = 'El registro no se ha actualizado';

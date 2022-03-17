@@ -1,12 +1,8 @@
 <?php
 
-namespace admin\config\Clase;
-
 require_once(__DIR__.'\conexion.php');
 
-use admin\config\BD\Conexion;
-use PDO;
-use Exception;
+
 
 class FuncionesAlquileres{
 
@@ -16,7 +12,6 @@ class FuncionesAlquileres{
     public function  __construct(){
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
-        $this->url = 'http://localhost/daw/';
     }
     // Consultar productos
     public function consultarAlquiler(){
@@ -45,7 +40,7 @@ class FuncionesAlquileres{
     }
     // Editar productos
     public function editar($id){
-        $sql = "SELECT * FROM `productos` WHERE ID = $id;";
+        $sql = "SELECT * FROM `alquileres` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);

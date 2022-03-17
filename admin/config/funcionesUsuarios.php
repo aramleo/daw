@@ -1,12 +1,6 @@
 <?php
 
-namespace admin\config\Clase;
-
 require_once(__DIR__.'/conexion.php');
-
-use admin\config\BD\Conexion;
-use PDO;
-use Exception;
 
 class FuncionesUsuarios{
 
@@ -16,7 +10,7 @@ class FuncionesUsuarios{
     public function  __construct(){
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
-        $this->url = 'http://localhost/daw/';
+        
     }
     // Consultar productos
     public function consultarUsuario(){
@@ -26,43 +20,28 @@ class FuncionesUsuarios{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    // Agregar productos
-    public function agregar($nombre, $estacion, $mes, $imagen){
-        $resultado = null;
-        try{
-            $sql = "INSERT INTO productos (nombre, estacion, clave_mes, img) VALUES (:nombre,:estacion,:mes,:img)";
-            $stmt = $this->conexion -> prepare($sql);
-            $stmt ->bindParam(':nombre', $nombre);
-            $stmt ->bindParam(':estacion', $estacion);
-            $stmt ->bindParam(':mes', $mes);
-            $stmt ->bindParam(':img', $imagen);
-            $stmt -> execute();
-            $resultado = 1;
-        }catch(Exception $e){
-            $resultado = $e->getCode();
-        }      
-        return $resultado;
-    }
-    // Editar productos
+    
+    // Editar usuarios
     public function editar($id){
-        $sql = "SELECT * FROM `productos` WHERE ID = $id;";
+        $sql = "SELECT * FROM `usuarios` WHERE id_usuario = $id;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los productos editados
-    public function actualizar($id, $nombre, $estacion, $mes, $imagen){
+    // Actualizar los usuarios
+    public function actualizar($id, $nombre, $email, $rol){
         $resultado = null;
         try{
-            $sql = "UPDATE `productos` SET `nombre`=:nombre , `estacion`=:estacion, `clave_mes`=:mes, `img`=:img WHERE ID = $id;";
+            $sql = "UPDATE `usuarios` SET `nombre`=:nombre , `email`=:email, `clave_rol`=:rol WHERE id_usuario = $id;";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
-            $stmt ->bindParam(':estacion', $estacion);
-            $stmt ->bindParam(':mes', $mes);
-            $stmt ->bindParam(':img', $imagen);
+            $stmt ->bindParam(':email', $email);
+            $stmt ->bindParam(':rol', $rol);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';
+            }else{
+                $resultado = "Registro no actualizado";
             }
         }catch(Exception $e){
             $resultado = $e->getMessage();

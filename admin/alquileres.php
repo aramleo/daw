@@ -1,29 +1,27 @@
 <?php    
 
 // session_start();
-include ("config/funciones.php");
+include ("config/funcionesAlquileres.php");
 
 
-use admin\config\Clase;
-
-$consulta = new Clase\Funciones;
-$resultados = $consulta->consultar();
+$consulta = new FuncionesAlquileres;
+$resultados = $consulta->consultarAlquiler();
 
 include 'template/cabecera.php';
 ?>
 <div>
-    <a href="formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
+    <a href="alquileres/formAgregarAlquiler.php"><button type="text" class="btn btn-success my-3">Agregar alquiler</button></a>
 </div>
 <div class="card">
     <div class="card-title">
-        <h5>Lista de productos</h5>
+        <h5>Lista de alquileres</h5>
     </div>
     <table id="productos" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Estacion</th>
-                <th>Mes</th>
+                <th>Referencia</th>
+                <th>Localidad</th>
+                <th>metros</th>
                 <th>Imagen</th>
                 <th class='text-center'>Accion</th>
             </tr>
@@ -34,12 +32,12 @@ include 'template/cabecera.php';
         
             ?>
             <tr>
-                <td><?php echo $resultado->nombre;?></td>
-                <td><?php echo $resultado->estacion;?></td>
-                <td><?php echo $resultado->mes;?></td>
-                <td><?php echo $resultado->img;?></td>
-                <td class='text-center'><a href="formEditar.php?id=<?php echo $resultado->ID;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                <a href="borrarProducto.php?id=<?php echo $resultado->ID;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
+                <td><?php echo $resultado->referencia;?></td>
+                <td><?php echo $resultado->localidad;?></td>
+                <td><?php echo $resultado->metros;?></td>
+                <td><?php echo $resultado->imagen;?></td>
+                <td class='text-center'><a href="alquileres/formEditarAlquiler.php?id=<?php echo $resultado->id;?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                <a href="alquileres/borrarAlquiler.php?php echo $resultado->id;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a></td>
             </tr>
         <?php
             } 
