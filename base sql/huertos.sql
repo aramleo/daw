@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 01:30:31
+-- Tiempo de generación: 17-03-2022 a las 23:14:54
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -114,6 +114,7 @@ INSERT INTO `meses` (`id_mes`, `mes`) VALUES
 
 CREATE TABLE `pedidos` (
   `id` int(6) NOT NULL,
+  `id_cliente` int(25) NOT NULL,
   `pedido` int(10) NOT NULL,
   `producto` text NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -215,7 +216,8 @@ ALTER TABLE `meses`
 -- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cliente` (`id_cliente`);
 
 --
 -- Indices de la tabla `productos`
@@ -283,6 +285,12 @@ ALTER TABLE `roles`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `productos`
