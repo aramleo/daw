@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-    $('#productos').DataTable( {
+    $('#usuarios').DataTable( {
         responsive: true,
         language: {
             search: "Buscar:",

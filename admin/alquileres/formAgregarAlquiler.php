@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("../template/cabecera.php");
+include("../template/cabecera2.php");
 // var_dump($_SESSION);
 ?>
 

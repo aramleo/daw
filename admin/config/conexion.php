@@ -1,6 +1,8 @@
 <?php
 
-Class Conexion {
+include 'bd.php';
+
+Class Conexion extends Database {
 
     private $datos;
     private $username = "root";

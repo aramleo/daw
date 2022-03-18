@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-    $('#productos').DataTable( {
+    $('#alquileres').DataTable( {
         responsive: true,
         language: {
             search: "Buscar:",

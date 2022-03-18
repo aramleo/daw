@@ -1,7 +1,7 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
 session_start();
-include("../template/cabecera.php");
+include("../template/cabecera2.php");
 include("../config/funcionesAlquileres.php");
 
 // Variables que recogemos de la función editar en funciones.php

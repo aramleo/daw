@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("../template/cabecera.php");
+include("../template/cabecera2.php");
 ?>
 
 <div class="col-md-5 mt-3">

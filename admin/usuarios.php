@@ -8,12 +8,14 @@ $resultados = $consulta->consultarUsuario();
 
 include 'template/cabecera.php';
 ?>
+<div>
+<h5>Lista de usuarios</h5>
+</div>
 
-<div class="card mt-5">
-    <div class="card-title">
-        <h5>Lista de usuarios</h5>
-    </div>
-    <table id="productos" class="display" style="width:100%">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        <table id="usuarios" class="display nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -41,8 +43,10 @@ include 'template/cabecera.php';
         <tfoot>
         </tfoot>
     </table>
+        </div>
+    </div>
 </div>
-
+<script type="text/javascript" src="js/usuarios.js"></script>
 <?php
 if(isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])){
     ?>
@@ -63,6 +67,7 @@ if(isset($_SESSION['editado']) && !empty($_SESSION['editado'])){
     <?php
     $_SESSION['editado']='';
 }
+
 include("template/pie.php");
 
 ?>
