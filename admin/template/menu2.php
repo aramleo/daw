@@ -14,7 +14,25 @@
                     <a class="nav-link active" aria-current="page" href="../alquileres.php">Alquileres</a>
                     <a class="nav-link active" aria-current="page" href="../usuarios.php">Usuarios</a>          
                     <a class="nav-link active" aria-current="page" href="../../">Vista página</a>           
-                    <a class="nav-link active" aria-current="page" href="../../cerrarSesion.php">Cerrar sesión</a>       
+                    <div class="navbar-nav" style="border-top:1px solid white">
+                          <?php
+                            if (isset($_SESSION['usuario'])) {
+                            ?>
+                              <a class="nav-link active d-sm-none" aria-current="page" href="../../cerrarSesion.php">Cerrar sesión</a>
+                          <?php
+                            }
+                            ?>
+                      </div>
+                  </div>
+              </div>
+              <div class="navbar-nav" style="float:left; border-left:1px solid white">
+                  <?php
+                    if (isset($_SESSION['usuario'])) {
+                    ?>
+                      <a class="nav-link active d-none d-md-inline" aria-current="page" href="../../cerrarSesion.php">Cerrar sesión</a>
+                  <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php 
-session_start();
 include("../template/cabecera2.php");
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 ?>
 
 <div class="col-md-5 mt-3">
@@ -79,7 +79,7 @@ include("../template/cabecera2.php");
 <?php
 
 include("../template/pie.php");
-
+    }
 ?>
 
 

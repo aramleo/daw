@@ -1,12 +1,11 @@
 <?php
-session_start();
 include('template/cabecera.php');
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 ?>
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-4">
+            <div class="card" style="width: vw;">
                 <img src="../img/semillas.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Productos</h5>
@@ -15,8 +14,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-4">
+            <div class="card" style="width: vw;">
                 <img src="../img/alquiler.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Alquileres</h5>
@@ -25,8 +24,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-4">
+            <div class="card" style="width: vw;">
                 <img src="../img/user.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Usuarios</h5>

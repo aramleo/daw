@@ -1,11 +1,9 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
-session_start();
 include("../template/cabecera2.php");
 include("../config/funciones.php");
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 
-
-use admin\config\Clase;
 
 // Variables que recogemos de la función editar en funciones.php
 $actual = new Funciones;
@@ -285,5 +283,5 @@ $_SESSION['error'] = '';
 <?php
 
 include("../template/pie.php");
-
+}
 ?>

@@ -1,12 +1,10 @@
 <?php    
-
-session_start();
+include 'template/cabecera.php';
 include ("config/funcionesUsuarios.php");
-
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 $consulta = new FuncionesUsuarios;
 $resultados = $consulta->consultarUsuario();
 
-include 'template/cabecera.php';
 ?>
 <div>
 <h5>Lista de usuarios</h5>
@@ -69,7 +67,7 @@ if(isset($_SESSION['editado']) && !empty($_SESSION['editado'])){
 }
 
 include("template/pie.php");
-
+}
 ?>
 
 

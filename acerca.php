@@ -1,7 +1,7 @@
 <?php
 include("template/header.php");
 $_SESSION['usuario']=1;
-$_SESSION['rol'] = 'user';
+$_SESSION['rol'] = 'admin';
 ?>
           <div class="p-5 bg-light">
             <div class="container">

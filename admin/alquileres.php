@@ -1,13 +1,12 @@
 <?php
-
-// session_start();
+include 'template/cabecera.php';
 include("config/funcionesAlquileres.php");
-
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 
 $consulta = new FuncionesAlquileres;
 $resultados = $consulta->consultarAlquiler();
 
-include 'template/cabecera.php';
+
 ?>
 <div>
     <a href="alquileres/formAgregarAlquiler.php"><button type="text" class="btn btn-success my-3">Agregar alquiler</button></a>
@@ -75,5 +74,5 @@ if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
     $_SESSION['editado'] = '';
 }
 include("template/pie.php");
-
+}
 ?>

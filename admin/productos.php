@@ -1,14 +1,11 @@
 <?php
 
-// session_start();
-
+include './template/cabecera.php';
 include("./config/funciones.php");
-
-
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 $consulta = new Funciones;
 $resultados = $consulta->consultar();
 
-include './template/cabecera.php';
 ?>
 <div>
     <a href="productos/formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
@@ -82,5 +79,7 @@ if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
 
 }
 require_once("./template/pie.php");
-
+}else{
+    header('Location: ../');
+}
 ?>
