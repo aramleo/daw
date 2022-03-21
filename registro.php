@@ -1,20 +1,17 @@
 <?php
   session_start();
-  include("template/header.php");
 
-  require_once("admin/config/funciones.php");
-  use admin\config\Clase;
+  if(!isset($_SESSION['usuario'])){
+    include("template/header.php");
+    include_once("admin/config/funcionesValidar.php");
 
-  // if (isset($_POST['email']) && isset($_POST['password'])) {
-  //   // filtramos los campos que vienen del formulario de login.
-  //   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-  //   $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  //   if (!empty($email) && !empty($password)) {
-  //     $registrarUsuario = new Clase\Funciones;
-  //     $registrarUsuario->registrarUsuario($email, $password);
-  //     $registrarUsuario->redireccion('login.php');
-  //   }
-  // }
+    $retorno = validacion();    
+
+      if (!empty($retorno))            
+      {
+          list($errores,$datos)=$retorno;
+      }
+
 ?>
 <div class="container">
   <div class="row">
@@ -26,34 +23,48 @@
           <div class="card-body">
             <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
               <div class="form-group py-3">
-                <label for="usuario">Usuario: </label>
-                <input type="text" class="form-control" id=usuario name="usuario" required placeholder="Introduce usuario" />
+                <label for="usuario">Nombre y apellidos: </label>
+                <input type="text" class="form-control" id=usuario name="usuario" required value = "<?php if (!isset($errors['nombre']) && isset ($_POST['usuario'])) echo $_POST['usuario']; ?>" placeholder="Introduce nombre y apellidos" />
               </div>
               <div class="form-group py-3">
                 <label for="email">Correo electrónico: </label>
-                <input type="text" class="form-control" id="email" name="email" required placeholder="Introduce tu correo electrónico" />
+                <input type="text" class="form-control" id="email" name="email" required placeholder="Introduce tu correo electr&oacute;nico" />
               </div>
               <div class="form-group py-3">
                 <label for="password">Contraseña:</label>
-                <input type="password" class="form-control" id="password" name="password" required placeholder="Contraseña" />
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Contrase&ntilde;a" />
               </div>
               <div class="form-group py-3">
                 <label for="confirmacion">Confirmación contraseña:</label>
-                <input type="password" class="form-control" name="confirmacion" required placeholder="Vuelve a introducir tu contraseña" />
+                <input type="password" class="form-control" id="confirmacion" name="confirmacion" required placeholder="Vuelve a introducir tu contrase&ntilde;a" />
               </div>
               <div class="py-3">
                 <button type="submit" class="btn btn-primary">
                   Registro
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
+            </form>   
+          </div>  
+        </div>  
       </div>
+      <?php
+      if(isset($errores)){
+        foreach($errores as $error){
+          ?>
+          <div class="text-danger">
+          <?php echo $error;?>
+          </div>
+        <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </div>
 
 <?php
 include("template/footer.php");
+}else{
+    header('Location: index.php');
+}
 ?>

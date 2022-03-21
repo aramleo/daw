@@ -1,6 +1,14 @@
 <?php
-  session_start();
   include("template/header.php");
+
+  include_once("admin/config/funcionesValidar.php");
+
+  $retorno = validacionEmail();    
+
+    if (!empty($retorno))            
+    {
+        list($errores,$datos)=$retorno;
+    }
 ?>
   <div class="container">
   <p class="lead">Inicia sesión para entrar a la zona premium</p>
@@ -10,7 +18,7 @@
           <div class="card">
             <div class="card-header">Login</div>
             <div class="card-body">
-              <form action="./home.php" method="post">
+              <form action="#" method="post">
                 <div class="form-group py-3">
                   <label for="email" class="form-label">Email</label>
                   <input type="email" name="email" class="form-control" id="email" />
@@ -28,6 +36,17 @@
             </div>
           </div>
         </div>
+        <?php
+      if(isset($errores)){
+        foreach($errores as $error){
+          ?>
+          <div class="text-danger">
+          <?php echo $error;?>
+          </div>
+        <?php
+        }
+      }
+      ?>
         <div class="mt-5">
           ¿No eres usuario?
           <a href="registro.php"><button type="button" class="btn btn-info">Regístrate</button></a>

@@ -1,5 +1,7 @@
 <?php
+session_start();
 include('template/cabecera.php');
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin'){ 
 ?>
 <div class="container-fluid mt-5">
     <div class="row">
@@ -38,5 +40,7 @@ include('template/cabecera.php');
 <?php
 
 include('template/pie.php');
-
+}else{
+    header('Location: ../');
+}
 ?>

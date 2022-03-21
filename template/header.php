@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,8 +18,7 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-success">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuID"
-            aria-controls="menuID" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuID" aria-controls="menuID" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container-fluid">
@@ -23,8 +26,24 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                     <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
-                    <a class="nav-link active" aria-current="page" href="login.php">Login</a>
-                    <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de</a>              
+                    <?php
+                    if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'user') {
+                    ?>
+                        <a class="nav-link active" aria-current="page" href="tienda.php">Tienda</a>
+                        <a class="nav-link active" aria-current="page" href="alquiler.php">Alquiler</a>
+                        <a class="nav-link active" aria-current="page" href="descargas.php">Descargar</a>
+                    <?php
+                    } else if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
+                    ?>
+                        <a class="nav-link active" aria-current="page" href="admin/">Administrador</a>
+                    <?php
+                    } else {
+                    ?>
+                        <a class="nav-link active" aria-current="page" href="login.php">Login</a>
+                    <?php
+                    }
+                    ?>
+                    <a class="nav-link active" aria-current="page" href="acerca.php">Acerca de</a>
                 </div>
             </div>
         </div>
@@ -32,3 +51,10 @@
     <div class="container-fluid !direction !spacing">
         <b5-row></b5-row>
     </div>
+    <?php
+    if (isset($_SESSION['usuario'])) {
+    ?>
+        <p class="text-end"><a href="cerrarSesion.php">Cerrar sesión</a></p>
+    <?php
+    }
+    ?>

@@ -13,7 +13,7 @@
                     <a class="nav-link active" aria-current="page" href="alquileres.php">Alquileres</a>
                     <a class="nav-link active" aria-current="page" href="usuarios.php">Usuarios</a>          
                     <a class="nav-link active" aria-current="page" href="../">Vista página</a>           
-                    <a class="nav-link active" aria-current="page" href="cerrar.php">Salir</a>       
+                    <a class="nav-link active" aria-current="page" href="../cerrarSesion.php">Cerrar sesión</a>       
                 </div>
             </div>
         </div>
