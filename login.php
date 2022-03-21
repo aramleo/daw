@@ -21,11 +21,11 @@
               <form action="#" method="post">
                 <div class="form-group py-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" />
+                  <input type="email" name="email" class="form-control" id="email" required placeholder="Introduzca su correo electr&oacute;nico"/>
                 </div>
                 <div class="form-group py-3">
                   <label for="password">Contraseña:</label>
-                  <input type="password" name="password" class="form-control" id="password" />
+                  <input type="password" name="password" class="form-control" id="password" required placeholder="Introduzca la contrase&ntilde;a"/>
                 </div>
                 <div class="py-3">
                   <button type="submit" class="btn btn-primary">
