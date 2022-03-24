@@ -1,7 +1,7 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
 include("../template/cabecera2.php");
-include("../config/funcionesUsuarios.php");
+include("../../config/funcionesUsuarios.php");
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
 
   // Variables que recogemos de la función editar en funciones.php

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'admin/config/funcionesBlog.php';
+require_once 'config/funcionesBlog.php';
 include('template/header.php');
 
 

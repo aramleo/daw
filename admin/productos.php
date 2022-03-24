@@ -1,7 +1,7 @@
 <?php
 
 include './template/cabecera.php';
-include("./config/funciones.php");
+include("../config/funcionesProductos.php");
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
     $consulta = new Funciones;
     $resultados = $consulta->consultar();
@@ -22,9 +22,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Estacion</th>
-                            <th>Mes</th>
-                            <th>Imagen</th>
+                            <th>Referencia</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
                             <th class='text-center'>Accion</th>
                         </tr>
                     </thead>
@@ -35,11 +35,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                         ?>
                             <tr>
                                 <td><?php echo $resultado->nombre; ?></td>
-                                <td><?php echo $resultado->estacion; ?></td>
-                                <td><?php echo $resultado->mes; ?></td>
-                                <td><?php echo $resultado->img; ?></td>
-                                <td class='text-center'><a href="productos/formEditar.php?id=<?php echo $resultado->ID; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="productos/borrarProducto.php?id=<?php echo $resultado->ID; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
+                                <td><?php echo $resultado->referencia; ?></td>
+                                <td><?php echo $resultado->precio; ?></td>
+                                <td><?php echo $resultado->cantidad; ?></td>
+                                <td class='text-center'><a href="productos/formEditar.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="productos/borrarProducto.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         <?php

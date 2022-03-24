@@ -1,6 +1,6 @@
 <?php
 include 'template/cabecera.php';
-include("config/funcionesAlquileres.php");
+include("../config/funcionesAlquileres.php");
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
 
     $consulta = new FuncionesAlquileres;
@@ -24,6 +24,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                             <th>Localidad</th>
                             <th>metros</th>
                             <th>Imagen</th>
+                            <th>Teléfono</th>
+                            <th>Activa</th>
                             <th class='text-center'>Accion</th>
                         </tr>
                     </thead>
@@ -37,8 +39,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                                 <td><?php echo $resultado->localidad; ?></td>
                                 <td><?php echo $resultado->metros; ?></td>
                                 <td><?php echo $resultado->imagen; ?></td>
+                                <td><?php echo $resultado->telefono; ?></td>
+                                <td><?php echo $resultado->activa; ?></td>
                                 <td class='text-center'><a href="alquileres/formEditarAlquiler.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="alquileres/borrarAlquiler.php?php echo $resultado->id;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
+                                    <a href="alquileres/borrarAlquiler.php?id=<?php echo $resultado->id;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         <?php

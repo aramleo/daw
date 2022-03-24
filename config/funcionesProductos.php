@@ -13,22 +13,22 @@ class Funciones{
     }
     // Consultar productos
     public function consultar(){
-        $sql = "SELECT p.ID, p.nombre, e.estacion, m.mes, p.img FROM `productos` AS p JOIN `estaciones` AS e JOIN `meses` AS m on p.estacion = e.id_estacion AND p.clave_mes= m.id_mes ORDER BY p.nombre;";
+        $sql = "SELECT * FROM `productos` ORDER BY nombre;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
     // Agregar productos
-    public function agregar($nombre, $estacion, $mes, $imagen){
+    public function agregar($nombre, $referencia, $precio, $cantidad){
         $resultado = null;
         try{
-            $sql = "INSERT INTO productos (nombre, estacion, clave_mes, img) VALUES (:nombre,:estacion,:mes,:img)";
+            $sql = "INSERT INTO productos (nombre, referencia, precio, cantidad) VALUES (:nombre,:referencia,:precio,:cantidad)";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
-            $stmt ->bindParam(':estacion', $estacion);
-            $stmt ->bindParam(':mes', $mes);
-            $stmt ->bindParam(':img', $imagen);
+            $stmt ->bindParam(':referencia', $referencia);
+            $stmt ->bindParam(':precio', $precio);
+            $stmt ->bindParam(':cantidad', $cantidad);
             $stmt -> execute();
             $resultado = 1;
         }catch(Exception $e){
@@ -38,22 +38,22 @@ class Funciones{
     }
     // Editar productos
     public function editar($id){
-        $sql = "SELECT * FROM `productos` WHERE ID = $id;";
+        $sql = "SELECT * FROM `productos` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
     // Actualizar los productos editados
-    public function actualizar($id, $nombre, $estacion, $mes, $imagen){
+    public function actualizar($id, $nombre, $referencia, $precio, $cantidad){
         $resultado = null;
         try{
-            $sql = "UPDATE `productos` SET `nombre`=:nombre , `estacion`=:estacion, `clave_mes`=:mes, `img`=:img WHERE ID = $id;";
+            $sql = "UPDATE `productos` SET `nombre`=:nombre , `referencia`=:referencia, `precio`=:precio, `cantidad`=:cantidad WHERE `id` = $id";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
-            $stmt ->bindParam(':estacion', $estacion);
-            $stmt ->bindParam(':mes', $mes);
-            $stmt ->bindParam(':img', $imagen);
+            $stmt ->bindParam(':referencia', $referencia);
+            $stmt ->bindParam(':precio', $precio);
+            $stmt ->bindParam(':cantidad', $cantidad);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';
             }
@@ -64,10 +64,9 @@ class Funciones{
     }
     //Borrar los productos
     public function borrar($id){
-        $envio = $id;
         $resultado = null;
         try{
-            $sql = "DELETE FROM `productos` WHERE ID = :id;";
+            $sql = "DELETE FROM `productos` WHERE id = :id;";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':id', $id);
             $resultado = $stmt ->execute();

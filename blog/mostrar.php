@@ -1,7 +1,7 @@
 <?php
 
 
-require_once '../admin/config/funcionesBlog.php';
+require_once '../config/funcionesBlog.php';
 
 $consultas = new Funciones;
 

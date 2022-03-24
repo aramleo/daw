@@ -1,6 +1,6 @@
 <?php
 include("template/header.php");
-include_once("admin/config/funcionesValidar.php");
+include_once("config/funcionesValidar.php");
 
 if (!isset($_SESSION['usuario'])) {
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION['usuario'])) {
                 </div>
                 <div class="form-group py-3">
                   <label for="email">Correo electrónico: </label>
-                  <input type="text" class="form-control" id="email" name="email" required placeholder="Introduce tu correo electr&oacute;nico" />
+                  <input type="text" class="form-control" id="email" name="email" required value="<?php if (!isset($errors['email']) && isset($_POST['email'])) echo $_POST['email']; ?>" placeholder="Introduce tu correo electr&oacute;nico" />
                 </div>
                 <div class="form-group py-3">
                   <label for="password">Contraseña:</label>

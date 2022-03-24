@@ -35,6 +35,9 @@ session_start();
                     <?php
                     } else if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                     ?>
+                        <a class="nav-link active" aria-current="page" href="tienda.php">Tienda</a>
+                        <a class="nav-link active" aria-current="page" href="alquiler.php">Alquiler</a>
+                        <a class="nav-link active" aria-current="page" href="descargas.php">Descargar</a>
                         <a class="nav-link active" aria-current="page" href="admin/">Administrador</a>
                     <?php
                     } else {

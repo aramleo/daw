@@ -4,11 +4,6 @@ include 'bd.php';
 
 Class Conexion extends Database {
 
-    private $datos;
-    private $username = "root";
-    private $password = "";
-    private $dbname = 'huertos';
-
     public function __construct() {
         $this->datos = "mysql:host=127.0.0.1;dbname=$this->dbname";
     }

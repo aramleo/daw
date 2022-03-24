@@ -1,6 +1,6 @@
 <?php
 include 'template/cabecera.php';
-include("config/funcionesUsuarios.php");
+include("../config/funcionesUsuarios.php");
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
 
     $consulta = new FuncionesUsuarios;

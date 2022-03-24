@@ -2,27 +2,28 @@
 
 session_start();
 
-include ("../config/funciones.php");
+include ("../../config/funcionesAlquileres.php");
+print_r($_POST);
 
-
-if(empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['agregar'])){
+if(empty($_POST['agregar'])){
     $envio= 'No se pueden enviar datos vacios';
     $_SESSION['error']=$envio;
-    header('Location: formAgregar.php');
+    header('Location: formAgregarAlquiler.php');
 }else{
-    $nombre = $_POST['nombre'];
-    $estacion = $_POST['estacion'];
-    $mes = $_POST['mes'];
+    $referencia = $_POST['referencia'];
+    $localidad = $_POST['localidad'];
+    $metros = $_POST['metros'];
     $imagen= $_POST['imagen'];
-    $agregar = new Funciones;
-    $resultados = $agregar->agregar($nombre, $estacion, $mes, $imagen);
+    $telefono= $_POST['telefono'];
+    $activa= $_POST['activa'];
+    $agregar = new FuncionesAlquileres;
+    $resultados = $agregar->agregar($referencia, $localidad, $metros, $imagen, $telefono, $activa);
     if($resultados == 23000){
         $envio = 'Registro duplicado';
         $_SESSION['error']= $envio;
         // header('Location: formAgregar.php');
     }else{
         $_SESSION['registro']='Registro insertado';
-        header('Location: formAgregar.php');
+        header('Location: formAgregarAlquiler.php');
     }
 }
-?>

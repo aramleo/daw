@@ -1,26 +1,23 @@
 <?php 
 session_start();
 
-include("../config/funciones.php");
+include("../../config/funcionesProductos.php");
 
 
-if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['actualizar'])){
-  $envio= 'No se pueden enviar datos vacios';
-  $_SESSION['error']=$envio;
-  header('Location: formEditar.php');
+if(empty($_POST['actualizar'])){
+  $_SESSION['error']='No se ha podido insertar los datos';
 }else{
-  $id=$_POST['ID'];
+  $id=$_POST['id'];
   $nombre=$_POST['nombre'];
-  $estacion=$_POST['estacion'];
-  $mes=$_POST['mes'];
-  $imagen = $_POST['imagen'];
+  $referencia=$_POST['referencia'];
+  $precio=$_POST['precio'];
+  $cantidad = $_POST['cantidad'];
   $actualizar = new Funciones;
-  $datos = $actualizar->actualizar($id, $nombre, $estacion, $mes, $imagen);
+  $datos = $actualizar->actualizar($id, $nombre, $referencia, $precio, $cantidad);
   if($datos === false){
     $datos = 'El registro no se ha actualizado';
     header('Location: formEditar.php');
     $_SESSION['error'] = $datos;
-    header('Location: formAgregar.php');
   }
   if($datos === 'Registro actualizado'){
     $_SESSION['editado'] = 'El registro ha sido actualizado';

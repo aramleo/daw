@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-include("../config/funcionesUsuarios.php");
+include("../../config/funcionesUsuarios.php");
 
 
 if(empty($_POST['id']) || empty($_POST['nombre']) || empty($_POST['email']) || empty($_POST['rol']) || empty($_POST['actualizar'])){

@@ -8,25 +8,33 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
 
     <div class="card">
       <div class="card-header">
-        Datos del producto
+        Datos del Alquiler
       </div>
       <div class="card-body">
         <form action="agregarAlquiler.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
+            <label for="referencia" class="form-label">Referencia:</label>
+            <input type="text" class="form-control" id="referencia" name="referencia" required placeholder="Referencia del inmueble">
           </div>
           <div class="mb-3">
-            <label for="estacion" class="form-label">Localidad:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Localidad donde se encuentra">
+            <label for="localidad" class="form-label">Localidad:</label>
+            <input type="text" class="form-control" id="localidad" name="localidad" required placeholder="Localidad donde se encuentra">
           </div>
           <div class="mb-3">
-            <label for="mes" class="form-label">Metros:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Metros de la propiedad">
+            <label for="metros" class="form-label">Metros:</label>
+            <input type="text" class="form-control" id="metros" name="metros" required placeholder="Metros de la propiedad">
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" placeholder="Imagen">
+            <input type="text" class="form-control" id="imagen" name="imagen" required placeholder="Imagen">
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" required placeholder="Teléfono del propietario">
+          </div>
+          <div class="mb-3">
+            <label for="activa" class="form-label">Activa:</label>
+            <input type="text" class="form-control" id="activa" name="activa" required placeholder="Si activa 1 si no activa 0">
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

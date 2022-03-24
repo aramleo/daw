@@ -1,29 +1,28 @@
 <?php 
 session_start();
 
-include("../config/funciones.php");
+include("../../config/funcionesAlquileres.php");
 
-
-if(empty($_POST['ID']) || empty($_POST['nombre']) || empty($_POST['estacion']) || empty($_POST['mes']) || empty($_POST['actualizar'])){
-  $envio= 'No se pueden enviar datos vacios';
-  $_SESSION['error']=$envio;
-  header('Location: formEditar.php');
+if(empty($_POST['actualizar'])){
+  $_SESSION['error']= 'No se pueden enviar datos vacios';
+  header('Location: formEditarAlquiler.php');
 }else{
-  $id=$_POST['ID'];
-  $nombre=$_POST['nombre'];
-  $estacion=$_POST['estacion'];
-  $mes=$_POST['mes'];
+  $id=$_POST['id'];
+  $referencia=$_POST['referencia'];
+  $localidad=$_POST['localidad'];
+  $metros=$_POST['metros'];
   $imagen = $_POST['imagen'];
-  $actualizar = new Funciones;
-  $datos = $actualizar->actualizar($id, $nombre, $estacion, $mes, $imagen);
+  $telefono = $_POST['telefono'];
+  $activa = $_POST['activa'];
+  $actualizar = new FuncionesAlquileres;
+  $datos = $actualizar->actualizar($id, $referencia, $localidad, $metros, $imagen, $telefono, $activa);
   if($datos === false){
     $datos = 'El registro no se ha actualizado';
-    header('Location: formEditar.php');
     $_SESSION['error'] = $datos;
-    header('Location: formAgregar.php');
+    header('Location: formEditarAlquiler.php');
   }
   if($datos === 'Registro actualizado'){
     $_SESSION['editado'] = 'El registro ha sido actualizado';
-    header('Location: ../productos.php');
+    header('Location: ../alquileres.php');
   }
 }

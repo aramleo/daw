@@ -1,7 +1,7 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
 include("../template/cabecera2.php");
-include("../config/funcionesAlquileres.php");
+include("../../config/funcionesAlquileres.php");
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
   
   // Variables que recogemos de la función editar en funciones.php
@@ -11,6 +11,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
   $localidad = $datos[0]['localidad'];
   $metros = $datos[0]['metros'];
   $imagen = $datos[0]['imagen'];
+  $telefono = $datos[0]['telefono'];
+  $activa = $datos[0]['activa'];
   $id = $datos[0]['id'];
 ?>
 
@@ -20,27 +22,35 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
         Datos del Alquiler
       </div>
       <div class="card-body">
-        <form action="editarProducto.php" method="post" enctype="multipart/form-data">
+        <form action="editarAlquiler.php" method="post" enctype="multipart/form-data">
           <!-- Dato del ID oculto para actualizar en la base de datos -->
           <div>
-            <input type="text" hidden id="ID" name="ID" value="<?php echo $id; ?>">
+            <input type="text" hidden id="id" name="id" value="<?php echo $id; ?>">
           </div>
           <!-- Introducción del nombre para actualizar -->
           <div class="mb-3">
-            <label for="nombre" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $referencia; ?>" required>
+            <label for="referencia" class="form-label">Referencia:</label>
+            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if(isset($referencia)){echo $referencia; }?>" required>
           </div>
           <div class="mb-3">
-            <label for="nombre" class="form-label">Localidad:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $localidad; ?>" required>
+            <label for="localidad" class="form-label">Localidad:</label>
+            <input type="text" class="form-control" id="localidad" name="localidad" value="<?php if(isset($localidad)){echo $localidad; } ?>" required>
           </div>
           <div class="mb-3">
-            <label for="nombre" class="form-label">Metros:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $metros; ?>" required>
+            <label for="metros" class="form-label">Metros:</label>
+            <input type="text" class="form-control" id="metros" name="metros" value="<?php if(isset($metros)){echo $metros; } ?>" required>
           </div>
           <div class="mb-3">
-            <label for="txtImagen" class="form-label">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php echo $imagen; ?>">
+            <label for="imagen" class="form-label">Imagen:</label>
+            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php if(isset($imagen)){echo $imagen; } ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" value="<?php if(isset($telefono)){echo $telefono; } ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="activa" class="form-label">Activa:</label>
+            <input type="text" class="form-control" id="activa" name="activa" value="<?php if(isset($activa)){echo $activa; } ?>" required>
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>

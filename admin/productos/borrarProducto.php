@@ -2,7 +2,7 @@
 
 session_start();
 
-include("../config/funciones.php");
+include("../../config/funcionesProductos.php");
 
 
 $id = $_GET['id'];
