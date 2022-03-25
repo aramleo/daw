@@ -1,9 +1,9 @@
 <?php
   include("template/header.php");
 
-  include_once("admin/config/funcionesValidar.php");
+  include_once("config/funcionesValidar.php");
 
-  $retorno = validacionEmail();    
+  $retorno = validacionLogin();    
 
     if (!empty($retorno))            
     {
@@ -18,10 +18,10 @@
           <div class="card">
             <div class="card-header">Login</div>
             <div class="card-body">
-              <form action="#" method="post">
+              <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                 <div class="form-group py-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" required placeholder="Introduzca su correo electr&oacute;nico"/>
+                  <input type="email" name="email" class="form-control" id="email" value="<?php if (!isset($errors['email']) && isset($_POST['email'])) echo $_POST['email']; ?>" required placeholder="Introduzca su correo electr&oacute;nico"/>
                 </div>
                 <div class="form-group py-3">
                   <label for="password">Contraseña:</label>
@@ -54,9 +54,9 @@
       </div>
       <div class="col-md-6 p-5">
         <div class="card">
-          <img class="card-img-top" src="img\alimentos\fruits-vegetable-logo-fruits-vegetable-fruit-vegetable-food-nut-bowl-png-clip-art.png" alt="Card image cap">
+          <img class="card-img-top w-50 m-auto" src="img/alimentos/vegetales.png" alt="Card image cap">
           <div class="card-body">
-            <h4 class="card-title">Ventajas de registro</h4>
+            <h4 class="card-title text-center">Ventajas de registro</h4>
             <p class="card-text"></p>
           </div>
           <ul class="list-group list-group-flush">

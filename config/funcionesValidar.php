@@ -53,7 +53,7 @@ function email(&$errores){
 
 //Errores....................................................................................
 //Errores del campo nombre
-function validacion() {
+function validacionRegistro() {
     $retorno =[];
     if (count($_POST)>0) {
         $errores = [];
@@ -89,11 +89,11 @@ function validacion() {
     return $retorno;
 }
 
-function validacionEmail() {
+function validacionLogin() {
     $retorno =[];
     if (count($_POST)>0) {
         $errores = [];
-        $datos = [];
+        $dat = [];
         
         //Sanea el correo electrónico
         $sanEmail = email($errores);
@@ -101,23 +101,18 @@ function validacionEmail() {
         //valida del password
         if (!isset($_POST['password'])) {
             $errors['password'] = 'No se ha indicado la contrase&ntilde;a.';
-        } elseif (!isset($_POST['confirmacion'])) {
-            $errors['confirmacion'] = 'No se ha indicado la repetición de la contrase&ntilde;a.';
         } else {
             $password = trim($_POST['password']);
-            $confirmacion = $_POST['confirmacion'];
             if (empty($password) || strlen($password) < 6) {
                 $errors['password'] = 'La contrase&ntilde;a no es válidoa (tiene que tener una longitud mínima de 6).';
             }
-            if ($password !== $confirmacion)
-                $errors['confirmacion'] = 'La repetición de la contrase&ntilde;a no coincide.';
         }
         
         if(!$errores){
-            $datos["email"] = $sanEmail;
-            $datos["password"] = $password;
+            $dat["email"] = $sanEmail;
+            $dat["password"] = $password;
         }
-        $retorno = [$errores, $datos];
+        $retorno = [$errores, $dat];
     }
     return $retorno;
 }

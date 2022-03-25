@@ -4,7 +4,7 @@ include_once("config/funcionesValidar.php");
 
 if (!isset($_SESSION['usuario'])) {
 
-  $retorno = validacion();
+  $retorno = validacionRegistro();
 
   if (!empty($retorno)) {
     list($errores, $datos) = $retorno;
