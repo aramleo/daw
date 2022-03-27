@@ -80,69 +80,7 @@ class Funciones{
         }      
         return $envio;
         
-    }
-
-    /**
-     * Método para comprobar si el usuario tiene abierta la sesión.
-     */
-    public function comprobarSesion() {
-        return (session_status() == PHP_SESSION_ACTIVE || (isset($_SESSION['email']) && isset($_SESSION['password'])) 
-            || (isset($_COOKIE['email']) || isset($_COOKIE['password']))) ? true : false;
-    }
-
-    /**
-     * Método para registrar el usuario.
-     * @param $email
-     * @param $password
-     * @return int
-     */
-    public function registrarUsuario($email, $password) {
-        try {
-            $sql = "INSERT INTO `usuarios` (email, password) VALUES (:email, :password);";
-            $query = $this->conexion -> prepare($sql);
-            $query -> bindParam(':email', $email);
-            $query -> bindParam(':password', $password);
-            $query -> execute();
-            $resultado = 1;
-        }catch(Exception $e){
-            $resultado = $e->getCode();
-        }    
-        return $resultado;  
-    }
-
-    /**
-     * Comprueba que el usuario está registrado.
-     * @param $email
-     * @return $result;
-     */
-    public function comprobarUsuario($email) {
-        $sql = "SELECT * FROM `usuarios` WHERE email = :email;";
-        $query = $this->conexion -> prepare($sql);
-        $query -> bindParam(':email', $email);
-        $query -> execute();
-        // $result = $query -> fetchAll(PDO::FETCH_ASSOC);
-        // return $result;
-        return $query->rowCount();
-    }
-
-    public function redireccion($url) {
-        header('Location: ' . $this->url . $url);
-        die();
-    }
-
-    public function logout() {
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            session_destroy();
-        }
-        $_SESSION['email'] = null;
-        $_SESSION['password'] = null;
-        unset($_COOKIE['email']);
-        unset($_COOKIE['password']);
-        setCookie('email', "", time()-3600);
-        setCookie('password', "", time()-3600);
-    }
-
-   
+    } 
 
 }
 
