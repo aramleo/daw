@@ -1,14 +1,14 @@
 <?php
 
 include('template/header.php');
-if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin')) {
+if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
 
     include 'config/funcionesAlquileres.php';
     $datos = new FuncionesAlquileres;
     $alquileres = $datos->consultarAlquiler();
 
 ?>
-    <h3 class="text-center pt-3">Alquileres de huertos</h3>
+    <h3 class="text-center pt-3">Tienda</h3>
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <?php foreach ($alquileres as $alquiler) { ?>

@@ -27,13 +27,13 @@ session_start();
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                     <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
                     <?php
-                    if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'user') {
+                    if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '2') {
                     ?>
                         <a class="nav-link active" aria-current="page" href="tienda.php">Tienda</a>
                         <a class="nav-link active" aria-current="page" href="alquiler.php">Alquiler</a>
                         <a class="nav-link active" aria-current="page" href="descargas.php">Descargar</a>
                     <?php
-                    } else if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
+                    } else if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                     ?>
                         <a class="nav-link active" aria-current="page" href="tienda.php">Tienda</a>
                         <a class="nav-link active" aria-current="page" href="alquiler.php">Alquiler</a>

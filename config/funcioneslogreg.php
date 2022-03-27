@@ -36,12 +36,13 @@ class FuncionesLogReg{
      */
     public function registrarUsuario($nombre, $email, $password) {
         $retorno = '';
+        $hash = $this->hash($password);
         try {
-            $sql = "INSERT INTO `usuario` (nombre,email,password) VALUES (:nombre, :email, SHA2(:password,0));";
+            $sql = "INSERT INTO `usuario` (nombre,email,password) VALUES (:nombre, :email, :password);";
             $query = $this->conexion -> prepare($sql);
             $query -> bindParam(':nombre', $nombre);
             $query -> bindParam(':email', $email);
-            $query -> bindParam(':password', $password);
+            $query -> bindParam(':password', $hash);
             if($query -> execute()){
                 $retorno = 2;
             }
@@ -51,22 +52,24 @@ class FuncionesLogReg{
         }    
         return $retorno;  
     }
-
+   
         
     /**
      * comprobarUsuario
      *
      * @param  mixed $email
+     * @param  mixed $password
      * @return void
      */
-    public function comprobarUsuario($email) {
-        $sql = "SELECT * FROM `usuarios` WHERE email = :email;";
+    public function comprobarUsuario($email, $password) {
+        $hash = $this->hash($password);
+        $sql = "SELECT nombre, id_rol FROM usuario WHERE email = :email and password = :password";
         $query = $this->conexion -> prepare($sql);
         $query -> bindParam(':email', $email);
+        $query -> bindParam(':password', $hash);
         $query -> execute();
-        // $result = $query -> fetchAll(PDO::FETCH_ASSOC);
-        // return $result;
-        return $query->rowCount();
+        $resultado = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $resultado;
     }
     
     /**
@@ -95,5 +98,9 @@ class FuncionesLogReg{
         unset($_COOKIE['password']);
         setCookie('email', "", time()-3600);
         setCookie('password', "", time()-3600);
+    }
+
+    public static function hash($password) {
+        return hash('sha512', '34'.$password);
     }
 }

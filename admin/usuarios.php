@@ -1,7 +1,7 @@
 <?php
 include 'template/cabecera.php';
 include("../config/funcionesUsuarios.php");
-if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
     $consulta = new FuncionesUsuarios;
     $resultados = $consulta->consultarUsuario();
@@ -32,8 +32,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
                                 <td><?php echo $resultado->nombre; ?></td>
                                 <td><?php echo $resultado->email; ?></td>
                                 <td><?php echo $resultado->rol; ?></td>
-                                <td class='text-center'><a href="usuarios/formEditarUsuario.php?id=<?php echo $resultado->id_usuario; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="borrarProducto.php?id=<?php echo $resultado->id_usuario; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
+                                <td class='text-center'><a href="usuarios/formEditarUsuario.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="usuarios/borrarUsuario.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         <?php

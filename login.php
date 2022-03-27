@@ -14,18 +14,36 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   $llamada = new FuncionesSaneaValida;
 
   // Iniciamos la variables a vacío
-  $error_usuario = $error_password = $error_registro = '';
+  $error_email = $error_password = $error_registro = '';
 
   /* Comprobamos el usuario saneando y validando el valor introducido. En caso de error en la 
      validación completa la variable error_nombre */
-  if (!isset($_POST['usuario'])) {
-    $error_nombre = "El campo usuario no puede estar vacío";
-  } else {
-    $nombre = $llamada->sanearNombre($_POST['usuario']);
-    if (!empty($llamada->validaNombre($nombre))) {
-      $error_nombre = $llamada->validaNombre($nombre);
+     if (!isset($_POST['email'])) {
+      $error_email = "El campo email no puede estar vacío";
+    } else {
+      $email = $llamada->sanearEmail($_POST['email']);
+      if (!empty($llamada->validaEmail($email))) {
+        $error_email = $llamada->validaEmail($email);
+      }
     }
-  }
+    if (!isset($_POST['password'])) {
+      $error_password = "No se ha indicado el password";
+    } else {
+      $password = $llamada->sanearPassword($_POST['password']);
+      if (!empty($llamada->soloPassword($password))) {
+        $error_password = $llamada->soloPassword($password);
+      }
+    }
+    if ($error_email == "" && $error_password == "") {
+      $login = new FuncionesLogReg;
+      $datos = $login->comprobarUsuario($email, $password);
+      if($datos){
+        $_SESSION['usuario'] = $datos[0]['nombre'];
+        $_SESSION['rol'] = $datos[0]['id_rol'];
+        header('Location: ./');
+      }
+
+    }
 ?>
   <div class="container">
     <p class="lead">Inicia sesión para entrar a la zona premium</p>
@@ -51,8 +69,8 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
             <div class="card-body">
               <form action="" method="post">
                 <div class="form-group py-3">
-                  <label for="email" class="form-label">Usuario</label>
-                  <input type="email" name="usuario" class="form-control" id="usuario" value="<?php if (!isset($errors['email']) && isset($_POST['email'])) echo $_POST['email']; ?>" required placeholder="Introduzca su correo electr&oacute;nico" />
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control" id="email" value="<?php if (!isset($errors['email']) && isset($_POST['email'])) echo $_POST['email']; ?>" required placeholder="Introduzca su correo electr&oacute;nico" />
                 </div>
                 <div class="form-group py-3">
                   <label for="password">Contraseña:</label>

@@ -116,4 +116,13 @@ class FuncionesSaneaValida
         }
         return $error;
     }
+
+    public function soloPassword($var)
+    {
+        $error = null;
+        if (empty($var) || strlen($var) < 8) {
+            $error = 'El password no es válido (tiene que tener una longitud mínima de 8).';
+        } 
+        return $error;
+    }
 }

@@ -2,16 +2,15 @@
 //Comenzamos la sesión para registrar errores y usuarios
 include("../template/cabecera2.php");
 include("../../config/funcionesUsuarios.php");
-if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesUsuarios;
   $datos = $actual->editar($_GET['id']);
   $nombre = $datos[0]['nombre'];
   $email = $datos[0]['email'];
-  $password = $datos[0]['password'];
-  $rol = $datos[0]['clave_rol'];
-  $id = $datos[0]['id_usuario'];
+  $rol = $datos[0]['id_rol'];
+  $id = $datos[0]['id'];
 ?>
 
   <div class="col-md-5 mt-3">
@@ -27,7 +26,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
           </div>
           <!-- Introducción del nombre para actualizar -->
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre:</label>
+            <label for="nombre" class="form-label">Usuario:</label>
             <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
           </div>
           <div class="mb-3">

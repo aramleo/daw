@@ -1,7 +1,7 @@
 <?php
 include 'template/cabecera.php';
 include("../config/funcionesAlquileres.php");
-if (isset($_SESSION['usuario']) && $_SESSION['rol'] == 'admin') {
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
     $consulta = new FuncionesAlquileres;
     $resultados = $consulta->consultarAlquiler();

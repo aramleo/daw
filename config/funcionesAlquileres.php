@@ -48,7 +48,7 @@ class FuncionesAlquileres{
         return $results;
     }
     // Actualizar los alquileres editados
-    public function actualizar($referencia, $localidad, $metros, $imagen, $telefono, $activa){
+    public function actualizar($id, $referencia, $localidad, $metros, $imagen, $telefono, $activa){
         $resultado = null;
         try{
             $sql = "UPDATE `alquileres` SET `referencia`=:referencia , `localidad`=:localidad, `metros`=:metros, `imagen`=:imagen, `telefono`=:telefono, `activa`= :activa WHERE id = $id;";

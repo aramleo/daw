@@ -1,7 +1,7 @@
 <?php
 
 include('template/header.php');
-if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin')) {
+if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
 
     include 'config/funcionesAlquileres.php';
     $datos = new FuncionesAlquileres;
