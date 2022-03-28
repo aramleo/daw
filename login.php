@@ -41,6 +41,8 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
         $_SESSION['usuario'] = $datos[0]['nombre'];
         $_SESSION['rol'] = $datos[0]['id_rol'];
         header('Location: ./');
+      }else{
+        $_SESSION['noexiste']='El usuario no existe o los datos introducidos no son correctos';
       }
 
     }
@@ -58,7 +60,16 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
       </div>
     <?php
     }
+    if (isset($_SESSION['noexiste']) && !empty($_SESSION['noexiste'])) {
+      ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <p><?php echo $_SESSION['noexiste']; ?></p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php
+      }
     $_SESSION['datos'] = '';
+    $_SESSION['noexiste'] = '';
     ?>
 <!-- Formulario de Login -->
     <div class="row">
