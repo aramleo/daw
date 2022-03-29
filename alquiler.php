@@ -17,7 +17,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                         <?php
                         $imagen = "img/alquileres/" . $alquiler->imagen;
                         if (!file_exists($imagen)) {
-                            $imagen = "img/alquileres/noDisponible.jpg";
+                            $imagen = "img/noDisponible.jpg";
                         }
                         ?>
                         <img class="img-thumbnail img-fluid" src="<?php echo $imagen; ?>">

@@ -12,6 +12,8 @@
                     <a class="nav-link active" aria-current="page" href="../">Inicio</a>
                     <a class="nav-link active" aria-current="page" href="../productos.php">Productos</a>
                     <a class="nav-link active" aria-current="page" href="../alquileres.php">Alquileres</a>
+                    <a class="nav-link active" aria-current="page" href="../serviciosAd.php">Servicios</a>
+                    <a class="nav-link active" aria-current="page" href="../descargasAd.php">Descargas</a>
                     <a class="nav-link active" aria-current="page" href="../usuarios.php">Usuarios</a>          
                     <a class="nav-link active" aria-current="page" href="../../">Vista página</a>           
                     <div class="navbar-nav" style="border-top:1px solid white">

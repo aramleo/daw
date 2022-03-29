@@ -34,6 +34,26 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="card" style="width: vw;">
+                    <img src="../img/servicios.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Sevicios</h5>
+                        <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                        <a href="serviciosAd.php" class="btn btn-primary">Servicios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="width: vw;">
+                    <img src="../img/download.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Descargas</h5>
+                        <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                        <a href="descargasAd.php" class="btn btn-primary">Descargas</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 <?php
