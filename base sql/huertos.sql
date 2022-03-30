@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2022 a las 20:15:38
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
+-- Tiempo de generación: 30-03-2022 a las 14:09:05
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,9 +42,9 @@ CREATE TABLE `alquileres` (
 --
 
 INSERT INTO `alquileres` (`id`, `referencia`, `localidad`, `metros`, `imagen`, `telefono`, `activa`) VALUES
-(2, '45th', 'Cantillana', 49, '45th.jpg', '666555333', 1),
-(3, 'er56', 'Sevilla', 23, 'er56.jpg', '667999999', 1),
-(4, 'jf67', 'Huelva', 49, 'jf67.jpg', '555000345', 1);
+(2, '01ALQ', 'Cantillana', 49, '01ALQ.jpg', '666555333', 1),
+(3, '02ALQ', 'Sevilla', 23, '02ALQ.jpg', '667999999', 1),
+(4, '03ALQ', 'Huelva', 49, '03ALQ.jpg', '555000345', 1);
 
 -- --------------------------------------------------------
 
@@ -66,6 +66,30 @@ CREATE TABLE `blog` (
 
 INSERT INTO `blog` (`id`, `titulo`, `fecha`, `texto`, `imagen`) VALUES
 (1, 'Primer Post', '2022-03-05', 'dfasdfadfsdfsdfsadfasfasdfasdfasdfasdfasfasfasdfasdfasdfsdfsdfkdcc   ksdfksdkaskfk kasdjfskjkasdfksadfkjasdfjkasdkjasdfk  kasdfjkskkasfjksdf jjasdkfjvksjkasdkassajdvjv kjasdjfjvj kasdfksvkjsdfjksadjfksdfkdf', 'iamgen.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `descargas`
+--
+
+CREATE TABLE `descargas` (
+  `id` int(11) NOT NULL,
+  `referencia` varchar(25) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `enlace` varchar(200) NOT NULL,
+  `imagen` varchar(50) NOT NULL,
+  `activa` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `descargas`
+--
+
+INSERT INTO `descargas` (`id`, `referencia`, `titulo`, `enlace`, `imagen`, `activa`) VALUES
+(2, '01DESC', 'Manual de poda', 'https://drive.google.com/file/d/1pSkkm97uZUvzdGV3QcdecOM7bm2BG2Aw', '01DESC.JPG', 1),
+(3, '02DESC', 'Manual de siembra', 'https://drive.google.com/file/d/1BCTyOFIAK9DVb_ySOFHE1Sl06NCyNPI1', '02DESC.JPG', 1),
+(4, '03DESC', 'Manual de semillas', 'https://drive.google.com/file/d/1Ub3D8P6Vaue4awDHKWcI1nhDKUv7b01C', '03DESC.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -111,16 +135,18 @@ CREATE TABLE `productos` (
   `nombre` varchar(50) NOT NULL,
   `referencia` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `cantidad` int(5) NOT NULL
+  `cantidad` int(5) NOT NULL,
+  `imagen` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `referencia`, `precio`, `cantidad`) VALUES
-(3, 'Semillas de aguacate', 'edf', '3.00', 14),
-(4, 'Semillas de zanahoria', 'wwef42', '12.00', 35);
+INSERT INTO `productos` (`id`, `nombre`, `referencia`, `precio`, `cantidad`, `imagen`) VALUES
+(3, 'Semillas de apio', '01PROD', '3.00', 14, '01PROD.jpg'),
+(4, 'Semillas de zanahoria', '20PROD', '12.00', 35, '20PROD.jpg'),
+(5, 'Semillas de lechuga', '103PROD', '2.00', 15, '103PROD.jpg');
 
 -- --------------------------------------------------------
 
@@ -140,6 +166,29 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id_rol`, `rol`) VALUES
 (1, 'administrador'),
 (2, 'usuario');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `servicios`
+--
+
+CREATE TABLE `servicios` (
+  `id` int(11) NOT NULL,
+  `referencia` varchar(25) NOT NULL,
+  `servicio` varchar(50) NOT NULL,
+  `imagen` varchar(50) NOT NULL,
+  `activa` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `referencia`, `servicio`, `imagen`, `activa`) VALUES
+(2, '01SH', 'Poda de árboles', '01SH.jpg', 1),
+(3, '02SH', 'Inicio de huerto', '02SH.jpg', 1),
+(4, '03SH', 'Retirada de tierra', '03SH.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -183,6 +232,13 @@ ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `descargas`
+--
+ALTER TABLE `descargas`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `referencia` (`referencia`);
+
+--
 -- Indices de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
@@ -199,7 +255,8 @@ ALTER TABLE `pedidos`
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `referencia` (`referencia`);
 
 --
 -- Indices de la tabla `roles`
@@ -207,6 +264,13 @@ ALTER TABLE `productos`
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`),
   ADD UNIQUE KEY `rol` (`rol`);
+
+--
+-- Indices de la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `referencia` (`referencia`);
 
 --
 -- Indices de la tabla `usuario`
@@ -234,6 +298,12 @@ ALTER TABLE `blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `descargas`
+--
+ALTER TABLE `descargas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
@@ -249,7 +319,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -258,26 +328,16 @@ ALTER TABLE `roles`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios2` (`id_usuario`);
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
