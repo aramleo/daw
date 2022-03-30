@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+
 include("../../config/funcionesServicios.php");
 
 if(empty($_POST['actualizar'])){
@@ -23,4 +25,7 @@ if(empty($_POST['actualizar'])){
     $_SESSION['editado'] = 'El registro ha sido actualizado';
     header('Location: ../serviciosAd.php');
   }
+}
+}else{
+  header('Location: ../../');
 }

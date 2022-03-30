@@ -68,6 +68,16 @@ class FuncionesUsuarios{
         return $envio;
         
     } 
+
+    // Editar usuarios
+    public function editarUsuario($usuario){
+        $sql = "SELECT * FROM `usuario` WHERE email = :email";
+        $query = $this->conexion -> prepare($sql);
+        $query->bindParam(':email', $usuario);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
     
 }
 

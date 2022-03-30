@@ -58,6 +58,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
     <script type="text/javascript" src="js/alquileres.js"></script>
     <?php
+    include("template/pie.php");
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -77,7 +78,6 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 <?php
         $_SESSION['editado'] = '';
     }
-    include("template/pie.php");
 } else {
     header('Location: ../');
 }

@@ -55,6 +55,7 @@ session_start();
                 if (isset($_SESSION['usuario'])) {
                 ?>
                     <div class="navbar-nav" style="border-top:1px solid white">
+                        <a class="nav-link active d-sm-none" aria-current="page" href="perfil.php">Perfil</a>
                         <a class="nav-link active d-sm-none" aria-current="page" href="cerrarSesion.php">Cerrar sesión</a>
                     </div>
                 <?php
@@ -62,15 +63,26 @@ session_start();
                 ?>
 
             </div>
-            <div class="navbar-nav" style="float:left; border-left:1px solid white">
+            <div class="navbar-nav " style="border-left:1px solid white">
                 <?php
-                if (isset($_SESSION['usuario'])) {
+                if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '2') {
                 ?>
-                    <a class="nav-link active d-none d-md-inline" aria-current="page" href="cerrarSesion.php">Cerrar sesión</a>
+
+                    <div class="cols-6">
+                        <a class="nav-link active  d-none d-md-inline" aria-current="page" href="perfil.php">Perfil</a>
+                    </div>
                 <?php
                 }
+                if (isset($_SESSION['usuario'])) {
                 ?>
+                    <div class="cols-6">
+                        <a class="nav-link active  d-none d-md-inline" aria-current="page" href="cerrarSesion.php">Cerrar sesión</a>
+                    </div>
             </div>
+
+        <?php
+                }
+        ?>
         </div>
     </nav>
     <div class="container-fluid !direction !spacing">

@@ -17,14 +17,14 @@ class FuncionesLogReg{
         $this->conexion = $bd->conexion();
     }
 
-    /**
-     * comprobarSesion.- Comprueba si hay alguna sesión activa
-     *
-     * @return void
-     */
-    public function comprobarSesion() {
+    // /**
+    //  * comprobarSesion.- Comprueba si hay alguna sesión activa
+    //  *
+    //  * @return void
+    //  */
+    // public function comprobarSesion() {
         
-    }
+    // }
 
     
     /**
@@ -63,7 +63,7 @@ class FuncionesLogReg{
      */
     public function comprobarUsuario($email, $password) {
         $hash = $this->hash($password);
-        $sql = "SELECT nombre, id_rol FROM usuario WHERE email = :email and password = :password";
+        $sql = "SELECT nombre, email, id_rol FROM usuario WHERE email = :email and password = :password";
         $query = $this->conexion -> prepare($sql);
         $query -> bindParam(':email', $email);
         $query -> bindParam(':password', $hash);
@@ -71,34 +71,53 @@ class FuncionesLogReg{
         $resultado = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
     }
-    
-    /**
-     * redireccion
-     *
-     * @param  mixed $url
-     * @return void
-     */
-    public function redireccion($url) {
-        header('Location: ' . $this->url . $url);
-        die();
+
+
+    public function cambioEmail($id, $password) {
+        $hash = $this->hash($password);
+        $resultado = null;
+        try{
+            $sql = "UPDATE `usuario` SET password= :password WHERE id = $id;";
+            $stmt = $this->conexion -> prepare($sql);
+            $stmt ->bindParam(':password', $hash);
+            if($stmt ->execute()){
+                $resultado = 'El password se ha cambiado';
+            }else{
+                $resultado = "El password no see ha cambiado";
+            }
+        }catch(Exception $e){
+            $resultado = $e->getMessage();
+        }      
+        return $resultado;
     }
     
-    /**
-     * logout
-     *
-     * @return void
-     */
-    public function logout() {
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            session_destroy();
-        }
-        $_SESSION['email'] = null;
-        $_SESSION['password'] = null;
-        unset($_COOKIE['email']);
-        unset($_COOKIE['password']);
-        setCookie('email', "", time()-3600);
-        setCookie('password', "", time()-3600);
-    }
+    // /**
+    //  * redireccion
+    //  *
+    //  * @param  mixed $url
+    //  * @return void
+    //  */
+    // public function redireccion($url) {
+    //     header('Location: ' . $this->url . $url);
+    //     die();
+    // }
+    
+    // /**
+    //  * logout
+    //  *
+    //  * @return void
+    //  */
+    // public function logout() {
+    //     if (session_status() == PHP_SESSION_ACTIVE) {
+    //         session_destroy();
+    //     }
+    //     $_SESSION['email'] = null;
+    //     $_SESSION['password'] = null;
+    //     unset($_COOKIE['email']);
+    //     unset($_COOKIE['password']);
+    //     setCookie('email', "", time()-3600);
+    //     setCookie('password', "", time()-3600);
+    // }
 
     public static function hash($password) {
         return hash('sha512', '34'.$password);

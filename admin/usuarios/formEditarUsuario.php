@@ -16,7 +16,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
-        Datos del producto
+        Datos del usuario
       </div>
       <div class="card-body">
         <form action="editarUsuario.php" method="post" enctype="multipart/form-data">

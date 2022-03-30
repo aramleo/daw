@@ -86,6 +86,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   </div>
   <!-- alerta error registro -->
   <?php
+  if(isset($_POST['registrar'])){
   if (!empty($error_nombre || $error_email || $error_password || $error_confirma || $error_registro)) {
   ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -99,6 +100,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
     </div>
   <?php
   }
+}
   ?>
 
 <?php

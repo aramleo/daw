@@ -48,5 +48,6 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     </div>
     </div>
 <?php
+include 'template/footer.php';
 }
 ?>

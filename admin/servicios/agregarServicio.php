@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
 include ("../../config/funcionesServicios.php");
 print_r($_POST);
@@ -23,4 +24,7 @@ if(empty($_POST['agregar'])){
         $_SESSION['registro']='Registro insertado';
         header('Location: formAgregarServicio.php');
     }
+}
+}else{
+    header('Location: ../../');
 }

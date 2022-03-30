@@ -38,7 +38,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
       $login = new FuncionesLogReg;
       $datos = $login->comprobarUsuario($email, $password);
       if($datos){
-        $_SESSION['usuario'] = $datos[0]['nombre'];
+        $_SESSION['usuario'] = $datos[0]['email'];
         $_SESSION['rol'] = $datos[0]['id_rol'];
         header('Location: ./');
       }else{

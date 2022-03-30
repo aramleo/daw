@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
 include ("../../config/funcionesProductos.php");
 
@@ -24,5 +25,8 @@ if(empty($_POST['nombre']) || empty($_POST['referencia']) || empty($_POST['preci
         $_SESSION['registro']='Registro insertado';
         header('Location: formAgregar.php');
     }
+}
+}else{
+    header('Location: ../../');
 }
 ?>

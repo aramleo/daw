@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+
 include("../../config/funcionesProductos.php");
 
 
@@ -23,4 +25,8 @@ if(empty($_POST['actualizar'])){
     $_SESSION['editado'] = 'El registro ha sido actualizado';
     header('Location: ../productos.php');
   }
+}
+
+}else{
+  header('Location: ../../');
 }
