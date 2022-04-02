@@ -1,18 +1,37 @@
 <?php
-
+/**
+ * EN este archivo controlamos las diferentes funciones de la tabla descargas.
+ */
 require_once(__DIR__.'\conexion.php');
 
 
 
+/**
+ * FuncionesDescargas
+ */
 class FuncionesDescargas{
-
+    
+    /**
+     * conexion
+     *
+     * @var mixed
+     */
     private $conexion;
-
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function  __construct(){
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
     }
-    // Consultar alquileres
+    /**
+     * consultarDescargas. Consultar descargas
+     *
+     * @return void
+     */
     public function consultarDescargas(){
         $sql = "SELECT * FROM `descargas` WHERE `activa` = 1 ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
@@ -20,7 +39,16 @@ class FuncionesDescargas{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    // Agregar alquileres
+    /**
+     * agregar las descargas que introduce el administrador
+     *
+     * @param  mixed $referencia. Referencia de la descarga
+     * @param  mixed $titulo. Título de la descarga
+     * @param  mixed $enlace. Enlace desde donde se puede descargar
+     * @param  mixed $imagen. Imagen asignada a la descarga
+     * @param  mixed $activa. Si la descarga permanece activa
+     * @return void
+     */
     public function agregar($referencia, $titulo, $enlace, $imagen, $activa){
         $resultado = null;
         try{
@@ -37,8 +65,13 @@ class FuncionesDescargas{
             $resultado = $e->getCode();
         }      
         return $resultado;
-    }
-    // Editar alquileres
+    } 
+    /**
+     * editar las diferentes descargas de la base de datos
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function editar($id){
         $sql = "SELECT * FROM `descargas` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
@@ -46,7 +79,17 @@ class FuncionesDescargas{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los alquileres editados
+    /**
+     * actualizar. Actualiza las descargas en la base de datos 
+     * 
+     * @param  mixed $id
+     * @param  mixed $referencia
+     * @param  mixed $titulo
+     * @param  mixed $enlace
+     * @param  mixed $imagen
+     * @param  mixed $activa
+     * @return void
+     */
     public function actualizar($id, $referencia, $titulo, $enlace, $imagen, $activa){
         $resultado = null;
         try{
@@ -65,7 +108,12 @@ class FuncionesDescargas{
         }      
         return $resultado;
     }
-    //Borrar los alquileres
+    /**
+     * borrar. Borra los registros de la base de datos y tabla descarga.
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function borrar($id){
         $resultado = null;
         try{

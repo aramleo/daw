@@ -18,38 +18,38 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
 
   /* Comprobamos el usuario saneando y validando el valor introducido. En caso de error en la 
      validación completa la variable error_nombre */
-     if (!isset($_POST['email'])) {
-      $error_email = "El campo email no puede estar vacío";
+  if (!isset($_POST['email'])) {
+    $error_email = "El campo email no puede estar vacío";
+  } else {
+    $email = $llamada->sanearEmail($_POST['email']);
+    if (!empty($llamada->validaEmail($email))) {
+      $error_email = $llamada->validaEmail($email);
+    }
+  }
+  if (!isset($_POST['password'])) {
+    $error_password = "No se ha indicado el password";
+  } else {
+    $password = $llamada->sanearPassword($_POST['password']);
+    if (!empty($llamada->soloPassword($password))) {
+      $error_password = $llamada->soloPassword($password);
+    }
+  }
+  if ($error_email == "" && $error_password == "") {
+    $login = new FuncionesLogReg;
+    $datos = $login->comprobarUsuario($email, $password);
+    if ($datos) {
+      $_SESSION['usuario'] = $datos[0]['email'];
+      $_SESSION['rol'] = $datos[0]['id_rol'];
+      $_SESSION['id'] = $datos[0]['id'];
+      header('Location: ./');
     } else {
-      $email = $llamada->sanearEmail($_POST['email']);
-      if (!empty($llamada->validaEmail($email))) {
-        $error_email = $llamada->validaEmail($email);
-      }
+      $_SESSION['noexiste'] = 'El usuario no existe o los datos introducidos no son correctos';
     }
-    if (!isset($_POST['password'])) {
-      $error_password = "No se ha indicado el password";
-    } else {
-      $password = $llamada->sanearPassword($_POST['password']);
-      if (!empty($llamada->soloPassword($password))) {
-        $error_password = $llamada->soloPassword($password);
-      }
-    }
-    if ($error_email == "" && $error_password == "") {
-      $login = new FuncionesLogReg;
-      $datos = $login->comprobarUsuario($email, $password);
-      if($datos){
-        $_SESSION['usuario'] = $datos[0]['email'];
-        $_SESSION['rol'] = $datos[0]['id_rol'];
-        header('Location: ./');
-      }else{
-        $_SESSION['noexiste']='El usuario no existe o los datos introducidos no son correctos';
-      }
-
-    }
+  }
 ?>
   <div class="container">
     <p class="lead">Inicia sesión para entrar a la zona premium</p>
-<!--Código por el que abrimos un aviso modal para indicarnos que hemos registrado al usuario
+    <!--Código por el que abrimos un aviso modal para indicarnos que hemos registrado al usuario
     éxito y al cerrar lo borramos. Viene redirigido desde registro.php  -->
     <?php
     if (isset($_SESSION['datos']) && !empty($_SESSION['datos'])) {
@@ -61,17 +61,40 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
     <?php
     }
     if (isset($_SESSION['noexiste']) && !empty($_SESSION['noexiste'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p><?php echo $_SESSION['noexiste']; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <?php
+    }
+    if (isset($_POST['inicio'])) {
+      // Imprime el error del correo electrónico si no es correcto
+      if (isset($error_email) && !empty($error_email)) {
       ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <p><?php echo $_SESSION['noexiste']; ?></p>
+          <p><?php echo $error_email; ?></p>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <?php
       }
+      // Imprime el error del password si no es correcto
+      if (isset($error_password) && !empty($error_password)) {
+      ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <p><?php echo $error_password; ?></p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
+        $error_password = "";
+        $_POST['password'] = '';
+      }
+    }
+
     $_SESSION['datos'] = '';
     $_SESSION['noexiste'] = '';
     ?>
-<!-- Formulario de Login -->
+    <!-- Formulario de Login -->
     <div class="row">
       <div class="col-md-6 py-5">
         <div class="card">
@@ -88,7 +111,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
                   <input type="password" name="password" class="form-control" id="password" required placeholder="Introduzca la contrase&ntilde;a" />
                 </div>
                 <div class="py-3">
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" id="inicio" name="inicio" class="btn btn-primary">
                     Iniciar sesión
                   </button>
                 </div>
@@ -96,17 +119,6 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
             </div>
           </div>
         </div>
-        <?php
-        if (isset($errores)) {
-          foreach ($errores as $error) {
-        ?>
-            <div class="text-danger">
-              <?php echo $error; ?>
-            </div>
-        <?php
-          }
-        }
-        ?>
         <div class="mt-5">
           ¿No eres usuario?
           <a href="registro.php"><button type="button" class="btn btn-info">Regístrate</button></a>
@@ -132,7 +144,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   </div>
 
 <?php
-// Carga del pie común de las páginas
+  // Carga del pie común de las páginas
   include("template/footer.php");
 } else {
   // Redirige a la principal en caso de existir usuario y rol

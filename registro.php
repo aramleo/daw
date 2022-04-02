@@ -86,21 +86,53 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   </div>
   <!-- alerta error registro -->
   <?php
-  if(isset($_POST['registrar'])){
-  if (!empty($error_nombre || $error_email || $error_password || $error_confirma || $error_registro)) {
+  if (isset($_POST['registrar'])) {
+    if (!empty($error_nombre)) {
   ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>¡Error!</br></strong>
-      <p><?php echo $error_nombre; ?></p>
-      <p><?php echo $error_email; ?></p>
-      <p><?php echo $error_password; ?></p>
-      <p><?php echo $error_confirma; ?></p>
-      <p><?php echo $error_registro; ?></p>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</br></strong>
+        <p><?php echo $error_nombre; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+    }
+    if (!empty($error_email)) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</br></strong>
+        <p><?php echo $error_email; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+    }
+    if (!empty($error_password)) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</br></strong>
+        <p><?php echo $error_password; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+    }
+    if (!empty($error_confirma)) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</br></strong>
+        <p><?php echo $error_confirma; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+    }
+    if (!empty($error_registro)) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</br></strong>
+        <p><?php echo $error_registro; ?></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
   <?php
+    }
   }
-}
   ?>
 
 <?php

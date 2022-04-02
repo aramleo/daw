@@ -55,7 +55,7 @@ class FuncionesLogReg{
    
         
     /**
-     * comprobarUsuario
+     * comprobarUsuario.- Comprueba si el usuario existe en la base de datos
      *
      * @param  mixed $email
      * @param  mixed $password
@@ -63,7 +63,7 @@ class FuncionesLogReg{
      */
     public function comprobarUsuario($email, $password) {
         $hash = $this->hash($password);
-        $sql = "SELECT nombre, email, id_rol FROM usuario WHERE email = :email and password = :password";
+        $sql = "SELECT * FROM usuario WHERE email = :email and password = :password";
         $query = $this->conexion -> prepare($sql);
         $query -> bindParam(':email', $email);
         $query -> bindParam(':password', $hash);
@@ -72,24 +72,8 @@ class FuncionesLogReg{
         return $resultado;
     }
 
-
-    public function cambioEmail($id, $password) {
-        $hash = $this->hash($password);
-        $resultado = null;
-        try{
-            $sql = "UPDATE `usuario` SET password= :password WHERE id = $id;";
-            $stmt = $this->conexion -> prepare($sql);
-            $stmt ->bindParam(':password', $hash);
-            if($stmt ->execute()){
-                $resultado = 'El password se ha cambiado';
-            }else{
-                $resultado = "El password no see ha cambiado";
-            }
-        }catch(Exception $e){
-            $resultado = $e->getMessage();
-        }      
-        return $resultado;
-    }
+    
+    
     
     // /**
     //  * redireccion

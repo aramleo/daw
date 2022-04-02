@@ -1,15 +1,27 @@
 <?php
 
+/**
+ * Conectamos con la base de datos
+ */
+
 include 'bd.php';
 
 Class Conexion extends Database {
-
+    
+    /**
+     * __construct. Contructor de la clase donde asignamos uno de los parámetros de la 
+     * conexion PDO.
+     *
+     * @return void
+     */
     public function __construct() {
         $this->datos = "mysql:host=127.0.0.1;dbname=$this->dbname";
     }
-
+   
     /**
-     * Conexión con la base de datos mediante PDO.
+     * conexion. Conexión con la base de datos mediante PDO.
+     *
+     * @return void
      */
     public function conexion() {
         try {

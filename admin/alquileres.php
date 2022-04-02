@@ -1,13 +1,20 @@
 <?php
+/**
+ * En este archivo se presentan todos los alquileres introducidos en la base de datos por el administrador
+ * de la página web.
+ */
 include 'template/cabecera.php';
 include("../config/funcionesAlquileres.php");
+// Comprueba si existe la session de un usuario y si tiene el rol de administrador.
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
-
+// llama a la clase FuncionesAlquileres.
     $consulta = new FuncionesAlquileres;
+    // Extrae los datos.
     $resultados = $consulta->consultarAlquiler();
 
 
 ?>
+<!-- Tabla donde se muestran los alquileres instroducidos por el administrador -->
     <div>
         <a href="alquileres/formAgregarAlquiler.php"><button type="text" class="btn btn-success my-3">Agregar alquiler</button></a>
     </div>
@@ -55,12 +62,15 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
         </div>
     </div>
-
+    <!-- Función javascript de datatables -->
     <script type="text/javascript" src="js/alquileres.js"></script>
     <?php
+    // Incluyendo el pie de página
     include("template/pie.php");
+    // Comrpobando si existe la varible sesion eliminar.
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
+    <!-- Modal que nos muestra si se ha realizado la eliminación del registro -->
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>¡OK! </strong> <?php echo $_SESSION['eliminar']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -68,7 +78,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     <?php
         $_SESSION['eliminar'] = '';
     }
-
+    // Nos informa del resultado de la edición.
     if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -79,6 +89,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         $_SESSION['editado'] = '';
     }
 } else {
+    // Si no ha iniciado sesión, te redirige a la página principal
     header('Location: ../');
 }
 ?>
