@@ -17,6 +17,7 @@
                           <?php
                             if (isset($_SESSION['usuario'])) {
                             ?>
+                              <a class="nav-link active d-sm-none" aria-current="page" href="../perfil.php">Perfil</a>
                               <a class="nav-link active d-sm-none" aria-current="page" href="../cerrarSesion.php">Cerrar sesión</a>
                           <?php
                             }
@@ -28,7 +29,12 @@
                   <?php
                     if (isset($_SESSION['usuario'])) {
                     ?>
-                      <a class="nav-link active d-none d-md-inline" aria-current="page" href="../cerrarSesion.php">Cerrar sesión</a>
+                      <div class="cols-6">
+                          <a class="nav-link active  d-none d-md-inline" aria-current="page" href="../perfil.php">Perfil</a>
+                      </div>
+                      <div class="cols-6">
+                          <a class="nav-link active  d-none d-md-inline" aria-current="page" href="../cerrarSesion.php">Cerrar sesión</a>
+                      </div>
                   <?php
                     }
                     ?>

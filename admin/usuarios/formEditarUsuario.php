@@ -27,11 +27,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <!-- Introducción del nombre para actualizar -->
           <div class="mb-3">
             <label for="nombre" class="form-label">Usuario:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" readonly>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required>
+            <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" readonly>
           </div>
           <div class="mb-3">
             <label for="rol" class="form-label">Rol:</label>

@@ -5,7 +5,6 @@ require_once(__DIR__.'/conexion.php');
 class FuncionesUsuarios{
 
     private $conexion;
-    private $url;
     
     /**
      * __construct

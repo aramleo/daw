@@ -65,21 +65,15 @@ session_start();
             </div>
             <div class="navbar-nav " style="border-left:1px solid white">
                 <?php
-                if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '2') {
+                if (isset($_SESSION['usuario'])) {
                 ?>
-
                     <div class="cols-6">
                         <a class="nav-link active  d-none d-md-inline" aria-current="page" href="perfil.php">Perfil</a>
                     </div>
-                <?php
-                }
-                if (isset($_SESSION['usuario'])) {
-                ?>
                     <div class="cols-6">
                         <a class="nav-link active  d-none d-md-inline" aria-current="page" href="cerrarSesion.php">Cerrar sesión</a>
                     </div>
             </div>
-
         <?php
                 }
         ?>
