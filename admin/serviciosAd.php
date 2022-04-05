@@ -1,7 +1,8 @@
 <?php
-include 'template/cabecera.php';
-include("../config/funcionesServicios.php");
+session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    include 'template/cabecera.php';
+    include("../config/funcionesServicios.php");
 
     $consulta = new FuncionesServicios;
     $resultados = $consulta->consultarServicios();
@@ -38,7 +39,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                 <td><?php echo $resultado->imagen; ?></td>
                                 <td><?php echo $resultado->activa; ?></td>
                                 <td class='text-center'><a href="servicios/formEditarServicio.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="servicios/borrarServicio.php?id=<?php echo $resultado->id;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
+                                    <a href="servicios/borrarServicio.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         <?php

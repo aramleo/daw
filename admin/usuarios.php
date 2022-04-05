@@ -1,7 +1,8 @@
 <?php
-include 'template/cabecera.php';
-include("../config/funcionesUsuarios.php");
+session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    include 'template/cabecera.php';
+    include("../config/funcionesUsuarios.php");
 
     $consulta = new FuncionesUsuarios;
     $resultados = $consulta->consultarUsuario();

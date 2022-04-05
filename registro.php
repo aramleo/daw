@@ -1,9 +1,12 @@
 <?php
-include("template/header.php");
-include_once("config/funcionesSanearValidar.php");
-include_once("config/funcioneslogreg.php");
+session_start();
 
 if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
+
+  include("template/header.php");
+  include_once("config/funcionesSanearValidar.php");
+  include_once("config/funcioneslogreg.php");
+
   $llamada = new FuncionesSaneaValida;
   $error_nombre = $error_email = $error_password = $error_confirma = $error_registro = '';
   if (!isset($_POST['usuario'])) {

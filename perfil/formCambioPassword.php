@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Aqui en este archivo introducimos los datos para el cambio de password en el formulario.
  */
-// Introduccion de otro encabezado con los enlaces correctos
-include('../template/headerS.php');
-
+session_start();
 // Comprueba si la sesion de usuario y rol exite. Está logueado.
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
+    // Introduccion de otro encabezado con los enlaces correctos
+    include('../template/headerS.php');
 
     // Asignando valores al usuario y al id
     $usuario = $_SESSION['usuario'];
@@ -61,55 +62,55 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
     <?php
     // comprueba si existen las variables errores de $_SESSION.
     // Comprobando si existe la variable y si no está vacia.
-        if (isset($_SESSION['error_password']) && !empty($_SESSION['error_password'])) {
+    if (isset($_SESSION['error_password']) && !empty($_SESSION['error_password'])) {
     ?>
-    <!-- Imprime un modal con el valor de la varible SESSION -->
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>¡Error!</br></strong>
-                <p><?php echo $_SESSION['error_password']; ?></p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php
+        <!-- Imprime un modal con el valor de la varible SESSION -->
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>¡Error!</br></strong>
+            <p><?php echo $_SESSION['error_password']; ?></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
         // Deja vacía la variable error_password para que si se recarga la página no vuelva a aparecer.
-            $_SESSION['error_password'] = '';
-        }
+        $_SESSION['error_password'] = '';
+    }
 
-        if (isset($_SESSION['error_old']) && !empty($_SESSION['error_old'])) {
-        ?>
+    if (isset($_SESSION['error_old']) && !empty($_SESSION['error_old'])) {
+    ?>
         <!-- Imprime un modal con el valor de la varible SESSION -->
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>¡Error!</br></strong>
-                <p><?php echo $_SESSION['error_old']; ?></p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>¡Error!</br></strong>
+            <p><?php echo $_SESSION['error_old']; ?></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
         // Deja vacía la variable error_old para que si se recarga la página no vuelva a aparecer.
-            $_SESSION['error_old'] = '';
-        }
-        if (isset($_SESSION['error_new']) && !empty($_SESSION['error_new'])) {
-        ?>
+        $_SESSION['error_old'] = '';
+    }
+    if (isset($_SESSION['error_new']) && !empty($_SESSION['error_new'])) {
+    ?>
         <!-- Imprime un modal con el valor de la varible SESSION -->
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>¡Error!</br></strong>
-                <p><?php echo $_SESSION['error_new']; ?></p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>¡Error!</br></strong>
+            <p><?php echo $_SESSION['error_new']; ?></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
         // Deja vacía la variable error_new para que si se recarga la página no vuelva a aparecer.
-            $_SESSION['error_new'] = '';
-        }
-        // Comprueba si el registro se ha modificado correctamente
-        if (isset($_SESSION['exito_password']) && !empty($_SESSION['exito_password'])) {
-        ?>
+        $_SESSION['error_new'] = '';
+    }
+    // Comprueba si el registro se ha modificado correctamente
+    if (isset($_SESSION['exito_password']) && !empty($_SESSION['exito_password'])) {
+    ?>
         <!-- Imprime un modal con el valor de la varible SESSION -->
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <p><?php echo $_SESSION['exito_password']; ?></p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <p><?php echo $_SESSION['exito_password']; ?></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 <?php
-            // Deja vacía la variable exito_password para que si se recarga la página no vuelva a aparecer.
-            $_SESSION['exito_password'] = '';
-        }
+        // Deja vacía la variable exito_password para que si se recarga la página no vuelva a aparecer.
+        $_SESSION['exito_password'] = '';
+    }
     // Incluye template pie
     include("../template/footer.php");
 } else {

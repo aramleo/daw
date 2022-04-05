@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-
-print_r($_POST);
-include '../config/funcionesPerfil.php';
-include '../config/funcionesSanearValidar.php';
-
+// print_r($_POST);
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
+    include '../config/funcionesPerfil.php';
+    include '../config/funcionesSanearValidar.php';
 
     if (isset($_POST['actualizar'])) {
         $llamada = new FuncionesSaneaValida;
@@ -18,7 +16,6 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
             $nombre = $llamada->sanearNombre($_POST['nombre']);
             if (!empty($llamada->validaNombre($nombre))) {
                 $error_nombre = $llamada->validaNombre($nombre);
-
             }
         }
         if (!isset($_POST['email'])) {
@@ -41,10 +38,10 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 header('Location: formCambioDatos.php');
             }
         } else {
-            if(isset($error_nombre) && !empty($error_nombre)){
+            if (isset($error_nombre) && !empty($error_nombre)) {
                 $_SESSION['error_nombre'] = $error_nombre;
             }
-            if(isset($error_email) && !empty($error_email)){
+            if (isset($error_email) && !empty($error_email)) {
                 $_SESSION['error_email'] = $error_email;
             }
             header('Location: formCambioDatos.php');

@@ -1,14 +1,14 @@
 <?php
-
-include('template/header.php');
-// require ('config/clave.php');
+session_start();
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
+    include('template/header.php');
+// require ('config/clave.php');
 
     include 'config/funcionesProductos.php';
     $datos = new Funciones;
     $productos = $datos->consultar();
-    $cuenta = count($_SESSION['cesta']['productos']);
-    echo $cuenta;
+    // $cuenta = count($_SESSION['cesta']['productos']);
+    // echo $cuenta;
     // $token_tmp = hash_hmac('sha1', $id, KEY_CLAVE);
 ?>
     <h3 class="text-center pt-3">Tienda Online</h3>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Archivo donde se reciben los datos del formulario de cambio de password y se realizan las
  * operaciones de validación y saneamiento, devolviendo los errores o el acierto de la 
@@ -6,13 +7,13 @@
  */
 // Inicia session
 session_start();
-// Cargamos los archivos necesarios 
-include '../config/funcionesPerfil.php';
-include '../config/funcionesSanearValidar.php';
 
 // Comprobamos si existe session de usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
-// Si hemos pulsado el botón guardar
+    // Cargamos los archivos necesarios 
+    include '../config/funcionesPerfil.php';
+    include '../config/funcionesSanearValidar.php';
+    // Si hemos pulsado el botón guardar
     if (isset($_POST['guardar'])) {
         $id = $_SESSION['id'];
         // Llamando a la clase FuncionesSaneaValida
@@ -38,7 +39,6 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 if (!empty($llamada->validaPassword($nuevo_password, $confirma))) {
                     $error_password = $llamada->validaPassword($nuevo_password, $confirma);
                 }
-
             }
         }
         // Comprueba si las dos variables no continen errores
@@ -57,10 +57,10 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
             }
         } else {
             // Comrpobando las varibles de error
-            if(isset($error_old_password) && !empty($error_old_password)){
+            if (isset($error_old_password) && !empty($error_old_password)) {
                 $_SESSION['error_old'] = $error_old_password;
             }
-            if(isset($error_password) && !empty($error_password)){
+            if (isset($error_password) && !empty($error_password)) {
                 $_SESSION['error_new'] = $error_password;
             }
             // Redirecciona a la página del formulario de cambio de password

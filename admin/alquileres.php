@@ -1,20 +1,22 @@
 <?php
+session_start();
 /**
  * En este archivo se presentan todos los alquileres introducidos en la base de datos por el administrador
  * de la página web.
  */
-include 'template/cabecera.php';
-include("../config/funcionesAlquileres.php");
+
 // Comprueba si existe la session de un usuario y si tiene el rol de administrador.
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
-// llama a la clase FuncionesAlquileres.
+    include 'template/cabecera.php';
+    include("../config/funcionesAlquileres.php");
+    // llama a la clase FuncionesAlquileres.
     $consulta = new FuncionesAlquileres;
     // Extrae los datos.
     $resultados = $consulta->consultarAlquiler();
 
 
 ?>
-<!-- Tabla donde se muestran los alquileres instroducidos por el administrador -->
+    <!-- Tabla donde se muestran los alquileres instroducidos por el administrador -->
     <div>
         <a href="alquileres/formAgregarAlquiler.php"><button type="text" class="btn btn-success my-3">Agregar alquiler</button></a>
     </div>
@@ -49,7 +51,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                 <td><?php echo $resultado->telefono; ?></td>
                                 <td><?php echo $resultado->activa; ?></td>
                                 <td class='text-center'><a href="alquileres/formEditarAlquiler.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="alquileres/borrarAlquiler.php?id=<?php echo $resultado->id;?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
+                                    <a href="alquileres/borrarAlquiler.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         <?php
@@ -70,7 +72,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     // Comrpobando si existe la varible sesion eliminar.
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
-    <!-- Modal que nos muestra si se ha realizado la eliminación del registro -->
+        <!-- Modal que nos muestra si se ha realizado la eliminación del registro -->
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>¡OK! </strong> <?php echo $_SESSION['eliminar']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

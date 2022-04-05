@@ -1,0 +1,8 @@
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+#evitar listado de directorios
+IndexIgnore *
+Options -Indexes
+

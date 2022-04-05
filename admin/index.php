@@ -1,6 +1,7 @@
 <?php
-include('template/cabecera.php');
+session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    include('template/cabecera.php');
 ?>
     <div class="container-fluid mt-5">
         <div class="row">

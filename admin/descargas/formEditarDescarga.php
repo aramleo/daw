@@ -1,9 +1,10 @@
 <?php
+session_start();
 //Comenzamos la sesión para registrar errores y usuarios
-include("../template/cabecera2.php");
-include("../../config/funcionesDescargas.php");
+
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
-  
+  include("../template/cabecera2.php");
+  include("../../config/funcionesDescargas.php");
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesDescargas;
   $datos = $actual->editar($_GET['id']);
@@ -29,23 +30,33 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <!-- Introducción del nombre para actualizar -->
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if(isset($referencia)){echo $referencia; }?>" required>
+            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if (isset($referencia)) {
+                                                                                                echo $referencia;
+                                                                                              } ?>" required>
           </div>
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php if(isset($titulo)){echo $titulo; } ?>" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="<?php if (isset($titulo)) {
+                                                                                        echo $titulo;
+                                                                                      } ?>" required>
           </div>
           <div class="mb-3">
             <label for="enlace" class="form-label">Enlace:</label>
-            <input type="text" class="form-control" id="enlace" name="enlace" value="<?php if(isset($enlace)){echo $enlace; } ?>" required>
+            <input type="text" class="form-control" id="enlace" name="enlace" value="<?php if (isset($enlace)) {
+                                                                                        echo $enlace;
+                                                                                      } ?>" required>
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php if(isset($imagen)){echo $imagen; } ?>" required>
+            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php if (isset($imagen)) {
+                                                                                        echo $imagen;
+                                                                                      } ?>" required>
           </div>
           <div class="mb-3">
             <label for="activa" class="form-label">Activa:</label>
-            <input type="text" class="form-control" id="activa" name="activa" value="<?php if(isset($activa)){echo $activa; } ?>" required>
+            <input type="text" class="form-control" id="activa" name="activa" value="<?php if (isset($activa)) {
+                                                                                        echo $activa;
+                                                                                      } ?>" required>
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>

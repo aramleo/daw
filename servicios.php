@@ -1,8 +1,8 @@
 <?php
+session_start();
 
-include('template/header.php');
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
-
+    include('template/header.php');
     include 'config/funcionesServicios.php';
     $datos = new FuncionesServicios;
     $servicios = $datos->consultarServicios();

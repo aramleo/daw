@@ -1,14 +1,13 @@
 <?php
-
-//Carga los archivos necesarios para el saneamiento y validación y el header común de las páginas
-include("template/header.php");
-include_once("config/funcionesSanearValidar.php");
-include_once("config/funcioneslogreg.php");
-
+session_start();
 /* Comprobamos que no existe sesión de usuario o rol. En caso de existir no redirige a la página
 principal de la página web*/
 
 if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
+  //Carga los archivos necesarios para el saneamiento y validación y el header común de las páginas
+  include("template/header.php");
+  include_once("config/funcionesSanearValidar.php");
+  include_once("config/funcioneslogreg.php");
 
   // Llamamos al constructor de la clase
   $llamada = new FuncionesSaneaValida;

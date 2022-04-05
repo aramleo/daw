@@ -1,7 +1,8 @@
 <?php
+session_start();
 
-include('template/header.php');
 if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
+    include('template/header.php');
 
     if (isset($_POST['id'])) {
         $id = $_POST['id'];

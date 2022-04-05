@@ -1,8 +1,8 @@
 <?php
-
-include './template/cabecera.php';
-include("../config/funcionesProductos.php");
+session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    include './template/cabecera.php';
+    include("../config/funcionesProductos.php");
     $consulta = new Funciones;
     $resultados = $consulta->consultar();
 

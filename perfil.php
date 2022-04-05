@@ -1,8 +1,7 @@
 <?php
-include('template/header.php');
-
+session_start();
 if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
-
+    include('template/header.php');
 ?>
     <div class="container-fluid mt-5">
         <div class="row">

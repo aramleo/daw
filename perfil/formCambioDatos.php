@@ -1,11 +1,12 @@
 <?php
-// Introduccion de otro encabezado con los enlaces correctos
-include('../template/headerS.php');
-// Archivos necesarios para las consultas y ediciones
-include '../config/funcionesUsuarios.php';
+session_start();
 
 // Comprueba si la sesion de usuario y rol exite. Está logueado.
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
+    // Introduccion de otro encabezado con los enlaces correctos
+    include('../template/headerS.php');
+    // Archivos necesarios para las consultas y ediciones
+    include '../config/funcionesUsuarios.php';
 
     $usuario = $_SESSION['usuario'];
     $id = $_SESSION['id'];
@@ -19,7 +20,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
         $nombre = $misDatos[0]['nombre'];
         $email = $misDatos[0]['email'];
         $id = $misDatos[0]['id'];
-    }else{
+    } else {
         $misDatos = $datos->editarUsuario($id);
         $nombre = $misDatos[0]['nombre'];
         $email = $misDatos[0]['email'];

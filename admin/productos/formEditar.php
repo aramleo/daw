@@ -1,8 +1,10 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
-include("../template/cabecera2.php");
-include("../../config/funcionesProductos.php");
+session_start();
+
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+  include("../template/cabecera2.php");
+  include("../../config/funcionesProductos.php");
 
 
   // Variables que recogemos de la función editar en funciones.php
@@ -11,9 +13,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $referencia = $datos[0]['referencia'];
   $nombre = $datos[0]['nombre'];
   $precio = $datos[0]['precio'];
-  $cantidad= $datos[0]['cantidad'];
+  $cantidad = $datos[0]['cantidad'];
   $id = $datos[0]['id'];
-  
+
 ?>
 
   <div class="col-md-5 mt-3">
@@ -25,7 +27,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="editarProducto.php" method="post" enctype="multipart/form-data">
           <!-- Dato del ID oculto para actualizar en la base de datos -->
           <div>
-            <input type="text"  id="id" name="id" value="<?php echo $id; ?>">
+            <input type="text" id="id" name="id" value="<?php echo $id; ?>">
           </div>
           <!-- Introducción de los datos para actualizar -->
           <div class="mb-3">
