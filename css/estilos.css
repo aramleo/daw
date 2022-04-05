@@ -1,3 +1,9 @@
 .texto{
     text-justify: auto;
 }
+
+
+.imgnormalizada img {
+    width: 200px;
+    height: 200px;
+  }
