@@ -1,10 +1,9 @@
 <?php
-
+session_start();
+include 'template/header.php';
 require_once 'config/funcionesBlog.php';
-include('template/header.php');
 
-
-$llamada = new Funciones;
+$llamada = new FuncionesBlog;
 
 ?>
 <div class="header text-center mt-3 mb-6">

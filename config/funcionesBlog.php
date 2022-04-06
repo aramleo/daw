@@ -2,12 +2,12 @@
 /**
  * lee los diferentes posts guardados en la base de datos.
  */
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 /**
  * Funciones
  */
-class Funciones{
+class FuncionesBlog{
 
     private $conexion;
     // private $url;
