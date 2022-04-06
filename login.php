@@ -40,7 +40,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
       $_SESSION['usuario'] = $datos[0]['email'];
       $_SESSION['rol'] = $datos[0]['id_rol'];
       $_SESSION['id'] = $datos[0]['id'];
-      header('Location: ./');
+      echo "<script>location.href='./';</script>";
     } else {
       $_SESSION['noexiste'] = 'El usuario no existe o los datos introducidos no son correctos';
     }

@@ -1,4 +1,4 @@
-      </nav>
+
       <nav class="navbar navbar-expand-sm navbar-dark bg-success">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuID" aria-controls="menuID" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,7 @@
                       <a class="nav-link active" aria-current="page" href="serviciosAd.php">Servicios</a>
                       <a class="nav-link active" aria-current="page" href="descargasAd.php">Descargas</a>
                       <a class="nav-link active" aria-current="page" href="usuarios.php">Usuarios</a>
+                      <a class="nav-link active" aria-current="page" href="adminBlog.php">Blog</a>
                       <a class="nav-link active" aria-current="page" href="../">Vista página</a>
                       <div class="navbar-nav" style="border-top:1px solid white">
                           <?php

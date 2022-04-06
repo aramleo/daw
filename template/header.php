@@ -19,7 +19,7 @@ if(!isset($_SESSION)){
     <title>Huertos Urbanos</title>
 </head>
 
-<body>
+<body class="d-flex flex-column vh-100">
     <nav class="navbar navbar-expand-sm navbar-dark bg-success">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuID" aria-controls="menuID" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

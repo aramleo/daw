@@ -4,7 +4,7 @@
  * 
  * */
 // Lllamamos a el archivo conexion.php
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 class FuncionesPerfil{
     

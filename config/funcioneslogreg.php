@@ -3,7 +3,7 @@
  * Clase donde incluiremos las funciones concernientes a Login y Registro del usuario
  * 
  * */
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 class FuncionesLogReg{
     

@@ -5,7 +5,7 @@
 ?>
 
 <div class="card">
-	<img class="card-img-top" src="holder.js/100x180/" alt="">
+	<img class="card-img-top" src="" alt="">
 	<div class="card-body">
 		<ul class="">
 		<?php foreach ($posts as $post) : ?>

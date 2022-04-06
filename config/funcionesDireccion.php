@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 /**
  * FuncionesDireccion. Funciones para controlar los archivos que manejan la direccion

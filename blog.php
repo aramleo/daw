@@ -6,7 +6,7 @@ require_once 'config/funcionesBlog.php';
 $llamada = new FuncionesBlog;
 
 ?>
-<div class="header text-center mt-3 mb-6">
+<div class="header text-center my-5">
   <h2>Blog Huertos Urbanos</h2>
 </div>
 

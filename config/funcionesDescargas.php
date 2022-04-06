@@ -2,7 +2,7 @@
 /**
  * EN este archivo controlamos las diferentes funciones de la tabla descargas.
  */
-require_once(__DIR__.'\conexion.php');
+require_once(__DIR__.'/conexion.php');
 
 
 

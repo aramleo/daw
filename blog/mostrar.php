@@ -3,7 +3,7 @@
 
 require_once '../config/funcionesBlog.php';
 
-$consultas = new Funciones;
+$consultas = new FuncionesBlog;
 
 $post = $consultas->getPostById($_GET['id']);
 
