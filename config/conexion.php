@@ -25,7 +25,7 @@ Class Conexion extends Database {
      */
     public function conexion() {
         try {
-            $conn = new PDO($this->datos, $this->username, $this->password);
+            $conn = new PDO($this->datos, $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8'));
             /* echo "Connected to $dbname at $host successfully."; */
         } catch (PDOException $pe) {
             die("No se ha podido conectar con $this->dbname :" . $pe->getMessage());

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// print_r($_POST);
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
     include '../config/funcionesPerfil.php';
     include '../config/funcionesSanearValidar.php';

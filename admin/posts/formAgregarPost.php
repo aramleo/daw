@@ -27,7 +27,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" placeholder="Imagen">
+            <input type="file" class="form-control" id="imagen" name="imagen" placeholder="Imagen">
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

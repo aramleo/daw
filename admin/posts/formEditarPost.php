@@ -47,7 +47,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php if (isset($imagen)) {
+            <input type="file" class="form-control" id="imagen" name="imagen" value="<?php if (isset($imagen)) {
                                                                                         echo $imagen;
                                                                                       } ?>">
           </div>

@@ -81,9 +81,9 @@ class FuncionesBlog{
             $sql = "INSERT INTO blog (titulo, fecha, texto, imagen) VALUES (:titulo,:fecha,:texto,:imagen)";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':titulo', $titulo);
-            $stmt ->bindParam(':fecha', ucwords($fecha));
+            $stmt ->bindParam(':fecha', $fecha);
             $stmt ->bindParam(':texto', $texto);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt -> execute();
             $resultado = 1;
         }catch(Exception $e){

@@ -4,18 +4,21 @@ session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
 include ("../../config/funcionesServicios.php");
-print_r($_POST);
+include ('../../config/funcion_generica.php');
 
 if(empty($_POST['agregar'])){
     $envio= 'No se pueden enviar datos vacios';
     $_SESSION['error']=$envio;
     header('Location: formAgregarServicio.php');
 }else{
+    $agregar = new FuncionesServicios;
+    $foto = new Generica;
+
     $referencia = $_POST['referencia'];
     $servicio = $_POST['servicio'];
-    $imagen= $_POST['imagen'];
+    $imagen= $foto->subirFoto('servicios');
     $activa= $_POST['activa'];
-    $agregar = new FuncionesServicios;
+    
     $resultados = $agregar->agregar($referencia, $servicio, $imagen, $activa);
     if($resultados == 23000){
         $envio = 'Registro duplicado';

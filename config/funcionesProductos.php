@@ -20,15 +20,16 @@ class Funciones{
         return $results;
     }
     // Agregar productos
-    public function agregar($nombre, $referencia, $precio, $cantidad){
+    public function agregar($nombre, $referencia, $precio, $cantidad, $imagen){
         $resultado = null;
         try{
-            $sql = "INSERT INTO productos (nombre, referencia, precio, cantidad) VALUES (:nombre,:referencia,:precio,:cantidad)";
+            $sql = "INSERT INTO productos (nombre, referencia, precio, cantidad, imagen) VALUES (:nombre,:referencia,:precio,:cantidad,:imagen)";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':referencia', $referencia);
             $stmt ->bindParam(':precio', $precio);
             $stmt ->bindParam(':cantidad', $cantidad);
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt -> execute();
             $resultado = 1;
         }catch(Exception $e){
@@ -45,15 +46,16 @@ class Funciones{
         return $results;
     }
     // Actualizar los productos editados
-    public function actualizar($id, $nombre, $referencia, $precio, $cantidad){
+    public function actualizar($id, $nombre, $referencia, $precio, $cantidad, $imagen){
         $resultado = null;
         try{
-            $sql = "UPDATE `productos` SET `nombre`=:nombre , `referencia`=:referencia, `precio`=:precio, `cantidad`=:cantidad WHERE `id` = $id";
+            $sql = "UPDATE `productos` SET `nombre`=:nombre , `referencia`=:referencia, `precio`=:precio, `cantidad`=:cantidad, `imagen`=:imagen WHERE `id` = $id";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':referencia', $referencia);
             $stmt ->bindParam(':precio', $precio);
             $stmt ->bindParam(':cantidad', $cantidad);
+            $stmt ->bindParam(':imagen', $imagen);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';
             }

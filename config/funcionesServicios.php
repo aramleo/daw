@@ -28,7 +28,7 @@ class FuncionesServicios{
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':servicio', $servicio);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt ->bindParam(':activa', $activa);
             $stmt -> execute();
             $resultado = 1;
@@ -53,7 +53,7 @@ class FuncionesServicios{
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':servicio', $servicio);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt ->bindParam(':activa', $activa);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';

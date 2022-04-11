@@ -34,10 +34,34 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <label for="email" class="form-label">Email:</label>
             <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" readonly>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="rol" class="form-label">Rol:</label>
             <input type="text" class="form-control" id="rol" name="rol" value="<?php echo $rol; ?>">
-          </div>
+            <p>Introducir 1 para administrador y 2 para usuario</p>
+          </div> -->
+          <?php
+          if (isset($rol) && $rol == 1) { ?>
+            <div class="mb-3">
+              <label for="rol" class="form-label">Rol:</label>
+              <select id="rol" name="rol">
+                <option selected value="1">Administrador</option>
+                <option value="2">Usuario</option>
+              </select>
+            </div>
+          <?php
+          }
+          if (isset($rol) && $rol == 2) { ?>
+            <div class="mb-3">
+              <label for="rol" class="form-label">Rol:</label>
+              <select id="rol" name="rol">
+                <option value="1">Administrador</option>
+                <option selected value="2">Usuario</option>
+              </select>
+            </div>
+
+          <?php
+          }
+          ?>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
             <a class="btn btn-info mx-3" href="../usuarios.php" role="button">Volver</a>

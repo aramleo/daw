@@ -57,7 +57,7 @@ class FuncionesDescargas{
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':titulo', $titulo);
             $stmt ->bindParam(':enlace', $enlace);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt ->bindParam(':activa', $activa);
             $stmt -> execute();
             $resultado = 1;
@@ -98,7 +98,7 @@ class FuncionesDescargas{
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':titulo', $titulo);
             $stmt ->bindParam(':enlace', $enlace);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen) ;
             $stmt ->bindParam(':activa', $activa);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';

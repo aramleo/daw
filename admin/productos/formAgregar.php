@@ -28,6 +28,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <label for="cantidad" class="form-label">Cantidad:</label>
             <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad del producto">
           </div>
+          <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen:</label>
+            <input type="file" class="form-control" id="imagen" name="imagen" placeholder="Cantidad del producto">
+          </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>
             <a class="btn btn-info mx-3" href="../productos.php" role="button">Volver</a>

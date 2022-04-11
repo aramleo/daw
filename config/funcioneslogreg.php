@@ -73,36 +73,6 @@ class FuncionesLogReg{
     }
 
     
-    
-    
-    // /**
-    //  * redireccion
-    //  *
-    //  * @param  mixed $url
-    //  * @return void
-    //  */
-    // public function redireccion($url) {
-    //     header('Location: ' . $this->url . $url);
-    //     die();
-    // }
-    
-    // /**
-    //  * logout
-    //  *
-    //  * @return void
-    //  */
-    // public function logout() {
-    //     if (session_status() == PHP_SESSION_ACTIVE) {
-    //         session_destroy();
-    //     }
-    //     $_SESSION['email'] = null;
-    //     $_SESSION['password'] = null;
-    //     unset($_COOKIE['email']);
-    //     unset($_COOKIE['password']);
-    //     setCookie('email', "", time()-3600);
-    //     setCookie('password', "", time()-3600);
-    // }
-
     public static function hash($password) {
         return hash('sha512', '34'.$password);
     }

@@ -18,11 +18,11 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                         <div class="card shadow-sm">
                             <?php
                             $imagen = "img/alquileres/" . $alquiler->imagen;
-                            if (!file_exists($imagen)) {
-                                $imagen = "img/noDisponible.jpg";
+                            if (empty($alquiler->imagen)) {
+                                $imagen = "img/no_foto.jpg";
                             }
                             ?>
-                            <img class="img-thumbnail img-fluid" src="<?php echo $imagen; ?>">
+                            <img class="img-thumbnail img-fluid d-block w-100" src="<?php echo $imagen; ?>">
                             <div class="card-body">
                                 <h5 class="card-title">Referencia: <?php echo strtoupper($alquiler->referencia); ?></h5>
                                 <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">

@@ -6,3 +6,13 @@ deny from all
 IndexIgnore *
 Options -Indexes
 
+#Rewrite URL's
+RewriteEngine On
+RewriteRule ^404/?$ errors/404.html [NC]
+
+# Enable Error Documents
+# (404,File Not Found) | (403,Forbidden) | (500,Internal Server Error)
+ErrorDocument 404 /404
+ErrorDocument 403 /404
+
+

@@ -53,7 +53,7 @@ class FuncionesAlquileres{
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':localidad', ucwords($localidad));
             $stmt ->bindParam(':metros', $metros);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt ->bindParam(':telefono', $telefono);
             $stmt ->bindParam(':activa', $activa);
             $stmt -> execute();
@@ -96,7 +96,7 @@ class FuncionesAlquileres{
             $stmt ->bindParam(':referencia', strtoupper($referencia));
             $stmt ->bindParam(':localidad', ucwords($localidad));
             $stmt ->bindParam(':metros', $metros);
-            $stmt ->bindParam(':imagen', strtoupper($imagen));
+            $stmt ->bindParam(':imagen', $imagen);
             $stmt ->bindParam(':telefono', $telefono);
             $stmt ->bindParam(':activa', $activa);
             if($stmt ->execute()){
