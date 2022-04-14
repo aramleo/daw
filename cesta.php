@@ -2,24 +2,20 @@
 session_start();
 
 if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
-    include('template/header.php');
-
+    // Decodifico el parametro persona que me envian
     if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-        if (isset($_SESSION['cesta']['productos'][$id])) {
-            $_SESSION['cesta']['productos'][$id] += 1;
-        } else {
-            $_SESSION['cesta']['productos'][$id] = 1;
+        $producto = json_decode($_POST['id']);
+        if(isset($_SESSION['cesta']['productos'][$producto])){
+            $_SESSION['cesta']['productos'][$producto] += 1;
+        }else{
+            $_SESSION['cesta']['productos'][$producto] = 1;
         }
-        $numero = count($_SESSION['cesta']['productos']);
-        $datos['numero'] = $numero;
-        $_SESSION['cesta']['productos']['cuenta']= $datos['numero'];
-        $datos['ok'] = true;
-    } else {
-        $datos['ok'] = false;
+        $datos['numero'] = count($_SESSION['cesta']['productos']);
+        $datos['ok']= true;
+    }else{
+        $datos['ok']= false;
     }
-    $json = json_encode($datos);
-    echo $json;
+    echo json_encode($datos);
 } else {
     header('Location: ./');
 }

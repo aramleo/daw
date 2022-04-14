@@ -13,7 +13,7 @@ class Funciones{
     }
     // Consultar productos
     public function consultar(){
-        $sql = "SELECT * FROM `productos` ORDER BY nombre;";
+        $sql = "SELECT * FROM `productos` WHERE estado = 1 AND cantidad >0 ORDER BY nombre;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
@@ -83,6 +83,26 @@ class Funciones{
         return $envio;
         
     } 
+
+    // Consultar productos de la cesta
+    public function consultar_cesta($id, $elementos){
+        $sql = "SELECT id, nombre, precio, cantidad, $elementos as cantidad_pro FROM `productos` WHERE estado = 1 AND cantidad > 0 AND id =:id;";
+        $query = $this->conexion -> prepare($sql);
+        $query ->bindParam(':id', $id);
+        $query -> execute();
+        $results = $query -> fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    // Consultar productos de la cesta
+    public function actualizar_cesta($id){
+        $sql = "SELECT precio FROM `productos` WHERE estado = 1 AND cantidad > 0 AND id =:id;";
+        $query = $this->conexion -> prepare($sql);
+        $query ->bindParam(':id', $id);
+        $query -> execute();
+        $results = $query -> fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
 
 }
 

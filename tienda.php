@@ -7,17 +7,20 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     include 'config/funcionesProductos.php';
     $datos = new Funciones;
     $productos = $datos->consultar();
-    // $cuenta = count($_SESSION['cesta']['productos']);
-    // echo $cuenta;
-    // $token_tmp = hash_hmac('sha1', $id, KEY_CLAVE);
+    $num_cesta = 0;
+    if(isset($_SESSION['cesta']['productos'])){
+        $num_cesta = count($_SESSION['cesta']['productos']);
+    }
 ?>
     <div class="pb-5">
         <h3 class="text-center pt-3 mt-3">Tienda Online</h3>
         <div class="container">
             <div class="row my-2">
-                <div class="col-sm-7 col-md-8 col-lg-9"></div>
-                <a href="cesta.php" class="btn btn-primary col-sm-5 col-md-4 col-lg-3">
-                    Cesta<span id="num_pro" class="badge bg-secondary">3</span></a>
+                <div class="col-sm-7 col-md-8 col-lg-9">
+                </div>
+                <a href="cesta_prod.php" class="btn btn-primary col-sm-5 col-md-4 col-lg-3">
+                    Cesta <span id="num_pro" class="badge bg-secondary"><?php if(isset($num_cesta)){
+                       echo $num_cesta; }?></span></a>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <?php foreach ($productos as $producto) { ?>
@@ -45,30 +48,39 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                             </div>
                         </div>
                     </div>
-                    <script>
-                        function adProducto(id) {
-                            let url = 'cesta.php'
-                            let formData = new FormData()
-                            formData.append('id', id)
-
-                            fetch(url, {
-                                    method: 'POST',
-                                    body: formData,
-                                    mode: 'cors'
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    // if(data.ok){
-                                    let elemento = document.getElementById("num_pro")
-                                    elemento.innerHTML = data.numero;
-                                    // }
-                                })
-                        }
-                    </script>
                 <?php } ?>
             </div>
         </div>
     </div>
+    <script>
+        function adProducto(id) {
+            const data = new FormData();
+            data.append('id', id);
+            fetch('cesta.php', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text()
+                    } else {
+                        throw "Error en la llamada Ajax";
+                    }
+
+                })
+                .then(function(texto) {
+                    datos = JSON.parse(texto);
+                    console.log(datos);
+                    if (datos['ok']) {
+                        retorno = document.getElementById('num_pro');
+                        retorno.innerHTML = datos['numero'];
+                    }
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        }
+    </script>
 <?php
     include 'template/footer.php';
 }
