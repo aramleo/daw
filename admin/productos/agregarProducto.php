@@ -7,7 +7,7 @@ include ("../../config/funcionesProductos.php");
 include ("../../config/funcion_generica.php");
 
 
-if(empty($_POST['nombre']) || empty($_POST['referencia']) || empty($_POST['precio']) || empty($_POST['cantidad']) || empty($_POST['agregar'])){
+if(empty($_POST['nombre']) || empty($_POST['referencia']) || empty($_POST['precio']) || empty($_POST['agregar'])){
     $envio= 'No se pueden enviar datos vacios';
     $_SESSION['error']=$envio;
     header('Location: formAgregar.php');
@@ -16,10 +16,9 @@ if(empty($_POST['nombre']) || empty($_POST['referencia']) || empty($_POST['preci
     $foto = new Generica;
     $nombre = $_POST['nombre'];
     $referencia = $_POST['referencia'];
-    $precio = $_POST['precio'];
-    $cantidad= $_POST['cantidad'];
+    $precio = str_replace(',','.',$_POST['precio']);
     $imagen= $foto->subirFoto('productos');
-    $resultados = $agregar->agregar($nombre, $referencia, $precio, $cantidad, $imagen);
+    $resultados = $agregar->agregar($nombre, $referencia, $precio, $imagen);
     if($resultados == 23000){
         $envio = 'Registro duplicado';
         $_SESSION['error']= $envio;

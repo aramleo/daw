@@ -3,6 +3,7 @@ session_start();
 
 if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
     include 'config/funcionesProductos.php';
+
     // Decodifico el parametro persona que me envian
     function agregar($id, $cantidad)
     {
@@ -35,7 +36,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
                 $datos['ok'] = false;
             }
             $datos['sub'] = number_format($result, 2, '.', ',');
-        } else {
+        }else {
             $datos['ok'] = false;
         }
     } else {

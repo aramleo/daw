@@ -13,22 +13,21 @@ class Funciones{
     }
     // Consultar productos
     public function consultar(){
-        $sql = "SELECT * FROM `productos` WHERE estado = 1 AND cantidad >0 ORDER BY nombre;";
+        $sql = "SELECT * FROM `productos` WHERE estado = 1 ORDER BY nombre;";
         $query = $this->conexion -> prepare($sql);
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
     // Agregar productos
-    public function agregar($nombre, $referencia, $precio, $cantidad, $imagen){
+    public function agregar($nombre, $referencia, $precio, $imagen){
         $resultado = null;
         try{
-            $sql = "INSERT INTO productos (nombre, referencia, precio, cantidad, imagen) VALUES (:nombre,:referencia,:precio,:cantidad,:imagen)";
+            $sql = "INSERT INTO productos (nombre, referencia, precio, imagen) VALUES (:nombre,:referencia,:precio,:imagen)";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':referencia', $referencia);
             $stmt ->bindParam(':precio', $precio);
-            $stmt ->bindParam(':cantidad', $cantidad);
             $stmt ->bindParam(':imagen', $imagen);
             $stmt -> execute();
             $resultado = 1;
@@ -46,15 +45,14 @@ class Funciones{
         return $results;
     }
     // Actualizar los productos editados
-    public function actualizar($id, $nombre, $referencia, $precio, $cantidad, $imagen){
+    public function actualizar($id, $nombre, $referencia, $precio, $imagen){
         $resultado = null;
         try{
-            $sql = "UPDATE `productos` SET `nombre`=:nombre , `referencia`=:referencia, `precio`=:precio, `cantidad`=:cantidad, `imagen`=:imagen WHERE `id` = $id";
+            $sql = "UPDATE `productos` SET `nombre`=:nombre , `referencia`=:referencia, `precio`=:precio, `imagen`=:imagen WHERE `id` = $id";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':nombre', $nombre);
             $stmt ->bindParam(':referencia', $referencia);
             $stmt ->bindParam(':precio', $precio);
-            $stmt ->bindParam(':cantidad', $cantidad);
             $stmt ->bindParam(':imagen', $imagen);
             if($stmt ->execute()){
                 $resultado = 'Registro actualizado';
@@ -86,7 +84,7 @@ class Funciones{
 
     // Consultar productos de la cesta
     public function consultar_cesta($id, $elementos){
-        $sql = "SELECT id, nombre, precio, cantidad, $elementos as cantidad_pro FROM `productos` WHERE estado = 1 AND cantidad > 0 AND id =:id;";
+        $sql = "SELECT id, nombre, precio, $elementos as cantidad_pro FROM `productos` WHERE estado = 1  AND id =:id;";
         $query = $this->conexion -> prepare($sql);
         $query ->bindParam(':id', $id);
         $query -> execute();
@@ -96,7 +94,7 @@ class Funciones{
 
     // Consultar productos de la cesta
     public function actualizar_cesta($id){
-        $sql = "SELECT precio FROM `productos` WHERE estado = 1 AND cantidad > 0 AND id =:id;";
+        $sql = "SELECT precio FROM `productos` WHERE estado = 1 AND id =:id;";
         $query = $this->conexion -> prepare($sql);
         $query ->bindParam(':id', $id);
         $query -> execute();

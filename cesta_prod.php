@@ -11,7 +11,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     $productos_carrito = isset($_SESSION['cesta']['productos']) ? $_SESSION['cesta']['productos'] : null;
     if ($productos_carrito != null) {
         foreach ($productos_carrito as $id_producto => $elementos) {
-            $lista_cesta [] = $datos->consultar_cesta($id_producto, $elementos);
+            $lista_cesta[] = $datos->consultar_cesta($id_producto, $elementos);
         }
     }
     // Ponemos el número de productos en la cesta
@@ -50,7 +50,6 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                                 $id = $agregado['id'];
                                 $nombre = $agregado['nombre'];
                                 $precio = $agregado['precio'];
-                                $cantidad = $agregado['cantidad'];
                                 $cantidad_pro = $agregado['cantidad_pro'];
                                 $subtotal = $precio * $cantidad_pro;
                                 $total += $subtotal;
@@ -58,21 +57,23 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                                 <tr>
                                     <td><?php echo $nombre; ?></td>
                                     <td><?php echo number_format($precio, 2, '.', ','); ?> €</td>
-                                    <td><input type="number" min="1" max="<?php echo $cantidad; ?>" id="<?php echo $id; ?>" size="5" value="<?php echo $cantidad_pro; ?>" onchange="actualizar(this.value, <?php echo $id; ?>)">                            
-                                </td>
+                                    <td><input type="number" min="1" max="100" id="<?php echo $id; ?>" size="5" value="<?php echo $cantidad_pro; ?>" onchange="actualizar(this.value, <?php echo $id; ?>)">
+                                    </td>
                                     <td>
                                         <div id="subtotal_<?php echo $id; ?>" name="subtotal[]">
                                             <?php echo number_format($subtotal, 2, '.', ','); ?> €
                                         </div>
                                     </td>
-                                    <td><a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $id; ?>" data-ds-toggle="modal" data-bs-target="eliminarModal">Eliminar</a></td>
+                                    <td><a id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $id; ?>" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</a></td>
                                 </tr>
                             <?php
                             }
                             ?>
                             <tr>
                                 <td colspan="3"></td>
-                                <td colspan="2"><p class="h3"><?php echo number_format($total, 2, '.', ',');?> €</p></td>
+                                <td colspan="2">
+                                    <p class="h3" id="total"><?php echo number_format($total, 2, ',', '.'); ?> €</p>
+                                </td>
                             </tr>
                     </tbody>
                 <?php
@@ -88,7 +89,32 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eliminaModalLabel">¿Quiere eliminar este producto de la cesta?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atr&aacute;s</button>
+                    <button id="btn-eliminar" type="button" onclick="eliminar()" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Funciones ajax -->
     <script>
+
+        let eliminarModal = document.getElementById('eliminarModal');
+        eliminarModal.addEventListener('show.bs.modal', function(event){
+            let button = event.relatedTarget
+            let id = button.getAttribute('data-bs-id')
+            let buttonEliminar = eliminarModal.querySelector('.modal-footer #btn-eliminar')
+            buttonEliminar.value = id
+        })
+
         function actualizar(cantidad, id) {
             const data = new FormData();
             data.append('action', 'actualizar');
@@ -110,8 +136,50 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                     datos = JSON.parse(texto);
                     console.log(datos);
                     if (datos['ok']) {
-                        let divsubtotal = document.getElementById('subtotal_'+id)
-                        divsubtotal.innerHTML = datos['sub'];
+                        let divsubtotal = document.getElementById('subtotal_' + id)
+                        divsubtotal.innerHTML = datos['sub'] + ' €';
+                        let total = 0.00;
+                        let list = document.getElementsByName('subtotal[]');
+
+                        for (let i = 0; i < list.length; i++) {
+                            total += parseFloat(list[i].innerHTML.replace(/[,]/g, ''))
+                        }
+                        total = new Intl.NumberFormat('es-ES', {
+                            minimumFractionDigits: 2
+                        }).format(total);
+                        document.getElementById('total').innerHTML = total + '<?php echo ' €' ?>'
+                    }
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        }
+
+        function eliminar() {
+
+            let elimina = document.getElementById('btn-eliminar')
+            let id = elimina.value
+
+            const data = new FormData();
+            data.append('action', 'eliminar');
+            data.append('id', id);
+            fetch('eliminar_cesta.php', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text()
+                    } else {
+                        throw "Error en la llamada Ajax";
+                    }
+
+                })
+                .then(function(texto) {
+                    datos = JSON.parse(texto);
+                    console.log(datos);
+                    if (datos['ok']) {
+                       location.reload();
                     }
                 })
                 .catch(function(err) {

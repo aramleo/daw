@@ -23,10 +23,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <div class="mb-3">
             <label for="precio" class="form-label">Precio:</label>
             <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio del producto">
-          </div>
-          <div class="mb-3">
-            <label for="cantidad" class="form-label">Cantidad:</label>
-            <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad del producto">
+            <p>* Guardar los decimales con punto</p>
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
