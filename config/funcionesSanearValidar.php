@@ -7,16 +7,19 @@ class FuncionesSaneaValida
     // Funciones que sanean y devuelven un valor++++++++++++++++++++++++++
     /**
      * sanearNombre. Saneamiento del nombre. Elimina espacios en blanco, carácteres especiales y 
-     * cambia todo a misnusculas y posteriormente cambia a mayúsculas las letra iniciales de cada 
+     * cambia todo a misnusculas y posteriormente cambia a mayúsculas las letras iniciales de cada 
      * palabra
      *
      * @param  mixed $var
      * @return void
      */
     public function sanearNombre($var)
-    {
+    {   
+        // Elimina los espacios en blanco
         $dato = $this->espaciosBlanco($var);
+        // Elimina los carácteres especiales
         $dato = $this->caracterEspecial($dato);
+        // Cambio todos los carácteres a minúscula y pone en mayúsculas las primeras letras de cada palabra
         $dato = $this->minus($dato);
         return $dato;
     }
@@ -70,7 +73,13 @@ class FuncionesSaneaValida
         $especial = htmlentities($var);
         return $especial;
     }
-
+    
+    /**
+     * pri_mayus. Todas a minúsculas y cambia la primera letra a mayúscula.
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function pri_mayus($var){
         $dato = strtolower($var);
         $dato = ucfirst($dato);
@@ -89,21 +98,34 @@ class FuncionesSaneaValida
         $capitalizar = ucwords($minusculas);
         return $capitalizar;
     }
-
+    
+    /**
+     * limpia_dir. Lim pia la dirección de espacios en blanco, carácteres especiales y pone en mayúculas
+     * solo la primera letra del string.
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function limpia_dir($var){
         $dato = $this->espaciosBlanco($var);
         $dato = $this->caracterEspecial($dato);
         $dato = $this->pri_mayus($dato);
         return $dato;
     }
-
+    
+    /**
+     * magnus. Cambia todas la letras por mayúsculas
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function magnus($var)
     {
         $mayus = strtoupper($var);
         return $mayus;
     }
 
-    // Funciones para validar los datos que devuelven los errores+++++++++++++++++++++
+    /** Funciones para validar los datos que devuelven los errores+++++++++++++++++++++*/
 
     /**
      * validaNombre.- Valida el nombre que sea mayor que 6 y menor que 30 carácteres el nombre.
@@ -122,7 +144,17 @@ class FuncionesSaneaValida
         }
         return $error;
     }
-
+    
+    /**
+     * validaLongitud. Valida la máxima y mínima longitud de un elemento. En función de los parçametros
+     * recibidos 
+     *
+     * @param  mixed $var. Valor para comprobar
+     * @param  mixed $menor. Valor minimo
+     * @param  mixed $mayor Valor máximo
+     * @param  mixed $elemento. El elemnto concreto que analñizamos.
+     * @return void
+     */
     public function validaLongitud($var, $menor, $mayor, $elemento)
     {
         $error = null;
@@ -191,7 +223,13 @@ class FuncionesSaneaValida
         }
         return $error;
     }
-
+    
+    /**
+     * validaDni. Valida el DNI
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function validaDni($var)
     {
         $error = null;
@@ -202,7 +240,13 @@ class FuncionesSaneaValida
         }
         return $error;
     }
-
+    
+    /**
+     * validaCp. Valida el código postal introducido por el usuario
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function validaCp($var){
         $error = null;
         if(empty($var) || strlen($var) !=5 || !is_numeric($var)){
@@ -210,7 +254,13 @@ class FuncionesSaneaValida
         }
         return $error;
     }
-
+    
+    /**
+     * validaTfn. Valida el telefono introducido por el usuario.
+     *
+     * @param  mixed $var
+     * @return void
+     */
     public function validaTfn($var){
         $error = null;
         if(empty($var) || strlen($var) !=9 || !is_numeric($var)){
