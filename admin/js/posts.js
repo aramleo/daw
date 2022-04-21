@@ -1,4 +1,4 @@
-
+// DataTables
 $(document).ready(function() {
     $('#posts').DataTable( {
         responsive: true,

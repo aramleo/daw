@@ -1,4 +1,4 @@
-
+// DataTables
 $(document).ready(function() {
     $('#usuarios').DataTable( {
         responsive: true,

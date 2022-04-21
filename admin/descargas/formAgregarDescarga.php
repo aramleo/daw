@@ -1,9 +1,12 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprobación de usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+  // Inclusión de archivos
   include("../template/cabecera2.php");
 ?>
-
+  <!-- Formulario -->
   <div class="col-md-5 mt-3">
 
     <div class="card">
@@ -56,6 +59,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $_SESSION['error'] = '';
   ?>
   <?php
+  // En caso de éxito
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -67,8 +71,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $_SESSION['registro'] = '';
   ?>
 <?php
-
+// Inclusión de pie de página
   include("../template/pie.php");
+  // problemas con el usuario o el rol
 } else {
   header('Location: ../../');
 }

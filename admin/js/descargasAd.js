@@ -1,4 +1,4 @@
-
+// DataTables
 $(document).ready(function() {
     $('#descargas').DataTable( {
         responsive: true,

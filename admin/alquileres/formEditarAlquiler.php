@@ -1,6 +1,9 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprobación de usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+
   //Comenzamos la sesión para registrar errores y usuarios
   include("../template/cabecera2.php");
   include("../../config/funcionesAlquileres.php");
@@ -16,7 +19,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $activa = $datos[0]['activa'];
   $id = $datos[0]['id'];
 ?>
-
+<!-- Formulario de edición del alquiler -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -28,7 +31,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <div>
             <input type="text" hidden id="id" name="id" value="<?php echo $id; ?>">
           </div>
-          <!-- Introducción del nombre para actualizar -->
+          <!-- Introducción de los datos para actualizar -->
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
             <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if (isset($referencia)) {
@@ -91,7 +94,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       </div>
     </div>
   </div>
-  <!-- alerta error registro comprobar después -->
+  <!-- alerta error registro comprobar -->
   <?php
   if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
   ?>

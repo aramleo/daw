@@ -39,10 +39,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                 <td><?php echo $resultado->referencia; ?></td>
                                 <td><?php echo $resultado->precio; ?></td>
                                 <td><?php echo $resultado->imagen; ?></td>
-                                <td><?php echo $resultado->imagen; ?></td>
-                                <td><?php if($resultado->estado == 1){ echo 'Activo';} else{
-                                    echo 'No activo';
-                                } ?></td>
+                                <td><?php if ($resultado->estado == 1) {
+                                        echo 'Activo';
+                                    } else {
+                                        echo 'No activo';
+                                    } ?></td>
                                 <td class='text-center'><a href="productos/formEditar.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
                                     <a href="productos/borrarProducto.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
@@ -58,7 +59,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
         </div>
     </div>
-
+    </div>
+    <div>
+        <a name="imprimir" id="imprimir" class="btn btn-success" href="informes.php?tipo=productos" role="button">Imprimir Informes</a>
     </div>
     <!-- Llamada a archivos -->
     <script type="text/javascript" src="js/productos.js"></script>

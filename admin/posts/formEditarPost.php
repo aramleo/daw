@@ -1,6 +1,9 @@
 <?php
+// incio de sesión
 session_start();
+// Comprobación de usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+
   //Comenzamos la sesión para registrar errores y usuarios
   include("../template/cabecera2.php");
   include("../../config/funcionesBlog.php");
@@ -14,7 +17,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $imagen = $datos[0]['imagen'];
   $id = $datos[0]['id'];
 ?>
-
+<!-- Formualrio de datos -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -26,7 +29,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <div>
             <input type="text" hidden id="id" name="id" value="<?php echo $id; ?>">
           </div>
-          <!-- Introducción del nombre para actualizar -->
+          <!-- Introducción de los datos para actualizar -->
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
             <input type="text" class="form-control" id="titulo" name="titulo" value="<?php if (isset($titulo)) {
@@ -73,7 +76,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   ?>
 
 <?php
+// Inclusión de pie de página
 include('../template/pie.php');
+// Error en la comprobación de usuario y rol
 } else {
   header('Location: ../../');
 }

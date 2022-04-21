@@ -49,6 +49,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
         </div>
     </div>
+    <div>
+        <a name="imprimir" id="imprimir" class="btn btn-success" href="informes.php?tipo=usuarios" role="button">Imprimir Informes</a>
+    </div>
     <script type="text/javascript" src="js/usuarios.js"></script>
     <?php
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
