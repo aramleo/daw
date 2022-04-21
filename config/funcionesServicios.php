@@ -12,7 +12,7 @@ class FuncionesServicios{
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
     }
-    // Consultar alquileres
+    // Consultar servicios
     public function consultarServicios(){
         $sql = "SELECT * FROM `servicios` WHERE `activa` = 1 ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
@@ -20,7 +20,15 @@ class FuncionesServicios{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    // Agregar alquileres
+
+    public function consultarServiciosAdmin(){
+        $sql = "SELECT * FROM `servicios` ORDER BY referencia;";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
+    // Agregar servicios
     public function agregar($referencia, $servicio, $imagen, $activa){
         $resultado = null;
         try{
@@ -37,7 +45,7 @@ class FuncionesServicios{
         }      
         return $resultado;
     }
-    // Editar alquileres
+    // Editar servicios
     public function editar($id){
         $sql = "SELECT * FROM `servicios` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
@@ -45,7 +53,7 @@ class FuncionesServicios{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los alquileres editados
+    // Actualizar los servicios editados
     public function actualizar($id, $referencia, $servicio, $imagen, $activa){
         $resultado = null;
         try{
@@ -63,7 +71,7 @@ class FuncionesServicios{
         }      
         return $resultado;
     }
-    //Borrar los alquileres
+    //Borrar los servicios
     public function borrar($id){
         $resultado = null;
         try{

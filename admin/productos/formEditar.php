@@ -13,9 +13,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $referencia = $datos[0]['referencia'];
   $nombre = $datos[0]['nombre'];
   $precio = $datos[0]['precio'];
-  $cantidad = $datos[0]['cantidad'];
+  $imagen = $datos[0]['imagen'];
+  $estado = $datos[0]['estado'];
   $id = $datos[0]['id'];
-
+print_r($imagen)
 ?>
 
   <div class="col-md-5 mt-3">
@@ -32,21 +33,46 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           <!-- Introducción de los datos para actualizar -->
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre Producto:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" minlength="2" maxlength="50" required>
           </div>
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php echo $referencia; ?>" required>
+            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php echo $referencia; ?>"  minlength="4" maxlength="20" required>
           </div>
           <div class="mb-3">
             <label for="precio" class="form-label">Precio:</label>
-            <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $precio; ?>" required>
+            <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $precio; ?>" minlength="1" maxlength="10" required>
             <p>* Guardar los decimales con punto</p>
           </div>
           <div class="mb-3">
+            <strong>Imagen Actual -><?php if(isset($imagen)  && $imagen != null){echo $imagen;}else{echo 'No tiene imagen asignada';} ?></strong></br>
             <label for="imagen" class="form-label">Imagen:</label>
-            <input type="file" class="form-control" id="imagen" name="imagen" placeholder="Cantidad del producto">
+            <input type="file" class="form-control" id="imagen" name="imagen">
           </div>
+          <?php
+          if (isset($estado) && $estado == 1) {
+          ?>
+            <div class="mb-3">
+              <label for="estado" class="form-label">Activo:</label>
+              <select id="estado" name="estado">
+                <option selected value="1">Activo</option>
+                <option value="0">No Activo</option>
+              </select>
+            </div>
+          <?php
+          }
+          if(isset($estado) && $estado == 0){
+            ?>
+            <div class="mb-3">
+              <label for="estado" class="form-label">Activo:</label>
+              <select id="estado" name="estado">
+                <option value="1">Activo</option>
+                <option selected value="0">No Activo</option>
+              </select>
+            </div>
+            <?php
+          }
+          ?>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
             <a class="btn btn-info mx-3" href="../productos.php" role="button">Volver</a>

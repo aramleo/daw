@@ -39,6 +39,14 @@ class FuncionesDescargas{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
+
+    public function consultarDescargasAdmin(){
+        $sql = "SELECT * FROM `descargas` ORDER BY referencia;";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
     /**
      * agregar las descargas que introduce el administrador
      *

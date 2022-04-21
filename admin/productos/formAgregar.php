@@ -14,20 +14,27 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre Producto:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
+            <input type="text" class="form-control" id="nombre" name="nombre" minlength="2" maxlength="50" placeholder="Nombre del producto">
           </div>
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Referencia del producto">
+            <input type="text" class="form-control" id="referencia" name="referencia" minlength="4" maxlength="20" placeholder="Referencia del producto">
           </div>
           <div class="mb-3">
             <label for="precio" class="form-label">Precio:</label>
-            <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio del producto">
+            <input type="text" class="form-control" id="precio" name="precio" minlength="1" maxlength="10" placeholder="Precio del producto">
             <p>* Guardar los decimales con punto</p>
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
             <input type="file" class="form-control" id="imagen" name="imagen" placeholder="Cantidad del producto">
+          </div>
+          <div class="mb-3">
+            <label for="estado" class="form-label">Activa:</label>
+            <select id="estado" name="estado">
+              <option value="1">Activo</option>
+              <option value="0">No Activo</option>
+            </select>
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

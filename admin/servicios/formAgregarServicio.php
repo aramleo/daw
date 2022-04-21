@@ -15,11 +15,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarServicio.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" required placeholder="Referencia del servicio">
+            <input type="text" class="form-control" id="referencia" name="referencia" minlength="3" maxlength="25" required placeholder="Referencia del servicio">
           </div>
           <div class="mb-3">
             <label for="servicio" class="form-label">Servicio:</label>
-            <input type="text" class="form-control" id="servicio" name="servicio" required placeholder="Servicio a prestar">
+            <input type="text" class="form-control" id="servicio" name="servicio" minlength="5" maxlength="50" required placeholder="Servicio a prestar">
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
@@ -27,7 +27,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="activa" class="form-label">Activa:</label>
-            <input type="text" class="form-control" id="activa" name="activa" required placeholder="Si activa 1 si no activa 0">
+            <select id="activa" name="activa">
+              <option value="1">Activo</option>
+              <option value="0">No Activo</option>
+            </select>
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

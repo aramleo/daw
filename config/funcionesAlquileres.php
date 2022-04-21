@@ -33,6 +33,22 @@ class FuncionesAlquileres{
         $query -> execute();
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
+    } 
+    
+    public function consultarAlquilerAdmin(){
+        $sql = "SELECT * FROM `alquileres` ORDER BY referencia;";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }  
+
+    public function imprimirAlquilerAdmin(){
+        $sql = "SELECT * FROM `alquileres` ORDER BY referencia;";
+        $query = $this->conexion -> prepare($sql);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
     }  
     /**
      * agregar- Agrega nuevos alquileres

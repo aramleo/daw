@@ -14,15 +14,15 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarDescarga.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" required placeholder="Referencia del inmueble">
+            <input type="text" class="form-control" id="referencia" name="referencia" minlength="3" maxlength="25" required placeholder="Referencia del inmueble">
           </div>
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Título de la descarga">
+            <input type="text" class="form-control" id="titulo" name="titulo" minlength="5" maxlength="50" required placeholder="Título de la descarga">
           </div>
           <div class="mb-3">
             <label for="enlace" class="form-label">Enlace:</label>
-            <input type="text" class="form-control" id="enlace" name="enlace" required placeholder="Enlace de la descarga">
+            <input type="text" class="form-control" id="enlace" name="enlace" minlength="5" maxlength="200" required placeholder="Enlace de la descarga">
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
@@ -30,7 +30,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="activa" class="form-label">Activa:</label>
-            <input type="text" class="form-control" id="activa" name="activa" required placeholder="Si activa 1 si no activa 0">
+            <select id="activa" name="activa">
+              <option value="1">Activo</option>
+              <option value="0">No Activo</option>
+            </select>
           </div>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="agregar" value="Agregar" class="btn btn-success">Agregar</button>

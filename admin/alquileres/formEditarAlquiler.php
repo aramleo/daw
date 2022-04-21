@@ -33,19 +33,19 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <label for="referencia" class="form-label">Referencia:</label>
             <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if (isset($referencia)) {
                                                                                                 echo $referencia;
-                                                                                              } ?>" required>
+                                                                                              } ?>" minlength="3" maxlength="25" required>
           </div>
           <div class="mb-3">
             <label for="localidad" class="form-label">Localidad:</label>
             <input type="text" class="form-control" id="localidad" name="localidad" value="<?php if (isset($localidad)) {
                                                                                               echo $localidad;
-                                                                                            } ?>" required>
+                                                                                            } ?>" minlength="3" maxlength="50" required>
           </div>
           <div class="mb-3">
             <label for="metros" class="form-label">Metros:</label>
             <input type="text" class="form-control" id="metros" name="metros" value="<?php if (isset($metros)) {
                                                                                         echo $metros;
-                                                                                      } ?>" required>
+                                                                                      } ?>" minlength="1" maxlength="10" required>
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
@@ -54,17 +54,35 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                                                                       } ?>">
           </div>
           <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono:</label>
+            <label for="telefono" class="form-label">Teléfono propietario:</label>
             <input type="text" class="form-control" id="telefono" name="telefono" value="<?php if (isset($telefono)) {
                                                                                             echo $telefono;
-                                                                                          } ?>" required>
+                                                                                          } ?>" pattern="[0-9]{9}" required>
           </div>
-          <div class="mb-3">
-            <label for="activa" class="form-label">Activa:</label>
-            <input type="text" class="form-control" id="activa" name="activa" value="<?php if (isset($activa)) {
-                                                                                        echo $activa;
-                                                                                      } ?>" required>
-          </div>
+          <?php
+          if (isset($activa) && $activa == 1) {
+          ?>
+            <div class="mb-3">
+              <label for="activa" class="form-label">Activa:</label>
+              <select id="activa" name="activa">
+                <option selected value="1">Activo</option>
+                <option value="0">No Activo</option>
+              </select>
+            </div>
+          <?php
+          }
+          if(isset($activa) && $activa == 0){
+            ?>
+            <div class="mb-3">
+              <label for="activa" class="form-label">Activa:</label>
+              <select id="activa" name="activa">
+                <option value="1">Activo</option>
+                <option selected value="0">No Activo</option>
+              </select>
+            </div>
+            <?php
+          }
+          ?>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
             <a class="btn btn-info mx-3" href="../alquileres.php" role="button">Volver</a>

@@ -71,6 +71,39 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="aviso-cookies" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aviso de cookies</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Utilizamos cookies para mejorar la experiencia de su navegador, recordando que ha iniciado
+          sesión. Si completa un formulario de contacto, utilizamos cookies para recordar sus datos
+          para la próxima vez.
+
+          Cookies de terceros
+          Usamos cookies de terceros para rastrear cómo usa nuestro sitio web, por ejemplo, qué páginas
+          visita y cuánto tiempo pasa en ellas. Esto nos ayuda a comprender mejor cómo las personas usan nuestro sitio
+          y cómo acceden a él, lo que nos ayuda a crear mejores campañas.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-noAceptar" class="btn btn-secondary" data-bs-dismiss="modal">No acepto</button>
+        <button type="button" id="btn-aceptar" onclick="aceptar()" class="btn btn-primary">Aceptar cookies</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function aceptar(){
+    localStorage.setItem("cookies-aceptadas", "true");
+    $("#aviso-cookies").modal("hide");
+  }
+</script>
+<script src="js/cookie.js"></script>
 </body>
 
 </html>

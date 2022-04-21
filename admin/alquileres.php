@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     // llama a la clase FuncionesAlquileres.
     $consulta = new FuncionesAlquileres;
     // Extrae los datos.
-    $resultados = $consulta->consultarAlquiler();
+    $resultados = $consulta->consultarAlquilerAdmin();
 
 
 ?>
@@ -49,7 +49,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                 <td><?php echo $resultado->metros; ?></td>
                                 <td><?php echo $resultado->imagen; ?></td>
                                 <td><?php echo $resultado->telefono; ?></td>
-                                <td><?php echo $resultado->activa; ?></td>
+                                <td><?php if ($resultado->activa == 1) {
+                                        echo 'Activo';
+                                    } else {
+                                        echo 'No activo';
+                                    } ?></td>
                                 <td class='text-center'><a href="alquileres/formEditarAlquiler.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
                                     <a href="alquileres/borrarAlquiler.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
@@ -63,6 +67,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                 </table>
             </div>
         </div>
+    </div>
+    <div>
+        <a name="imprimir" id="imprimir" class="btn btn-success" href="informes.php?tipo=alquileres" role="button">Imprimir Informes</a>
     </div>
     <!-- Función javascript de datatables -->
     <script type="text/javascript" src="js/alquileres.js"></script>

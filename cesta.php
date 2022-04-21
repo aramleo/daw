@@ -13,6 +13,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
         $datos['numero'] = count($_SESSION['cesta']['productos']);
         $datos['ok']= true;
     }else{
+        header('Location: tienda.php');
         $datos['ok']= false;
     }
     echo json_encode($datos);

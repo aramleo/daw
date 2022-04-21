@@ -18,7 +18,8 @@ if(empty($_POST['nombre']) || empty($_POST['referencia']) || empty($_POST['preci
     $referencia = $_POST['referencia'];
     $precio = str_replace(',','.',$_POST['precio']);
     $imagen= $foto->subirFoto('productos');
-    $resultados = $agregar->agregar($nombre, $referencia, $precio, $imagen);
+    $estado = $_POST['estado'];
+    $resultados = $agregar->agregar($nombre, $referencia, $precio, $imagen, $estado);
     if($resultados == 23000){
         $envio = 'Registro duplicado';
         $_SESSION['error']= $envio;

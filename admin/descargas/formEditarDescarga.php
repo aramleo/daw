@@ -32,19 +32,19 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <label for="referencia" class="form-label">Referencia:</label>
             <input type="text" class="form-control" id="referencia" name="referencia" value="<?php if (isset($referencia)) {
                                                                                                 echo $referencia;
-                                                                                              } ?>" required>
+                                                                                              } ?>" minlength="3" maxlength="25" required>
           </div>
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
             <input type="text" class="form-control" id="titulo" name="titulo" value="<?php if (isset($titulo)) {
                                                                                         echo $titulo;
-                                                                                      } ?>" required>
+                                                                                      } ?>" minlength="5" maxlength="50" required>
           </div>
           <div class="mb-3">
             <label for="enlace" class="form-label">Enlace:</label>
             <input type="text" class="form-control" id="enlace" name="enlace" value="<?php if (isset($enlace)) {
                                                                                         echo $enlace;
-                                                                                      } ?>" required>
+                                                                                      } ?>" minlength="5" maxlength="200" required>
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
@@ -52,12 +52,30 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                                                                         echo $imagen;
                                                                                       } ?>">
           </div>
-          <div class="mb-3">
-            <label for="activa" class="form-label">Activa:</label>
-            <input type="text" class="form-control" id="activa" name="activa" value="<?php if (isset($activa)) {
-                                                                                        echo $activa;
-                                                                                      } ?>" required>
-          </div>
+          <?php
+          if (isset($activa) && $activa == 1) {
+          ?>
+            <div class="mb-3">
+              <label for="activa" class="form-label">Activa:</label>
+              <select id="activa" name="activa">
+                <option selected value="1">Activo</option>
+                <option value="0">No Activo</option>
+              </select>
+            </div>
+          <?php
+          }
+          if(isset($activa) && $activa == 0){
+            ?>
+            <div class="mb-3">
+              <label for="activa" class="form-label">Activa:</label>
+              <select id="activa" name="activa">
+                <option value="1">Activo</option>
+                <option selected value="0">No Activo</option>
+              </select>
+            </div>
+            <?php
+          }
+          ?>
           <div class="btn-group" role="group" aria-label="">
             <button type="submit" name="actualizar" value="actualizar" class="btn btn-success">Actualizar</button>
             <a class="btn btn-info mx-3" href="../descargasAd.php" role="button">Volver</a>

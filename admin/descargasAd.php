@@ -5,7 +5,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     include("../config/funcionesDescargas.php");
 
     $consulta = new FuncionesDescargas;
-    $resultados = $consulta->consultarDescargas();
+    $resultados = $consulta->consultarDescargasAdmin();
 
 
 ?>
@@ -39,7 +39,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                                 <td><?php echo $resultado->titulo; ?></td>
                                 <td><span class="d-block text-truncate"><?php echo $resultado->enlace; ?></span></td>
                                 <td><?php echo $resultado->imagen; ?></td>
-                                <td><?php echo $resultado->activa; ?></td>
+                                <td><?php if($resultado->activa == 1){ echo 'Activo';} else{
+                                    echo 'No activo';
+                                } ?></td>
                                 <td class='text-center'><a href="descargas/formEditarDescarga.php?id=<?php echo $resultado->id; ?>" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i></a>
                                     <a href="descargas/borrarDescarga.php?id=<?php echo $resultado->id; ?>" class="btn btn-danger mx-2"><i class="bi bi-trash3-fill"></i></a>
                                 </td>

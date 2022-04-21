@@ -100,7 +100,7 @@ class FuncionesSaneaValida
     }
     
     /**
-     * limpia_dir. Lim pia la dirección de espacios en blanco, carácteres especiales y pone en mayúculas
+     * limpia_dir. Limpia la dirección del usuario de espacios en blanco, carácteres especiales y pone en mayúculas
      * solo la primera letra del string.
      *
      * @param  mixed $var
@@ -146,7 +146,7 @@ class FuncionesSaneaValida
     }
     
     /**
-     * validaLongitud. Valida la máxima y mínima longitud de un elemento. En función de los parçametros
+     * validaLongitud. Valida la máxima y mínima longitud de un elemento. En función de los parámetros
      * recibidos 
      *
      * @param  mixed $var. Valor para comprobar
@@ -162,7 +162,7 @@ class FuncionesSaneaValida
             $error = $elemento.' debe ser mayor de '.$menor.' carácteres';
         }
         if (strlen($var) > $mayor) {
-            $error = $elemento.' debe ser menor de '.$mayor.' caráteres';
+            $error = $elemento.' debe ser menor de '.$mayor.' carácteres';
         }
         return $error;
     }

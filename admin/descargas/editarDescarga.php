@@ -17,7 +17,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     $referencia = $_POST['referencia'];
     $titulo = $_POST['titulo'];
     $enlace = $_POST['enlace'];
-    $imagen = $foto->subirFoto('descargas');
+    if(isset($_POST['imagen'])){
+      $imagen = $_POST['imagen'];
+    }else{ $imagen = $foto->subirFoto('descargas');}
     $activa = $_POST['activa'];
     
     $datos = $actualizar->actualizar($id, $referencia, $titulo, $enlace, $imagen, $activa);

@@ -8,9 +8,9 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     // Llamamos a la clase Funciones del archivo funcionesPorductos.php
     $datos = new Funciones;
     $lista_cesta = array();
-    $productos_carrito = isset($_SESSION['cesta']['productos']) ? $_SESSION['cesta']['productos'] : null;
-    if ($productos_carrito != null) {
-        foreach ($productos_carrito as $id_producto => $elementos) {
+    $productos_cesta = isset($_SESSION['cesta']['productos']) ? $_SESSION['cesta']['productos'] : null;
+    if ($productos_cesta != null) {
+        foreach ($productos_cesta as $id_producto => $elementos) {
             $lista_cesta[] = $datos->consultar_cesta($id_producto, $elementos);
         }
     }
@@ -82,11 +82,17 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                 </thead>
                 </table>
             </div>
-            <div class="row">
-                <div class="col-md-5 offset-md-7 d-grid gap-2">
-                    <button class="btn btn-primary btn-lg-">Pagar</button>
+            <?php
+            if ($lista_cesta != null) {
+            ?>
+                <div class="row">
+                    <div class="col-md-5 offset-md-7 d-grid gap-2">
+                        <a href="pago.php" class="btn btn-primary btn-md">Pagar compra</a>
+                    </div>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <!-- Modal -->
@@ -106,15 +112,19 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     </div>
     <!-- Funciones ajax -->
     <script>
-
         let eliminarModal = document.getElementById('eliminarModal');
-        eliminarModal.addEventListener('show.bs.modal', function(event){
+        eliminarModal.addEventListener('show.bs.modal', function(event) {
             let button = event.relatedTarget
             let id = button.getAttribute('data-bs-id')
             let buttonEliminar = eliminarModal.querySelector('.modal-footer #btn-eliminar')
             buttonEliminar.value = id
         })
-
+        
+        /**
+         * actualizar
+         *
+         * @return void
+         */
         function actualizar(cantidad, id) {
             const data = new FormData();
             data.append('action', 'actualizar');
@@ -154,7 +164,12 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                     console.log(err);
                 });
         }
-
+        
+        /**
+         * eliminar
+         *
+         * @return void
+         */
         function eliminar() {
 
             let elimina = document.getElementById('btn-eliminar')
@@ -179,7 +194,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                     datos = JSON.parse(texto);
                     console.log(datos);
                     if (datos['ok']) {
-                       location.reload();
+                        location.reload();
                     }
                 })
                 .catch(function(err) {
@@ -189,5 +204,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     </script>
 <?php
     include 'template/footer.php';
+}else{
+    header("Location: ./");
 }
 ?>

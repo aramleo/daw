@@ -15,10 +15,10 @@ if(empty($_POST['actualizar'])){
   $id=$_POST['id'];
   $nombre=$_POST['nombre'];
   $referencia=$_POST['referencia'];
-  $precio=number_format($_POST['precio'],2,'.');
+  $precio= str_replace(',','.',$_POST['precio']);
   $imagen = $foto->subirFoto('productos');
   $actualizar = new Funciones;
-  $datos = $actualizar->actualizar($id, $nombre, $referencia, $precio, $imagen);
+  $datos = $actualizar->actualizar($id, $nombre, $referencia, $precio, $imagen, $estado);
   if($datos === false){
     $datos = 'El registro no se ha actualizado';
     header('Location: formEditar.php');

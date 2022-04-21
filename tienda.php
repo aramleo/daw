@@ -1,13 +1,19 @@
 <?php
+// Inicio de sesión
 session_start();
-if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
-    include('template/header.php');
-    // require ('config/clave.php');
 
+// Comprobamos si existe la variable de sesión de usuario y que rol tiene
+if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
+
+    // Inclimos los archivos necesarios para el header y las funciones que utilizaremos.
+    include('template/header.php');
     include 'config/funcionesProductos.php';
+    
+    //Llamamos ee instanciamos a la clase Funciones del archivo funcionesProductos.php
     $datos = new Funciones;
-    $productos = $datos->consultar();
+    $productos = $datos->consultarUser();
     $num_cesta = 0;
+    // Si existe la variable de sesión cesta-productos seguimos ejecutando.
     if(isset($_SESSION['cesta']['productos'])){
         $num_cesta = count($_SESSION['cesta']['productos']);
     }
@@ -15,13 +21,19 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     <div class="pb-5">
         <h3 class="text-center pt-3 mt-3">Tienda Online</h3>
         <div class="container">
-            <div class="row my-2">
+            <?php
+            if(isset($_SESSION['rol']) && $_SESSION['rol'] == '2'){
+                ?>
+                <div class="row my-2">
                 <div class="col-sm-7 col-md-8 col-lg-9">
                 </div>
                 <a href="cesta_prod.php" class="btn btn-primary col-sm-5 col-md-4 col-lg-3">
                     Cesta <span id="num_pro" class="badge bg-secondary"><?php if(isset($num_cesta)){
                        echo $num_cesta; }?></span></a>
             </div>
+<?php
+            }
+            ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <?php foreach ($productos as $producto) { ?>
                     <div class="col">
@@ -30,7 +42,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                             $id_producto = $producto->id;
                             $imagen = "img/productos/" . $producto->imagen;
                             if (empty($producto->imagen)) {
-                                $imagen = 'img/no_foto.jpg';
+                                $imagen = 'img/sin_foto.jpg';
                             }
                             ?>
                             <img class="img-thumbnail img-fluid d-block w-100" src="<?php echo $imagen; ?>">
@@ -83,5 +95,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     </script>
 <?php
     include 'template/footer.php';
+}else{
+    header("Location: ./");
 }
 ?>
