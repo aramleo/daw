@@ -29,9 +29,30 @@ class FuncionesUsuarios{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-
+    
+    /**
+     * consultarUsuarioRol
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function consultarUsuarioRol($id){
         $sql = "SELECT u.id, u.nombre, u.email, r.rol FROM `usuario` AS u JOIN `roles` AS r on u.id_rol = r.id_rol WHERE u.id = :id;";
+        $query = $this->conexion -> prepare($sql);
+        $query ->bindParam(':id', $id);
+        $query -> execute();
+        $results = $query -> fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+    
+    /**
+     * consultarUsuarioId
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function consultarUsuarioId($id){
+        $sql = "SELECT nombre FROM `usuario` WHERE id = :id;";
         $query = $this->conexion -> prepare($sql);
         $query ->bindParam(':id', $id);
         $query -> execute();
@@ -123,7 +144,13 @@ class FuncionesUsuarios{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-
+    
+    /**
+     * consulta_direccion
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function consulta_direccion($id){
         $resultado = null;
         $sql = "SELECT usuario.nombre, usuario.email, direcciones.dni, direcciones.direccion, direcciones.otros, direcciones.localidad, direcciones.provincia, direcciones.cp, direcciones.telefono 

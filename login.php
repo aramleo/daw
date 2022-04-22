@@ -118,6 +118,32 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
             </div>
           </div>
         </div>
+        <!-- Button trigger modal -->
+        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          ¿Has olvidado tu password?
+        </a>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Recibirás un correo electrónico con una contraseña que estará vigente durante 24 horas.</p>
+                <form action="" method="post">
+                  Introduce tu email
+                  <input type="email" name="email" id="email">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="mt-5">
           ¿No eres usuario?
           <a href="registro.php"><button type="button" class="btn btn-info">Regístrate</button></a>

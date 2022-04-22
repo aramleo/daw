@@ -222,6 +222,39 @@ class Funciones{
         }      
         return $resultado;
     }
+    
+    /**
+     * consultarPedidos
+     *
+     * @param  mixed $pedido
+     * @return void
+     */
+    public function consultarDetallePedidos($pedido){
+        $resultado = null;
+        try{
+            $sql = "SELECT `id`, `id_pedido`, `id_producto`, `precio_unitario`, `cantidad` FROM `detalle_pedidos` WHERE id_pedido = :pedido";
+            $stmt = $this->conexion -> prepare($sql);
+            $stmt ->bindParam(':pedido', $pedido);
+            $stmt -> execute();
+            $resultado = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            $resultado = $e->getCode();
+        }      
+        return $resultado;
+    }
+
+    public function consultarPedidos($pedido){
+        $resultado = null;
+        try{
+            $sql = "SELECT id, id_pedido, id_usuario, precio_total, fecha FROM pedidos WHERE id_pedido = :pedido";
+            $stmt = $this->conexion -> prepare($sql);
+            $stmt ->bindParam(':pedido', $pedido);
+            $stmt -> execute();
+            $resultado = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            $resultado = $e->getCode();
+        }      
+        return $resultado;
+    }
 
 }
-
