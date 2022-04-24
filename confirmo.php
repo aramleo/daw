@@ -15,7 +15,7 @@ include 'config/datos.php';
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
 
     if (isset($_SESSION['lista']) && isset($_SESSION['total'])) {
-
+        $correo_usuario = $_SESSION['usuario'];
         $datos = $_SESSION['lista'];
         $id_usuario = $_SESSION['id'];
         $precio_total = $_SESSION['total'];
@@ -52,7 +52,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                 $mail->Port = 587;
 
                 $mail->setFrom($correo, 'Huertos Urbanos');
-                $mail->addAddress('desert.antoro2@gmail.com');
+                $mail->addAddress($correo_usuario);
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Pedido realizado';
@@ -91,7 +91,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                             Huertos Urbanos
                         </h4>
                         <p class="card-text">Gracias por su pedido a Huertos Urbanos. Agradecemos su confianza en nuestros productos
-                            . Para cualquier problema póngase en contacto con nostros a través de nuestro correo electrónico.
+                            . Para cualquier problema póngase en contacto con nosotros a través de nuestro correo electrónico.
                         </p>
                         <p>Su pedido va a ser procesado...</p>
                         </p>

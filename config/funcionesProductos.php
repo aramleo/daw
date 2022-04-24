@@ -242,11 +242,45 @@ class Funciones{
         }      
         return $resultado;
     }
-
+    
+    /**
+     * consultarPedidos
+     *
+     * @param  mixed $pedido
+     * @return void
+     */
     public function consultarPedidos($pedido){
         $resultado = null;
         try{
             $sql = "SELECT id, id_pedido, id_usuario, precio_total, fecha FROM pedidos WHERE id_pedido = :pedido";
+            $stmt = $this->conexion -> prepare($sql);
+            $stmt ->bindParam(':pedido', $pedido);
+            $stmt -> execute();
+            $resultado = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            $resultado = $e->getCode();
+        }      
+        return $resultado;
+    }
+
+    public function consultaPedidosAll($usuario){
+        $resultado = null;
+        try{
+            $sql = "SELECT id, id_pedido, precio_total, fecha FROM pedidos WHERE id_usuario = :id_usuario";
+            $stmt = $this->conexion -> prepare($sql);
+            $stmt ->bindParam(':id_usuario', $usuario);
+            $stmt -> execute();
+            $resultado = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            $resultado = $e->getCode();
+        }      
+        return $resultado;
+    }
+
+    public function consultarDetallePedidosNombre($pedido){
+        $resultado = null;
+        try{
+            $sql = "SELECT p.nombre, d.id_producto, d.precio_unitario, d.cantidad FROM detalle_pedidos as d JOIN productos as p WHERE d.id_pedido = :pedido AND d.id_producto = p.id";
             $stmt = $this->conexion -> prepare($sql);
             $stmt ->bindParam(':pedido', $pedido);
             $stmt -> execute();

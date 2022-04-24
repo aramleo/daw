@@ -132,15 +132,18 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
               </div>
               <div class="modal-body">
                 <p>Recibirás un correo electrónico con una contraseña que estará vigente durante 24 horas.</p>
-                <form action="" method="post">
+                <form action="reset_password.php" method="post">
                   Introduce tu email
-                  <input type="email" name="email" id="email">
-                </form>
+                  <input type="email_reset" name="email_reset" id="email_reset" required>
+                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Enviar</button>
+                  <button type="submit" id="envio" name="envio" class="btn btn-primary" value="enviar">
+                    Enviar
+                  </button>
               </div>
+              </form>
             </div>
           </div>
         </div>

@@ -1,10 +1,13 @@
 <?php
+// Iniciamos la sesion 
 session_start();
+// Comrpobamos si existe el usuario y si existe el rol de usuario. Pueden entrar en esta zona tanto admiistrador 
+// como el usuario.
 if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
     include('template/header.php');
 ?>
-    <div class="container-fluid mt-5">
-        <div class="row">
+    <div class="container-fluid mt-5 mb-2">
+        <div class="row gy-2">
             <div class="col-sm-4">
                 <div class="card" style="width: vw;">
                     <img src="img/datos.svg" style="width: 18rem;" class="card-img-top mx-auto" alt="imagen de datos personales">
@@ -36,6 +39,20 @@ if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
                     <img src="img/password.svg" style="width: 18rem;" class="card-img-top mx-auto" alt="imagen de password">
                     <div class="card-body mx-auto">
                         <a href="perfil/formCambioPassword.php" class="btn btn-primary">Cambio password</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="width: vw;">
+                    <img src="img/pedidos.png" style="width: 18rem;" class="card-img-top mx-auto" alt="imagen de direccion del usuario">
+                    <div class="card-body mx-auto">
+                        <?php
+                        if ($_SESSION['rol'] == 2) {
+                        ?>
+                            <a href="perfil/pedidos.php" class="btn btn-primary" role="button">Pedidos</a>
+                        <?php
+                        } 
+                        ?>
                     </div>
                 </div>
             </div>
