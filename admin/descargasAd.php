@@ -1,9 +1,12 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprueba si existe la session de un usuario y si tiene el rol de administrador.
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    // Inclusión de archivos necesarios
     include 'template/cabecera.php';
     include("../config/funcionesDescargas.php");
-
+// Instancia de la clase
     $consulta = new FuncionesDescargas;
     $resultados = $consulta->consultarDescargasAdmin();
 
@@ -61,6 +64,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     </div>
     <script type="text/javascript" src="js/descargasAd.js"></script>
     <?php
+    // Comrpobación de la variable
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -70,7 +74,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     <?php
         $_SESSION['eliminar'] = '';
     }
-
+// Comrpobación de la variable
     if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -78,6 +82,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 <?php
+// Vaciado de la variable
         $_SESSION['editado'] = '';
     }
     include("template/pie.php");

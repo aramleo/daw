@@ -29,8 +29,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         if ($resultados == 23000) {
             $envio = 'Registro duplicado';
             $_SESSION['error'] = $envio;
+            // Redirección a el formulario post
             header('Location: formAgregarPost.php');
         } else {
+            // Si el registro es insertado la variable de sesión se rellena y redirecciona al formulario
             $_SESSION['registro'] = 'Registro insertado';
             header('Location: formAgregarPost.php');
         }

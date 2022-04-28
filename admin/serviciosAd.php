@@ -1,5 +1,7 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprueba si existe la session de un usuario y si tiene el rol de administrador.
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     include 'template/cabecera.php';
     include("../config/funcionesServicios.php");
@@ -55,10 +57,12 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         </div>
     </div>
     <div>
+        <!-- Imprimir informes de los datos -->
         <a name="imprimir" id="imprimir" class="btn btn-success" href="informes.php?tipo=servicios" role="button">Imprimir Informes</a>
     </div>
     <script type="text/javascript" src="js/serviciosAd.js"></script>
     <?php
+    // Comprobando la variable de sesión eliminar
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -68,7 +72,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     <?php
         $_SESSION['eliminar'] = '';
     }
-
+// Comprobando la variable de sesión editado
     if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,10 +80,13 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 <?php
+// vaciando la variable de sesión editado una vez impresa en pantalla
         $_SESSION['editado'] = '';
     }
+    // Inclusión de pie de página
     include("template/pie.php");
 } else {
+    // Redirección en caso de no existir usuario o rol
     header('Location: ../');
 }
 ?>

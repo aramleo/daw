@@ -1,4 +1,5 @@
 <?php
+// Inicio de sesión
 session_start();
 /**
  * En este archivo se presentan todos los alquileres introducidos en la base de datos por el administrador

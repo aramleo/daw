@@ -1,9 +1,12 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprobación usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+  // Inclusión de los archivos necesarios en este archivo
   include("../template/cabecera2.php");
 ?>
-
+<!-- Formualario de agregar productos -->
   <div class="col-md-5 mt-3">
 
     <div class="card">
@@ -65,12 +68,14 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     </div>
   <?php
   }
+  // Vaciado de la variable
   $_SESSION['registro'] = '';
   ?>
 <?php
-
+// Inclusión del pie de página
   include("../template/pie.php");
 } else {
+  // Redirección si no hay usuario o rol
   header('Location: ../../');
 }
 ?>

@@ -56,6 +56,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     </div>
   <?php
   }
+  // Vaciando la variable después de imprimir en pantalla
   $_SESSION['error'] = '';
   ?>
   <?php

@@ -1,7 +1,9 @@
 <?php
 //Comenzamos la sesión para registrar errores y usuarios
 session_start();
+// Comprobamos usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+    // Inclusión de los archivos necesarios
     include("../template/cabecera2.php");
     include("../../config/funcionesUsuarios.php");
 

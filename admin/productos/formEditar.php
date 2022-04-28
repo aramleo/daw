@@ -3,6 +3,7 @@
 session_start();
 
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+  // Inclusión de los archivos necesarios
   include("../template/cabecera2.php");
   include("../../config/funcionesProductos.php");
 
@@ -16,9 +17,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $imagen = $datos[0]['imagen'];
   $estado = $datos[0]['estado'];
   $id = $datos[0]['id'];
-print_r($imagen)
 ?>
-
+<!-- Formulario de edición de datos -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -81,7 +81,7 @@ print_r($imagen)
       </div>
     </div>
   </div>
-  <!-- alerta error registro comprobar después -->
+  <!-- alerta error registro comprobar después si existe error y no está vacía -->
   <?php
   if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
   ?>

@@ -42,20 +42,20 @@ if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card" style="width: vw;">
-                    <img src="img/pedidos.png" style="width: 18rem;" class="card-img-top mx-auto" alt="imagen de direccion del usuario">
-                    <div class="card-body mx-auto">
-                        <?php
-                        if ($_SESSION['rol'] == 2) {
-                        ?>
+            <?php
+            if ($_SESSION['rol'] == 2) {
+            ?>
+                <div class="col-sm-4">
+                    <div class="card" style="width: vw;">
+                        <img src="img/pedidos.png" style="width: 18rem;" class="card-img-top mx-auto" alt="imagen de direccion del usuario">
+                        <div class="card-body mx-auto">
                             <a href="perfil/pedidos.php" class="btn btn-primary" role="button">Pedidos</a>
-                        <?php
-                        } 
-                        ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 

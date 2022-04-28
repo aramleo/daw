@@ -1,4 +1,4 @@
-// DataTables
+// DataTables de la tabla alquileres
 $(document).ready(function() {
     $('#alquileres').DataTable( {
         responsive: true,

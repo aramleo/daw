@@ -1,4 +1,5 @@
 <?php
+// Si no existe inicio de sesión
 if(!isset($_SESSION)){
     session_start();
 }

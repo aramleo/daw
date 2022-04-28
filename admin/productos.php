@@ -1,5 +1,7 @@
 <?php
+// Inicio de sesión
 session_start();
+// Comprueba si existe la session de un usuario y si tiene el rol de administrador.
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     include './template/cabecera.php';
     include("../config/funcionesProductos.php");
@@ -7,6 +9,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     $resultados = $consulta->consultar();
 
 ?>
+<!-- Tabla de datos de los productos -->
     <div>
         <a href="productos/formAgregar.php"><button type="text" class="btn btn-success my-3">Agregar producto</button></a>
     </div>
@@ -66,7 +69,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     <!-- Llamada a archivos -->
     <script type="text/javascript" src="js/productos.js"></script>
     <?php
-
+// Comprobación si existe la variable eliminar
     if (isset($_SESSION['eliminar']) && !empty($_SESSION['eliminar'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -74,9 +77,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php
+    // Vaciado de la variable
         $_SESSION['eliminar'] = '';
     }
-
+// Comprobación si existe la variable editado
     if (isset($_SESSION['editado']) && !empty($_SESSION['editado'])) {
     ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -86,8 +90,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 <?php
 
     }
+    // Inclusión de pie de página
     require_once("./template/pie.php");
 } else {
+    // redirección 
     header('Location: ../');
 }
 ?>

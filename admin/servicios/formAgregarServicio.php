@@ -1,7 +1,9 @@
 <?php
+// Inicio de sesión
 session_start();
-
+// Comrpobación usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
+  // Inclusión de los archivos necesarios
   include("../template/cabecera2.php");
 ?>
 
@@ -67,6 +69,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   include("../template/pie.php");
 } else {
+  // No existe usuario o rol
   header('Location: ../../');
 }
 ?>

@@ -1,7 +1,7 @@
-<div class="fixed-bottom">>
+<!-- <div class=""> -->
 <?php
 include '../template/footer.php';
 ?>
-</div>
-</body>
-</html>
+<!-- </div> -->
+<!-- </body>
+</html> -->

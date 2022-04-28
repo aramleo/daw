@@ -78,7 +78,7 @@
       </p>
       <div class="py-5">
         <?php
-        include("alimentos.php");
+        include 'alimentos.php';
         include 'afiliar.php';
         ?>
       </div>
