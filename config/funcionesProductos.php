@@ -1,14 +1,18 @@
 <?php
 
+// Llamada al archivo de conexión a la base de datos
 require_once(__DIR__.'/conexion.php');
 
+/**
+ * Funciones
+ */
 class Funciones{
 
     private $conexion;
     private $url;
     
     /**
-     * __construct
+     * __construct. Instancia y establece la conexión con la base de datos
      *
      * @return void
      */
@@ -16,9 +20,8 @@ class Funciones{
         $bd = new Conexion();
         $this->conexion = $bd->conexion();
     }
-    // Consultar productos    
     /**
-     * consultar
+     * consultar. Consulta los productos ordenados por el nombre del producto esté activo o no
      *
      * @return void
      */
@@ -29,7 +32,12 @@ class Funciones{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-
+    
+    /**
+     * consultarUser.. Consulta los productos que verá el usuario al estar activos
+     *
+     * @return void
+     */
     public function consultarUser(){
         $sql = "SELECT * FROM `productos` WHERE estado = 1 ORDER BY nombre;";
         $query = $this->conexion -> prepare($sql);
@@ -37,9 +45,8 @@ class Funciones{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    // Agregar productos    
     /**
-     * agregar
+     * agregar. Agrega nuevos productos a la tienda
      *
      * @param  mixed $nombre
      * @param  mixed $referencia
@@ -65,9 +72,8 @@ class Funciones{
         }      
         return $resultado;
     }
-    // Editar productos    
     /**
-     * editar
+     * editar. Llamará al producto por el id para poder editarlo
      *
      * @param  mixed $id
      * @return void
@@ -79,9 +85,8 @@ class Funciones{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los productos editados    
     /**
-     * actualizar
+     * actualizar. Actualiza el producto llamado en la función editar con los nuevos datos
      *
      * @param  mixed $id
      * @param  mixed $nombre
@@ -109,9 +114,8 @@ class Funciones{
         }      
         return $resultado;
     }
-    //Borrar los productos    
     /**
-     * borrar
+     * borrar. Borra un producto seleccionado por el id
      *
      * @param  mixed $id
      * @return void
@@ -135,9 +139,10 @@ class Funciones{
         
     } 
 
-    // Consultar productos de la cesta    
     /**
-     * consultar_cesta
+     * consultar_cesta. Consulta los productos que se han introducido en la cesta. Solicita el id 
+     * del producto, nombre, precio y le añade un nuevo elemento que es la cantidad del producto 
+     * elegido.
      *
      * @param  mixed $id
      * @param  mixed $elementos
@@ -152,9 +157,9 @@ class Funciones{
         return $results;
     }
 
-    // Consultar productos de la cesta    
     /**
-     * actualizar_cesta
+     * actualizar_cesta. Consulta el precio del producto cuando el estado es activo y corresponde 
+     * al id enviado por parámetro
      *
      * @param  mixed $id
      * @return void
@@ -169,7 +174,7 @@ class Funciones{
     }
     
     /**
-     * guardar_pedido
+     * guardar_pedido. Guarda el pedido en la base de datos una vez confirmado.
      *
      * @param  mixed $id_pedido
      * @param  mixed $id_usuario
@@ -196,7 +201,9 @@ class Funciones{
         return $resultado;
     }    
     /**
-     * guardar_detalle_pedido
+     * guardar_detalle_pedido. Guarda el detalle del pedido cuando confirma el usuario. En el detalle
+     * se especifica el id del producto, el id del pedido, el precio del producto y la cantidad seleccionada
+     * del producto.
      *
      * @param  mixed $id_pedido
      * @param  mixed $id_producto
@@ -223,8 +230,9 @@ class Funciones{
         return $resultado;
     }
     
+        
     /**
-     * consultarPedidos
+     * consultarDetallePedidos. Función que consulta el detalle de los pedidos realizados por un usuario
      *
      * @param  mixed $pedido
      * @return void
@@ -244,7 +252,7 @@ class Funciones{
     }
     
     /**
-     * consultarPedidos
+     * consultarPedidos. Consulta los pedidos realizados por los usuarios con el numero de pedido
      *
      * @param  mixed $pedido
      * @return void
@@ -262,7 +270,13 @@ class Funciones{
         }      
         return $resultado;
     }
-
+    
+    /**
+     * consultaPedidosAll. Consulta todos los pedidos para el administrador por usuario
+     *
+     * @param  mixed $usuario
+     * @return void
+     */
     public function consultaPedidosAll($usuario){
         $resultado = null;
         try{
@@ -276,7 +290,13 @@ class Funciones{
         }      
         return $resultado;
     }
-
+    
+    /**
+     * consultarDetallePedidosNombre. Consulta el pedido por el id del pedido
+     *
+     * @param  mixed $pedido
+     * @return void
+     */
     public function consultarDetallePedidosNombre($pedido){
         $resultado = null;
         try{

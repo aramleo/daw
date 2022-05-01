@@ -1,14 +1,19 @@
 <?php
+// Iniciamos sesión
 session_start();
-
+// Comrpobamos usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
+    // Insertamos cabecera
     include('template/header.php');
-
+    // Archivo con la clase FuncionesAlquileres
     include 'config/funcionesAlquileres.php';
+    // Instanciamos
     $datos = new FuncionesAlquileres;
+    // Recuperamos datos con la consulta sobre alquileres
     $alquileres = $datos->consultarAlquiler();
 
 ?>
+<!-- Sección donde se presentan los alquileres -->
     <div class="pb-5">
         <h3 class="text-center pt-3 mt-5">Alquileres de huertos</h3>
         <div class="container">
@@ -45,6 +50,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
     include 'template/footer.php';
 }else{
+    // No estamos logueados
     header("Location: ./");
 }
 ?>

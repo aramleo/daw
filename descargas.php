@@ -1,10 +1,17 @@
 <?php
+// Inicio de sesión
 session_start();
 
+// Comprueba usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
+
+    // Archivos necesarios
     include('template/header.php');
     include 'config/funcionesDescargas.php';
+
+    // Instancia de la clase
     $datos = new FuncionesDescargas;
+    // Consulta base de datos
     $descargas = $datos->consultarDescargas();
 
 ?>
@@ -38,6 +45,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
     include 'template/footer.php';
 }else{
+    // No está logueado
     header("Location: ./");
 }
 ?>

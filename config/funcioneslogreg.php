@@ -22,7 +22,8 @@ class FuncionesLogReg
 
 
     /**
-     * registrarUsuario
+     * registrarUsuario. Registro de un usuario nuevo. Se comprueba que no haya usuario 
+     * duplicado
      *
      * @param  mixed $email
      * @param  mixed $password
@@ -69,7 +70,7 @@ class FuncionesLogReg
     }
 
     /**
-     * email_reset
+     * email_reset. Comprobación de la existencia del email para resetear sobre la contraseña
      *
      * @param  mixed $email
      * @return void
@@ -86,7 +87,8 @@ class FuncionesLogReg
     
         
     /**
-     * resetPassword
+     * resetPassword. Una vez comnprobado la existencia del email, cambia el password con la 
+     * contraseña seleccionada al azar
      *
      * @param  mixed $email
      * @param  mixed $password
@@ -113,7 +115,7 @@ class FuncionesLogReg
 
     
     /**
-     * hash
+     * hash. Encripta la contraseña
      *
      * @param  mixed $password
      * @return void

@@ -1,5 +1,8 @@
 <?php
+// Iniciamos sesión
 session_start();
+
+// Comprobamos usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
     // Cargamos los archivos necesarios 
     include('template/header.php');
@@ -20,6 +23,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
         $num_cesta = count($_SESSION['cesta']['productos']);
     }
 ?>
+<!-- Tabla con la cesta -->
     <div class="pb-5">
         <div class="container">
             <div class="row my-2">
@@ -95,7 +99,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
             ?>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal  de eliminiación de producto-->
     <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">

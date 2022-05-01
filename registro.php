@@ -1,14 +1,22 @@
 <?php
+// Iniciamos sesión
 session_start();
 
+// Comrpobamos usuario y rol si no existen
 if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
 
+  // Archivos necesarios
   include("template/header.php");
   include_once("config/funcionesSanearValidar.php");
   include_once("config/funcioneslogreg.php");
 
+  // Instancia de la clase
   $llamada = new FuncionesSaneaValida;
+
+  // Variables de error vacías
   $error_nombre = $error_email = $error_password = $error_confirma = $error_registro = '';
+
+  // Si no existe las variables. En caso contrario se sanea y valida
   if (!isset($_POST['usuario'])) {
     $error_nombre = "El campo usuario no puede estar vacío";
   } else {
@@ -37,14 +45,17 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   if (!isset($_POST['confirmacion'])) {
     $error_confirma = "El campo confirmacion de password no puede estar vacío";
   }
-
+  // No existen errores
   if ($error_nombre == "" && $error_email == "" && $error_password == "" && $error_confirma == "") {
+    // Instancia de la clase
     $envio = new FuncionesLogReg;
+    // Se registra al nuevo usuario
     $datos = $envio->registrarUsuario($nombre, $email, $password);
     if ($datos == 2) {
       $_SESSION['datos'] = 'Registrado con éxito';
       header("Location:login.php");
     }
+    // El usuario ya existe
     if ($datos == 3) {
       $error_registro = 'El usuario ya existe';
     }
@@ -89,6 +100,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   </div>
   <!-- alerta error registro -->
   <?php
+  // Si existen errores
   if (isset($_POST['registrar'])) {
     if (!empty($error_nombre)) {
   ?>
@@ -141,6 +153,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
 <?php
   include("template/footer.php");
 } else {
+  // No está logueado
   header('Location: ./');
 }
 ?>

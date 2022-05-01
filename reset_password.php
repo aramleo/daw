@@ -1,6 +1,8 @@
 <?php
+// Iniciamos sesión
 session_start();
 
+// Librerías para el envio de correos
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -41,12 +43,14 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
     $reset = new FuncionesLogReg;
     $datos = $reset->email_reset($email_reset);
     if ($datos) {
+      // Selecciona un número aleatorio para el reseteo de la contraseña.
         $aleatorio = random_int(10000001, 99999999);
       echo '<div class="text-center">Se ha enviado un correo electrónico a su bandeja</div>';
       $resulta = $reset->resetPassword($email_reset, $aleatorio);
       if($resulta = 'OK'){
         $mail = new PHPMailer(true);
         try {
+          // Envía un correo electrónico con la librería PHP Mailer
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';

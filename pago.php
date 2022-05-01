@@ -1,5 +1,8 @@
 <?php
+// Iniciamos sesión
 session_start();
+
+// Comrpobamos usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
     // Cargamos los archivos necesarios 
     include('template/header.php');
@@ -95,6 +98,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                 </div>
             </div>
             <?php
+            // Si la cesta contiene datos
             if ($lista_cesta != null) {
                 $_SESSION['lista'] = $lista_cesta;
                 $_SESSION['total'] = $total;
@@ -112,6 +116,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
     include 'template/footer.php';
 } else {
+    // No está logueado
     header("Location: ./");
 }
 ?>

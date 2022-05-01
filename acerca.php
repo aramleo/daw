@@ -1,4 +1,5 @@
 <?php
+// Cargamos el encabezado. Página Acerca de
 include("template/header.php");
 ?>
           <div class="p-5 bg-light mt-5">

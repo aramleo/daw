@@ -1,8 +1,11 @@
 <?php
+// Inicio de sesión
 session_start();
 
+// Comrprobamos usuario y rol
 if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
-    // Decodifico el parametro persona que me envian
+
+    // Comrpuebo variables y añado a la cesta si existe. Si no, se crea
     if (isset($_POST['id'])) {
         $producto = json_decode($_POST['id']);
         if(isset($_SESSION['cesta']['productos'][$producto])){
@@ -16,7 +19,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol']) {
         header('Location: tienda.php');
         $datos['ok']= false;
     }
+    // Decodifico string json
     echo json_encode($datos);
 } else {
+    // No está logueado
     header('Location: ./');
 }

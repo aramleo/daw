@@ -1,6 +1,8 @@
 <?php
+// Inicio de sesión
 session_start();
 
+// Cargando librería para envío de correo
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -12,8 +14,10 @@ require 'PHPMailer/src/SMTP.php';
 include 'template/header.php';
 include 'config/datos.php';
 
+// Comrpuebo usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
 
+    // Comprueba si existen las varibles de sesión
     if (isset($_SESSION['lista']) && isset($_SESSION['total'])) {
         $correo_usuario = $_SESSION['usuario'];
         $datos = $_SESSION['lista'];
@@ -21,12 +25,15 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
         $precio_total = $_SESSION['total'];
         $id_pedido = $id_usuario . str_replace(".", "", $precio_total) . date('Ymd');
 
-
+        // Incluyendo archivos de consulta de productos y usuarios
         include 'config/funcionesProductos.php';
         include 'config/funcionesUsuarios.php';
 
+        // Instancias de las clases
         $confirmo = new Funciones;
         $usuario = new FuncionesUsuarios;
+        
+        // Guardado de datos en la base de datos
         $pedido = $confirmo->guardar_pedido($id_pedido, $id_usuario, $precio_total);
         foreach ($datos as $dato) {
             $id_producto = $dato['id'];
@@ -34,6 +41,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
             $cantidad = $dato['cantidad_pro'];
             $detalle_pedido = $confirmo->guardar_detalle_pedido($id_pedido, $id_producto, $precio, $cantidad);
         }
+        // Si existe la varible y no es nula
         if (isset($detalle_pedido) && $detalle_pedido != null) {
 
             $detallePedidos = $confirmo->consultarDetallePedidos($id_pedido);
@@ -42,6 +50,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 
             $mail = new PHPMailer(true);
             try {
+                // Envío de correo electrónico
                 // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
@@ -100,6 +109,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                 <a href="tienda.php" class="btn btn-info mt-3" role="button">Volver a la tienda</a>
             </div>
         <?php
+        // Borrado de variables
             unset($_SESSION['lista']);
             unset($_SESSION['total']);
             unset($_SESSION['cesta']['productos']);
@@ -122,8 +132,10 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
         }
     } else {
+        // No existe total y lista
         header('Location: tienda.php');
     }
 } else {
+    // No está logueado
     header("Location: ./");
 }

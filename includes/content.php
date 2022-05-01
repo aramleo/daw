@@ -1,3 +1,4 @@
+<!-- Contenido de la página principal -->
 <div class="p-5 bg-light">
   <div class="container-fluid">
     <h1 class="display-3">Huertos Urbanos</h1>

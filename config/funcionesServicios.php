@@ -4,15 +4,33 @@ require_once(__DIR__.'/conexion.php');
 
 
 
+/**
+ * FuncionesServicios. Funciones que gestionan los servicios persentados a los usuarios
+ */
 class FuncionesServicios{
-
+    
+    /**
+     * conexion. Conexión a la base de datos. variable 
+     *
+     * @var mixed
+     */
     private $conexion;
-
+    
+    /**
+     * __construct. Instancia la clase y crea la conexión con la base de datos
+     *
+     * @return void
+     */
     public function  __construct(){
         $bd = new Conexion;
         $this->conexion = $bd->conexion();
     }
-    // Consultar servicios
+       
+    /**
+     * consultarServicios. Consulta los servicios activos por referencia para la presentación del usuario
+     *
+     * @return void
+     */
     public function consultarServicios(){
         $sql = "SELECT * FROM `servicios` WHERE `activa` = 1 ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
@@ -20,7 +38,12 @@ class FuncionesServicios{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-
+    
+    /**
+     * consultarServiciosAdmin. Consulta todos los servicios para el administrador activos o no
+     *
+     * @return void
+     */
     public function consultarServiciosAdmin(){
         $sql = "SELECT * FROM `servicios` ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
@@ -28,7 +51,16 @@ class FuncionesServicios{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    // Agregar servicios
+        
+    /**
+     * agregar. Agrega servicios nuevos.
+     *
+     * @param  mixed $referencia
+     * @param  mixed $servicio
+     * @param  mixed $imagen
+     * @param  mixed $activa
+     * @return void
+     */
     public function agregar($referencia, $servicio, $imagen, $activa){
         $resultado = null;
         try{
@@ -45,7 +77,13 @@ class FuncionesServicios{
         }      
         return $resultado;
     }
-    // Editar servicios
+        
+    /**
+     * editar. Edita los servicios consultando el servicios y traer los datos al formulario
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function editar($id){
         $sql = "SELECT * FROM `servicios` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
@@ -53,7 +91,17 @@ class FuncionesServicios{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los servicios editados
+        
+    /**
+     * actualizar. Guarda los datos actualizados por el administrador
+     *
+     * @param  mixed $id
+     * @param  mixed $referencia
+     * @param  mixed $servicio
+     * @param  mixed $imagen
+     * @param  mixed $activa
+     * @return void
+     */
     public function actualizar($id, $referencia, $servicio, $imagen, $activa){
         $resultado = null;
         try{
@@ -71,7 +119,13 @@ class FuncionesServicios{
         }      
         return $resultado;
     }
-    //Borrar los servicios
+        
+    /**
+     * borrar. Borra el servicio por el id del servicio
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function borrar($id){
         $resultado = null;
         try{

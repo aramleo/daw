@@ -1,3 +1,4 @@
+<!-- Slide de la página principal -->
 <div id="slide" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner py-4">
       <div class="carousel-item active">

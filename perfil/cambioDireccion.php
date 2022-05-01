@@ -1,18 +1,18 @@
 <?php
-
+// Inicio de sesión
 session_start();
-
+// Comprobamos si existe session de usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
     include '../config/funcionesPerfil.php';
     include '../config/funcionesSanearValidar.php';
     print_r($_POST);
 
     $id_usuario = $_POST['id_usuario'];
-
+    // Han hecho clic en el botón actualizar
     if (isset($_POST['actualiza'])) {
         $llamada = new FuncionesSaneaValida;
         $error_dni = $error_direccion = $error_otros = $error_localidad = $error_provincia = $error_cp = $error_telefono = '';
-
+        // Comprobamos, saneamos y validamos
         if (!isset($_POST['dni'])) {
             $error_dni = "El campo dni no puede estar vacío";
         } else {
@@ -78,7 +78,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 $error_telefono = $llamada->validaTfn($telefono);
             }
         }
-
+        // No existen errores, instanciamos la clase y guardamos los valores
         if ($error_dni == "" && $error_direccion == '' && $error_otros == '' && $error_localidad == '' && $error_provincia == '' && $error_cp == '' && $error_telefono == '') {
             $perfil = new FuncionesPerfil;
             $datos = $perfil->actualizarDireccion($id_usuario, $dni, $direccion, $otros, $localidad, $provincia, $cp, $telefono);
@@ -90,6 +90,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 header('Location: formDireccion.php');
             }
         } else {
+            // Si hay errores guardamos en variables de session y se imprime en la página del formulario
             if (isset($error_dni) && !empty($error_dni)) {
                 $_SESSION['error_dni'] = $error_dni;
             }

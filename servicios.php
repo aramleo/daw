@@ -1,10 +1,15 @@
 <?php
+// Inicio de sesión
 session_start();
 
+// Comprueba usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] == '1')) {
+    // Archivos necesarios
     include('template/header.php');
     include 'config/funcionesServicios.php';
+    // Intancia de la clase
     $datos = new FuncionesServicios;
+    // Consulta los servicios que verá el usuario
     $servicios = $datos->consultarServicios();
 
 ?>
@@ -41,6 +46,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
     include 'template/footer.php';
 }else{
+    // No está logueado
     header("Location: ./");
 }
 ?>

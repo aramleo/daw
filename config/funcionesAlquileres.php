@@ -34,7 +34,13 @@ class FuncionesAlquileres{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     } 
-    
+        
+    /**
+     * consultarAlquilerAdmin. Consulta todos los alquileres disponibles por el 
+     * administrador
+     *
+     * @return void
+     */
     public function consultarAlquilerAdmin(){
         $sql = "SELECT * FROM `alquileres` ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);
@@ -42,7 +48,13 @@ class FuncionesAlquileres{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }  
-
+    
+    /**
+     * imprimirAlquilerAdmin. Informe con todos los alquileres disponibles y no disponibles 
+     * para que el administrador pueda gestionarlos.
+     *
+     * @return void
+     */
     public function imprimirAlquilerAdmin(){
         $sql = "SELECT * FROM `alquileres` ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);

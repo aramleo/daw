@@ -1,4 +1,5 @@
 <?php
+// Inicio de sesión
 session_start();
 
 // Comprueba si la sesion de usuario y rol exite. Está logueado.
@@ -64,6 +65,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
         </div>
     </div>
     <?php
+    // Se imprimen errores si existen
     if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -94,7 +96,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
     <?php
         $_SESSION['error_email'] = '';
     }
-
+    // Se imprimee guardado con éxito
     if (isset($_SESSION['exito']) && !empty($_SESSION['exito'])) {
         // Comprueba si el registro se ha modificado correctamente
     ?>

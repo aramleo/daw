@@ -2,6 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * SanearValidarTest. Archivos para testear unitariamente la clase de sanear y validar
+ */
 class SanearValidarTest extends TestCase{
     
     private $op;

@@ -1,4 +1,5 @@
 <?php
+// iniciamos sesión
 session_start();
 /* Comprobamos que no existe sesión de usuario o rol. En caso de existir no redirige a la página
 principal de la página web*/

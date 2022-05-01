@@ -6,6 +6,7 @@ session_start();
 if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
     include('template/header.php');
 ?>
+<!-- Datos del usuario -->
     <div class="container-fluid mt-5 mb-2">
         <div class="row gy-2">
             <div class="col-sm-4">
@@ -62,6 +63,7 @@ if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
 <?php
     include("template/footer.php");
 } else {
+    // No está logueado
     header('Location: ../../');
 }
 ?>

@@ -7,19 +7,19 @@ require_once(__DIR__.'/conexion.php');
 
 
 /**
- * FuncionesDescargas
+ * FuncionesDescargas. Controla la edición, agregación y borrado de descargas
  */
 class FuncionesDescargas{
     
     /**
-     * conexion
+     * conexion. Conexión con base de datos
      *
      * @var mixed
      */
     private $conexion;
     
     /**
-     * __construct
+     * __construct. Crea una conexión con la base de datos
      *
      * @return void
      */
@@ -28,7 +28,7 @@ class FuncionesDescargas{
         $this->conexion = $bd->conexion();
     }
     /**
-     * consultarDescargas. Consultar descargas
+     * consultarDescargas. Consultar descargas activas
      *
      * @return void
      */
@@ -39,7 +39,12 @@ class FuncionesDescargas{
         $results = $query -> fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-
+    
+    /**
+     * consultarDescargasAdmin. Consulta todas las descargas, activas y no activas.
+     *
+     * @return void
+     */
     public function consultarDescargasAdmin(){
         $sql = "SELECT * FROM `descargas` ORDER BY referencia;";
         $query = $this->conexion -> prepare($sql);

@@ -65,6 +65,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
         </div>
     </div>
     <script>
+        // Ajax funciones
         function adProducto(id) {
             const data = new FormData();
             data.append('id', id);
@@ -96,6 +97,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
 <?php
     include 'template/footer.php';
 }else{
+    // No está logueado
     header("Location: ./");
 }
 ?>

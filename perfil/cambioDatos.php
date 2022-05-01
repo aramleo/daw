@@ -1,14 +1,19 @@
 <?php
+// Inicio de sesión
 session_start();
-
+// Comprobamos si existe session de usuario y rol
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
+    // cargando los archivos necesarios
     include '../config/funcionesPerfil.php';
     include '../config/funcionesSanearValidar.php';
-
+    // Si hemos hecho clic sobre el botón actualizar
     if (isset($_POST['actualizar'])) {
+        // Instanciamos la clase
         $llamada = new FuncionesSaneaValida;
+        // Reseteamos las variables
         $error_nombre = $error_email = '';
 
+        // Comprobamos si existen las variables. Si es correcto saneamos y validamos 
         if (!isset($_POST['nombre'])) {
             $error_nombre = "El campo usuario no puede estar vacío";
         } else {
@@ -25,7 +30,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 $error_email = $llamada->validaEmail($email);
             }
         }
-
+        // Si los las variables de error están vacías, guardamos los datos
         if ($error_nombre == "" && $error_email == '') {
             $perfil = new FuncionesPerfil;
             $datos = $perfil->cambioDatos($_POST['id'], $nombre, $email);
@@ -37,6 +42,9 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 header('Location: formCambioDatos.php');
             }
         } else {
+            /** Si no es correcto, guardamos el error en una variable de session para poder leerla en la 
+            * página del formulario
+            */
             if (isset($error_nombre) && !empty($error_nombre)) {
                 $_SESSION['error_nombre'] = $error_nombre;
             }

@@ -17,7 +17,15 @@ class FuncionesPerfil{
         $bd = new Conexion();
         $this->conexion = $bd->conexion();
     }
-
+    
+    /**
+     * cambioDatos. Cambio de los datos personales
+     *
+     * @param  mixed $id
+     * @param  mixed $nombre
+     * @param  mixed $email
+     * @return void
+     */
     public function cambioDatos($id, $nombre, $email){
         $resultado = null;
         try {
@@ -33,7 +41,15 @@ class FuncionesPerfil{
         }
         return $resultado;
     }
-
+    
+    /**
+     * comprobarOldPassword. Comprobación si la contraseña antigua es correcta para el
+     * cambio de contraseña
+     *
+     * @param  mixed $id
+     * @param  mixed $old_password
+     * @return void
+     */
     public function comprobarOldPassword($id, $old_password){
         $comprobacion = false;
         $hash = $this->hash($old_password);
@@ -51,7 +67,7 @@ class FuncionesPerfil{
     }
 
     /**
-     * cambioEmail
+     * cambioEmail. Cambia el email del usuario
      *
      * @param  mixed $id
      * @param  mixed $password
@@ -74,11 +90,23 @@ class FuncionesPerfil{
         }      
         return $resultado;
     }
-
+    
+    /**
+     * hash
+     *
+     * @param  mixed $password.  Encripta el password
+     * @return void
+     */
     public static function hash($password) {
         return hash('sha512', '34'.$password);
     }
-
+    
+    /**
+     * consultarDireccion. Consulta la dirección del usuario
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function consultarDireccion($id){
         $sql = "SELECT * FROM `direcciones` WHERE id_usuario = $id";
         $query = $this->conexion -> prepare($sql);
@@ -87,7 +115,20 @@ class FuncionesPerfil{
         return $results;
     }
 
-
+    
+    /**
+     * agregarDireccion. Agrega la dirección del usuario a la base de datos
+     *
+     * @param  mixed $id_usuario
+     * @param  mixed $dni
+     * @param  mixed $direccion
+     * @param  mixed $otros
+     * @param  mixed $localidad
+     * @param  mixed $provincia
+     * @param  mixed $cp
+     * @param  mixed $telefono
+     * @return void
+     */
     public function agregarDireccion($id_usuario, $dni, $direccion, $otros, $localidad, $provincia, $cp, $telefono){
         $resultado = null;
         try {
@@ -110,7 +151,20 @@ class FuncionesPerfil{
         }
         return $resultado;
     }
-
+    
+    /**
+     * actualizarDireccion. Actualliza la dirección del usuario de la base de datos
+     *
+     * @param  mixed $id_usuario
+     * @param  mixed $dni
+     * @param  mixed $direccion
+     * @param  mixed $otros
+     * @param  mixed $localidad
+     * @param  mixed $provincia
+     * @param  mixed $cp
+     * @param  mixed $telefono
+     * @return void
+     */
     public function actualizarDireccion($id_usuario, $dni, $direccion, $otros, $localidad,$provincia, $cp, $telefono){
         $resultado = null;
         try{

@@ -1,3 +1,4 @@
+<!-- Div de los alimentos que se muestran en la página principal -->
 <div class="container-fluid">
     <div class="mb-2">
         <div class="row">

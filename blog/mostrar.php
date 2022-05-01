@@ -13,6 +13,7 @@ if (isset($_GET['id'])) {
 		include 'cabeza.php';
 
 ?>
+<!-- Sección donde se muestran  los posts con detalles -->
 		<div class="container">
 			<div class="my-5">
 				<h4 class="card-title"><?php echo $post[0]['titulo'] ?></h4>
@@ -35,9 +36,11 @@ if (isset($_GET['id'])) {
 <?php
 		include '../template/footer.php';
 	} else {
+		// No existe un post. Evita el envío a través de la barra de dirección
 		header('Location: ../blog.php');
 	}
 } else {
+	// No existe usuario o rol
 	header('Location: ../blog.php');
 }
 ?>

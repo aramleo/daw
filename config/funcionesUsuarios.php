@@ -1,13 +1,16 @@
 <?php
-
+// Inclusión del archivo para la conexión
 require_once(__DIR__.'/conexion.php');
 
+/**
+ * FuncionesUsuarios. Funciones relacionadas con el usuario
+ */
 class FuncionesUsuarios{
 
     private $conexion;
     
     /**
-     * __construct
+     * __construct. Instancia y creación de la conexión
      *
      * @return void
      */
@@ -16,9 +19,8 @@ class FuncionesUsuarios{
         $this->conexion = $bd->conexion();
         
     }
-    // Consultar productos    
     /**
-     * consultarUsuario
+     * consultarUsuario. Consulta de usuarios para el administrador.
      *
      * @return void
      */
@@ -31,7 +33,7 @@ class FuncionesUsuarios{
     }
     
     /**
-     * consultarUsuarioRol
+     * consultarUsuarioRol. Consulta del usuario por su id y comprobación del rol
      *
      * @param  mixed $id
      * @return void
@@ -46,7 +48,7 @@ class FuncionesUsuarios{
     }
     
     /**
-     * consultarUsuarioId
+     * consultarUsuarioId. Consulta de usuario por id
      *
      * @param  mixed $id
      * @return void
@@ -60,9 +62,8 @@ class FuncionesUsuarios{
         return $results;
     }
     
-    // Editar usuarios    
     /**
-     * editar
+     * editar. Llamada de los datos de un usuario por el parámetro del id de usuario
      *
      * @param  mixed $id
      * @return void
@@ -74,9 +75,8 @@ class FuncionesUsuarios{
         $results = $query -> fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
-    // Actualizar los usuarios    
     /**
-     * actualizar
+     * actualizar. Guarda los datos del usuario actualizados.
      *
      * @param  mixed $id
      * @param  mixed $nombre
@@ -103,9 +103,8 @@ class FuncionesUsuarios{
         return $resultado;
     }
 
-    //Borrar los usuarios    
     /**
-     * borrar
+     * borrar. Borra a un usuario por id
      *
      * @param  mixed $id
      * @return void
@@ -129,9 +128,8 @@ class FuncionesUsuarios{
         
     } 
 
-    // Editar usuarios    
     /**
-     * editarUsuario
+     * editarUsuario. Llamada de un usuario por id para la consulta por el administrador
      *
      * @param  mixed $id
      * @return void
@@ -146,7 +144,7 @@ class FuncionesUsuarios{
     }
     
     /**
-     * consulta_direccion
+     * consulta_direccion. Consulta la dirección de un usuario pasado por parámetro.
      *
      * @param  mixed $id
      * @return void

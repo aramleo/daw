@@ -1,4 +1,5 @@
 <?php
+// Inicio de sesión
 session_start();
 /**
  * Aqui en este archivo introducimos los datos para el cambio de password en el formulario.

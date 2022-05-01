@@ -1,8 +1,10 @@
 <?php
+// En caso de no haber iniciado session
 if (!isset($_SESSION)) {
     session_start();
 }
 ?>
+<!-- Encabezado en páginas secundarias -->
 <!DOCTYPE html>
 <html lang="es">
 

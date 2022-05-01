@@ -1,3 +1,4 @@
+<!-- Archivo para la publicidad del registro -->
 <div class="container-fluid mt-5">
     <h4>Si quieres obtener tablas de cultivo y más información,
         <?php if (!isset($_SESSION['usuario'])) {

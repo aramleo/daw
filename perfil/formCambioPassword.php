@@ -3,6 +3,7 @@
 /**
  * Aqui en este archivo introducimos los datos para el cambio de password en el formulario.
  */
+// Inicio de sesión
 session_start();
 // Comprueba si la sesion de usuario y rol exite. Está logueado.
 if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {

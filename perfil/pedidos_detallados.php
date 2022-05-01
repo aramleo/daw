@@ -1,15 +1,21 @@
 <?php
 // Iniciamos la sesion 
 session_start();
-// Comrpobamos si existe el usuario y si existe el rol de usuario. Pueden entrar en esta zona tanto admiistrador 
-// como el usuario.
+/**Comrpobamos si existe el usuario y si existe el rol de usuario. Pueden entrar en esta zona 
+ * tanto el administrador como el usuario.
+*/
 if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
+    // Archivos necesarios
     include('../template/headerS.php');
     include '../config/funcionesProductos.php';
+    // Instanciamos la clase
     $pedidos = new Funciones;
+    // Asginamos valor a la varirable
     $num_pedido = $_GET['pedido'];
+    // Consultamos la base de datos
     $resultados = $pedidos->consultarDetallePedidosNombre($num_pedido);
 ?>
+<!-- Imrpimimos por pantalla los valores -->
     <div class="container">
         <div class="table-responsive">
         <table class="table table-striped">
@@ -42,6 +48,7 @@ if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
 <?php
     include("../template/footer.php");
 } else {
+    // No estamos logueados
     header('Location: ../../');
 }
 ?>

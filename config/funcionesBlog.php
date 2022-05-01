@@ -53,7 +53,7 @@ class FuncionesBlog{
     }
     
     /**
-     * consultarPost
+     * consultarPost. Consulta los post existentes
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class FuncionesBlog{
     }
     
     /**
-     * agregarPost
+     * agregarPost. Crea nuevos posts y los guarda en la base de datos
      *
      * @param  mixed $titulo
      * @param  mixed $fecha
@@ -92,7 +92,13 @@ class FuncionesBlog{
         return $resultado;
     }
 
-
+    
+    /**
+     * borrarPost. Borra el post enviado por parámetro
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function borrarPost($id){
         $resultado = null;
         try{
@@ -111,7 +117,13 @@ class FuncionesBlog{
         return $envio;
         
     }
-
+    
+    /**
+     * editarPost. Edita los posts por el administrador
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function editarPost($id){
         $sql = "SELECT * FROM `blog` WHERE id = $id;";
         $query = $this->conexion -> prepare($sql);
@@ -120,7 +132,17 @@ class FuncionesBlog{
         return $results;
     }
 
-
+    
+    /**
+     * actualizarPost. Actualiza los posts por el administrador con párametro id
+     *
+     * @param  mixed $id
+     * @param  mixed $titulo
+     * @param  mixed $fecha
+     * @param  mixed $texto
+     * @param  mixed $imagen
+     * @return void
+     */
     public function actualizarPost($id, $titulo, $fecha, $texto, $imagen){
         $resultado = null;
         try{
