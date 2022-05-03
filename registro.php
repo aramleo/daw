@@ -2,6 +2,16 @@
 // Iniciamos sesión
 session_start();
 
+// Librerías para el envio de correos
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use PhpParser\Node\Stmt\TryCatch;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 // Comrpobamos usuario y rol si no existen
 if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
 
@@ -9,6 +19,7 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
   include("template/header.php");
   include_once("config/funcionesSanearValidar.php");
   include_once("config/funcioneslogreg.php");
+  include ("config/datos.php");
 
   // Instancia de la clase
   $llamada = new FuncionesSaneaValida;
@@ -53,6 +64,42 @@ if (!isset($_SESSION['usuario']) || (!isset($_SESSION['rol']))) {
     $datos = $envio->registrarUsuario($nombre, $email, $password);
     if ($datos == 2) {
       $_SESSION['datos'] = 'Registrado con éxito';
+      $mail = new PHPMailer(true);
+        try {
+          // Envía un correo electrónico con la librería PHP Mailer
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = $correo;
+            $mail->Password = $password_correo;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom($correo, 'Huertos Urbanos');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Bienvenido a Huertos Urbanos';
+            $cuerpo = '
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Huertos Urbanos</title>
+            </head>
+            <body>
+                    <h4>Bienvenido a Huertos Urbanos</h4>
+                    <p>Ya tiene acceso a todos nuestros servicios de la zona premium.</p>
+                    <p>Si usted no es el destinatario del mensaje, simplemente ignórelo.</p>
+            </body>
+            </html>';
+            $mail->Body = $cuerpo;
+            $mail->send();
+        } catch (Exception $e) {
+            echo 'Mensaje' . $mail->ErrorInfo;
+        }
       header("Location:login.php");
     }
     // El usuario ya existe

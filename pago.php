@@ -7,6 +7,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
     // Cargamos los archivos necesarios 
     include('template/header.php');
     include 'config/funcionesProductos.php';
+    include 'config/funcionesUsuarios.php';
 
     // Llamamos a la clase Funciones del archivo funcionesPorductos.php
     $datos = new Funciones;
@@ -102,13 +103,27 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
             if ($lista_cesta != null) {
                 $_SESSION['lista'] = $lista_cesta;
                 $_SESSION['total'] = $total;
+                // Comprobamos si el usuario tiene dirección
+                $direccion = new FuncionesUsuarios;
+                $compruebo_direccion = $direccion->consulta_direccion($_SESSION['id']);
+                if (!empty($compruebo_direccion)) {
             ?>
-                <div class="row">
-                    <div class="col-md-5 offset-md-7 d-grid gap-2">
-                        <a href="confirmo.php" class="btn btn-primary btn-lg">Confirmar</a>
+                    <div class="row">
+                        <div class="col-md-5 offset-md-7 d-grid gap-2">
+                            <a href="confirmo.php" class="btn btn-primary btn-lg">Confirmar</a>
+                        </div>
                     </div>
-                </div>
             <?php
+                }else{
+                    ?>
+                    <p>No exite dirección y DNI. Debe introducir sus datos antes de proceder a la confirmación del pedido.</p>
+                    <div class="row">
+                        <div class="col-md-5 offset-md-7 d-grid gap-2">
+                            <a href="perfil/formDireccion.php" class="btn btn-primary btn-lg">Introducir dirección</a>
+                        </div>
+                    </div>
+            <?php
+                }
             }
             ?>
         </div>

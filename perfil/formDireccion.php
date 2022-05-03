@@ -111,7 +111,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == 2)) {
                 <div class="card-body">
                     <form action="agregarDireccion.php" method="post" enctype="multipart/form-data">
                         <!-- Introducción del nombre para actualizar -->
-                        <div class="mb-3" >
+                        <div class="mb-3 visually-hidden" >
                             <label for="id_usuario" class="form-label">Id_usuario:</label>
                             <input type="text" class="form-control" id="id_usuario" name="id_usuario" value="<?php if (isset($id_usuario)) {
                                                                                                             echo $id_usuario;
