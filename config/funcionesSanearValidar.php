@@ -268,4 +268,12 @@ class FuncionesSaneaValida
         }
         return $error;
     }
+
+    function validaNumero($var){
+        $error = null;
+        if(empty($var) || !is_numeric($var)){
+            $error = 'El número introducido no es válido';
+        }
+        return $error;
+    }
 }

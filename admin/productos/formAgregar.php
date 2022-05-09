@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   // Inclusión de los archivos necesarios en este archivo
   include("../template/cabecera2.php");
 ?>
-<!-- Formualario de agregar productos -->
+  <!-- Formualario de agregar productos -->
   <div class="col-md-5 mt-3">
 
     <div class="card">
@@ -56,23 +56,46 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
+    $_SESSION['error'] = '';
   }
-  $_SESSION['error'] = '';
+  if (isset($_SESSION['error_nombreP']) && !empty($_SESSION['error_nombreP'])) {
   ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_nombreP']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php
+    $_SESSION['error_nombreP'] = '';
+  }
+  if (isset($_SESSION['error_refP']) && !empty($_SESSION['error_refP'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refP']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_refP'] = '';
+  }
+  if (isset($_SESSION['error_precioP']) && !empty($_SESSION['error_precioP'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_precioP']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      $_SESSION['error_precioP'] = '';
+  }
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>OK! </strong> <?php echo $_SESSION['registro']; ?>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  <?php
-  }
-  // Vaciado de la variable
-  $_SESSION['registro'] = '';
-  ?>
 <?php
-// Inclusión del pie de página
+    // Vaciado de la variable
+    $_SESSION['registro'] = '';
+  }
+  // Inclusión del pie de página
   include("../template/pie.php");
 } else {
   // Redirección si no hay usuario o rol

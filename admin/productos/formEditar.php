@@ -10,7 +10,13 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new Funciones;
-  $datos = $actual->editar($_GET['id']);
+  if(isset($_SESSION['id_edicion'])){
+    $datos = $actual->editar($_SESSION['id_edicion']);
+    $_SESSION['id_edicion']='';
+  }else{
+    $datos = $actual->editar($_GET['id']);
+  }
+  
   $referencia = $datos[0]['referencia'];
   $nombre = $datos[0]['nombre'];
   $precio = $datos[0]['precio'];
@@ -18,7 +24,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $estado = $datos[0]['estado'];
   $id = $datos[0]['id'];
 ?>
-<!-- Formulario de edición de datos -->
+  <!-- Formulario de edición de datos -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -28,7 +34,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="editarProducto.php" method="post" enctype="multipart/form-data">
           <!-- Dato del ID oculto para actualizar en la base de datos -->
           <div>
-            <input type="text" id="id" name="id" value="<?php echo $id; ?>">
+            <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
           </div>
           <!-- Introducción de los datos para actualizar -->
           <div class="mb-3">
@@ -37,7 +43,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php echo $referencia; ?>"  minlength="4" maxlength="20" required>
+            <input type="text" class="form-control" id="referencia" name="referencia" value="<?php echo $referencia; ?>" minlength="4" maxlength="20" required>
           </div>
           <div class="mb-3">
             <label for="precio" class="form-label">Precio:</label>
@@ -45,7 +51,11 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             <p>* Guardar los decimales con punto</p>
           </div>
           <div class="mb-3">
-            <strong>Imagen Actual -><?php if(isset($imagen)  && $imagen != null){echo $imagen;}else{echo 'No tiene imagen asignada';} ?></strong></br>
+            <strong>Imagen Actual -><?php if (isset($imagen)  && $imagen != null) {
+                                      echo $imagen;
+                                    } else {
+                                      echo 'No tiene imagen asignada';
+                                    } ?></strong></br>
             <label for="imagen" class="form-label">Imagen:</label>
             <input type="file" class="form-control" id="imagen" name="imagen">
           </div>
@@ -61,8 +71,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
           <?php
           }
-          if(isset($estado) && $estado == 0){
-            ?>
+          if (isset($estado) && $estado == 0) {
+          ?>
             <div class="mb-3">
               <label for="estado" class="form-label">Activo:</label>
               <select id="estado" name="estado">
@@ -70,7 +80,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                 <option selected value="0">No Activo</option>
               </select>
             </div>
-            <?php
+          <?php
           }
           ?>
           <div class="btn-group" role="group" aria-label="">
@@ -90,12 +100,35 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
+    $_SESSION['error'] = '';
   }
-  $_SESSION['error'] = '';
+  if (isset($_SESSION['error_nombreP']) && !empty($_SESSION['error_nombreP'])) {
   ?>
-
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_nombreP']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_nombreP'] = '';
+  }
+  if (isset($_SESSION['error_refP']) && !empty($_SESSION['error_refP'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refP']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_refP'] = '';
+  }
+  if (isset($_SESSION['error_precioP']) && !empty($_SESSION['error_precioP'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_precioP']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 <?php
-
+    $_SESSION['error_precioP'] = '';
+  }
   include("../template/pie.php");
 } else {
   header('Location: ../../');
