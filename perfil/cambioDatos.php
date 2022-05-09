@@ -37,7 +37,10 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
             if ($datos == "OK") {
                 $_SESSION['exito'] = 'Se ha modificado correctamente';
                 header('Location: formCambioDatos.php');
-            } else {
+            }elseif($datos == 23000){
+                $_SESSION['error'] = 'Correo electrónico duplicado';
+                header('Location: formCambioDatos.php');
+            }else {
                 $_SESSION['error'] = 'No ha sido posible modificar los datos';
                 header('Location: formCambioDatos.php');
             }

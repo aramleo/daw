@@ -28,7 +28,7 @@ if (isset($_SESSION['usuario']) && (isset($_SESSION['rol']))) {
                         <?php
                         } else {
                         ?>
-                            <a href="perfil/formDireccion.php" class="btn btn-primary disabled" role="button">Direccion usuario</a>
+                            <a href="perfil/formDireccion.php" class="btn btn-primary disabled" role="button">Dirección usuario</a>
                         <?php
                         }
                         ?>

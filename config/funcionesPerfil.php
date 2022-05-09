@@ -37,7 +37,7 @@ class FuncionesPerfil{
                 $resultado = 'OK';
             }
         }catch (Exception $e){
-            $resultado = $e->getMessage();
+            $resultado = $e->getCode();
         }
         return $resultado;
     }
@@ -147,7 +147,7 @@ class FuncionesPerfil{
                 $resultado = 1;
             };
         } catch (Exception $e) {
-            $resultado = $e->getMessage();
+            $resultado = $e->getCode();
         }
         return $resultado;
     }

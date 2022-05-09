@@ -95,8 +95,11 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'])) {
                 // Si el valor devuelto es igual a 1 
                 $_SESSION['exito_direccion'] = 'Se ha modificado correctamente';
                 header('Location: formDireccion.php');
-            } else {
-                $_SESSION['error'] = $datos;
+            } elseif($datos == 23000){
+                $_SESSION['error'] = 'El DNI no puede estar duplicado';
+                header('Location: formDireccion.php');
+            }else {
+                $_SESSION['error'] = 'No ha sido posible guardar la dirección';
                 header('Location: formDireccion.php');
             }
         } else {

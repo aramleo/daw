@@ -152,7 +152,7 @@ class FuncionesSaneaValida
      * @param  mixed $var. Valor para comprobar
      * @param  mixed $menor. Valor minimo
      * @param  mixed $mayor Valor máximo
-     * @param  mixed $elemento. El elemnto concreto que analñizamos.
+     * @param  mixed $elemento. El nombre del campo que analizamos.
      * @return void
      */
     public function validaLongitud($var, $menor, $mayor, $elemento)

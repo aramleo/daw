@@ -17,7 +17,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre Producto:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" minlength="2" maxlength="50" placeholder="Nombre del producto">
+            <input type="text" class="form-control" id="nombre" name="nombre" minlength="3" maxlength="50" placeholder="Nombre del producto">
           </div>
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
