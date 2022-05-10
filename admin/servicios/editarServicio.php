@@ -64,7 +64,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       if (isset($error_servicioS) && !empty($error_servicioS)) {
         $_SESSION['error_servicioS'] = $error_servicioS;
       }
-      header('Location: formAgregarServicio.php');
+      header('Location: formEditarServicio.php');
     }
   }
 } else {

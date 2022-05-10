@@ -91,7 +91,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           if (isset($error_telefonoA) && !empty($error_telefonoA)) {
               $_SESSION['error_telefonoA'] = $error_telefonoA;
           }
-          header('Location: formAgregarAlquiler.php');
+          header('Location: formEditarAlquiler.php');
     }
   }
   // Si no existe usuario o rol
