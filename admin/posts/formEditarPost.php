@@ -10,7 +10,12 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesBlog;
-  $datos = $actual->editarPost($_GET['id']);
+  if (isset($_SESSION['id_edicion']) && !empty($_SESSION['id_edicion'])) {
+    $datos = $actual->editarPost($_SESSION['id_edicion']);
+    $_SESSION['id_edicion'] = '';
+  } else {
+    $datos = $actual->editarPost($_GET['id']);
+  }
   $titulo = $datos[0]['titulo'];
   $fecha = $datos[0]['fecha'];
   $texto = $datos[0]['texto'];
@@ -64,15 +69,36 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   </div>
   <!-- alerta error registro comprobar después -->
   <?php
-  if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-  ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>¡Error!</strong> <?php echo $_SESSION['error']; ?>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <?php
-  }
-  $_SESSION['error'] = '';
+   if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      // Vaciando la variable después de imprimir en pantalla en caso de existir
+      $_SESSION['error'] = '';
+    }
+    if (isset($_SESSION['error_tituloB']) && !empty($_SESSION['error_tituloB'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_tituloB']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      // Vaciando la variable después de imprimir en pantalla en caso de existir
+      $_SESSION['error_tituloB'] = '';
+    }
+    if (isset($_SESSION['error_textoB']) && !empty($_SESSION['error_textoB'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_textoB']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      // Vaciando la variable después de imprimir en pantalla en caso de existir
+      $_SESSION['error_textoB'] = '';
+    }
   ?>
 
 <?php

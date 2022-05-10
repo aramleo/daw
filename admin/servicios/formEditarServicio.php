@@ -8,7 +8,13 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesServicios;
-  $datos = $actual->editar($_GET['id']);
+
+  if (isset($_SESSION['id_edicion']) && !empty($_SESSION['id_edicion'])) {
+    $datos = $actual->editar($_SESSION['id_edicion']);
+    $_SESSION['id_edicion'] = '';
+  } else {
+    $datos = $actual->editar($_GET['id']);
+  }
   $referencia = $datos[0]['referencia'];
   $servicio = $datos[0]['servicio'];
   $imagen = $datos[0]['imagen'];
@@ -58,8 +64,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
           <?php
           }
-          if(isset($activa) && $activa == 0){
-            ?>
+          if (isset($activa) && $activa == 0) {
+          ?>
             <div class="mb-3">
               <label for="activa" class="form-label">Activa:</label>
               <select id="activa" name="activa">
@@ -67,7 +73,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                 <option selected value="0">No Activo</option>
               </select>
             </div>
-            <?php
+          <?php
           }
           ?>
           <div class="btn-group" role="group" aria-label="">
@@ -89,10 +95,24 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   <?php
   }
   $_SESSION['error'] = '';
+  if (isset($_SESSION['error_refS']) && !empty($_SESSION['error_refS'])) {
   ?>
-
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refS']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_refS'] = '';
+  }
+  if (isset($_SESSION['error_servicioS']) && !empty($_SESSION['error_servicioS'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_servicioS']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 <?php
-
+    $_SESSION['error_servicioS'] = '';
+  }
   include("../template/pie.php");
 } else {
   header('Location: ../../');

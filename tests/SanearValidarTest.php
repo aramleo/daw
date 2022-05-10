@@ -203,5 +203,24 @@ class SanearValidarTest extends TestCase{
         $this->assertEquals('El teléfono no es válido', $this->op->validaTfn('12345678') );
         $this->assertEquals('El teléfono no es válido', $this->op->validaTfn('asdfghjkl') );
     }
+    
+    /**
+     * testvalidaNumero. Comprueba que no esté vacio o que sea un número
+     *
+     * @return void
+     */
+    public function testvalidaNumero(){
+        $this->assertEquals('El número introducido no es válido', $this->op->validaNumero('') );
+        $this->assertEquals('El número introducido no es válido', $this->op->validaNumero('asdfghjkl') );
+    }
+    
+    /**
+     * testlimpiarURL. Elimina carácteres no permitidos de la URL
+     *
+     * @return void
+     */
+    public function testlimpiarURL(){
+        $this->assertEquals('https://www.w3schools.com', $this->op->limpiarURL('https://www.w3schoo��ls.co�m') );
+    }
 
 }

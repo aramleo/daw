@@ -10,7 +10,12 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesAlquileres;
-  $datos = $actual->editar($_GET['id']);
+  if(isset($_SESSION['id_edicion']) && !empty($_SESSION['id_edicion'])){
+    $datos = $actual->editar($_SESSION['id_edicion']);
+    $_SESSION['id_edicion']='';
+  }else{
+    $datos = $actual->editar($_GET['id']);
+  }
   $referencia = $datos[0]['referencia'];
   $localidad = $datos[0]['localidad'];
   $metros = $datos[0]['metros'];
@@ -103,11 +108,45 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
-  }
   $_SESSION['error'] = '';
-  ?>
-
-<?php
+  }
+  
+  if (isset($_SESSION['error_refA']) && !empty($_SESSION['error_refA'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_refA']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      $_SESSION['error_refA'] = '';
+    }
+    if (isset($_SESSION['error_localidadA']) && !empty($_SESSION['error_localidadA'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_localidadA']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      $_SESSION['error_localidadA'] = '';
+    }
+    if (isset($_SESSION['error_metrosA']) && !empty($_SESSION['error_metrosA'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_metrosA']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      $_SESSION['error_metrosA'] = '';
+    }
+    if (isset($_SESSION['error_telefonoA']) && !empty($_SESSION['error_telefonoA'])) {
+    ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> <?php echo $_SESSION['error_telefonoA']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php
+      $_SESSION['error_telefonoA'] = '';
+    }
 
   include("../template/pie.php");
 } else {

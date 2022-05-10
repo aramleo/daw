@@ -16,10 +16,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     // En caso de éxito
     if ($elimina === 'Registro eliminado') {
         $_SESSION['eliminar'] = 'El registro se ha eliminado correctamente';
-        header('Location: ../descargaAd.php');
+        header('Location: ../descargasAd.php');
     }else{
         $_SESSION['eliminar'] = 'El registro no se ha eliminado';
-        header('Location: ../descargaAd.php');
+        header('Location: ../descargasAd.php');
     }
 }else{
     header('Location: ../../');

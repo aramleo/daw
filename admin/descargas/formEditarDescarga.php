@@ -12,7 +12,13 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new FuncionesDescargas;
-  $datos = $actual->editar($_GET['id']);
+
+  if (isset($_SESSION['id_edicion']) && !empty($_SESSION['id_edicion'])) {
+    $datos = $actual->editar($_SESSION['id_edicion']);
+    $_SESSION['id_edicion'] = '';
+  } else {
+    $datos = $actual->editar($_GET['id']);
+  }
   $referencia = $datos[0]['referencia'];
   $titulo = $datos[0]['titulo'];
   $enlace = $datos[0]['enlace'];
@@ -20,7 +26,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $activa = $datos[0]['activa'];
   $id = $datos[0]['id'];
 ?>
-<!-- Formulario -->
+  <!-- Formulario -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -69,8 +75,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
             </div>
           <?php
           }
-          if(isset($activa) && $activa == 0){
-            ?>
+          if (isset($activa) && $activa == 0) {
+          ?>
             <div class="mb-3">
               <label for="activa" class="form-label">Activa:</label>
               <select id="activa" name="activa">
@@ -78,7 +84,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
                 <option selected value="0">No Activo</option>
               </select>
             </div>
-            <?php
+          <?php
           }
           ?>
           <div class="btn-group" role="group" aria-label="">
@@ -98,13 +104,40 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
-  }
     // Vaciando la variable después de imprimir en pantalla
-  $_SESSION['error'] = '';
+    $_SESSION['error'] = '';
+  }
+  if (isset($_SESSION['error_refD']) && !empty($_SESSION['error_refD'])) {
   ?>
-
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_refD'] = '';
+  }
+  if (isset($_SESSION['error_tituloD']) && !empty($_SESSION['error_tituloD'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_tituloD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_tituloD'] = '';
+  }
+  if (isset($_SESSION['error_enlaceD']) && !empty($_SESSION['error_enlaceD'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_enlaceD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 <?php
-// Inclusión de pie de página
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_enlaceD'] = '';
+  }
+  // Inclusión de pie de página
   include("../template/pie.php");
 } else {
   // No es correcto usuario o rol

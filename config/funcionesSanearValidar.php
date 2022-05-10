@@ -268,12 +268,30 @@ class FuncionesSaneaValida
         }
         return $error;
     }
-
+    
+    /**
+     * validaNumero. Comprueba si es un número.
+     *
+     * @param  mixed $var
+     * @return void
+     */
     function validaNumero($var){
         $error = null;
         if(empty($var) || !is_numeric($var)){
             $error = 'El número introducido no es válido';
         }
         return $error;
+    }
+    
+    
+    /**
+     * limpiarURL. FILTER SANITIZE URL. Limpiando la url
+     *
+     * @param  mixed $var
+     * @return void
+     */
+    function limpiarURL($var){
+        $dato = filter_var($var, FILTER_SANITIZE_URL);
+        return $dato;
     }
 }

@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   // Archivo de menu 
   include("../template/cabecera2.php");
 ?>
-<!-- Se carga el formulario -->
+  <!-- Se carga el formulario -->
   <div class="col-md-5 mt-3">
 
     <div class="card">
@@ -59,10 +59,44 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
+    $_SESSION['error'] = '';
   }
-  $_SESSION['error'] = '';
+  if (isset($_SESSION['error_refA']) && !empty($_SESSION['error_refA'])) {
   ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refA']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php
+    $_SESSION['error_refA'] = '';
+  }
+  if (isset($_SESSION['error_localidadA']) && !empty($_SESSION['error_localidadA'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_localidadA']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_localidadA'] = '';
+  }
+  if (isset($_SESSION['error_metrosA']) && !empty($_SESSION['error_metrosA'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_metrosA']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_metrosA'] = '';
+  }
+  if (isset($_SESSION['error_telefonoA']) && !empty($_SESSION['error_telefonoA'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_telefonoA']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_telefonoA'] = '';
+  }
   // En caso de éxito en la agregación del alquiler
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
@@ -70,12 +104,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <strong>OK! </strong> <?php echo $_SESSION['registro']; ?>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  <?php
+<?php
   }
   $_SESSION['registro'] = '';
-  ?>
-<?php
-// Inclusión del pie de página
+  // Inclusión del pie de página
   include("../template/pie.php");
 } else {
   // En caso de no existir usuario o rol

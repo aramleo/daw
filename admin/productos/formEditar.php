@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
 
   // Variables que recogemos de la función editar en funciones.php
   $actual = new Funciones;
-  if(isset($_SESSION['id_edicion'])){
+  if(isset($_SESSION['id_edicion']) && !empty($_SESSION['id_edicion'])){
     $datos = $actual->editar($_SESSION['id_edicion']);
     $_SESSION['id_edicion']='';
   }else{

@@ -17,7 +17,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarDescarga.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="referencia" class="form-label">Referencia:</label>
-            <input type="text" class="form-control" id="referencia" name="referencia" minlength="3" maxlength="25" required placeholder="Referencia del inmueble">
+            <input type="text" class="form-control" id="referencia" name="referencia" minlength="3" maxlength="25" required placeholder="Referencia de la descarga">
           </div>
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
@@ -55,11 +55,40 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error'] = '';
   }
-  // Vaciando la variable después de imprimir en pantalla
-  $_SESSION['error'] = '';
+  if (isset($_SESSION['error_refD']) && !empty($_SESSION['error_refD'])) {
   ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_refD'] = '';
+  }
+  if (isset($_SESSION['error_tituloD']) && !empty($_SESSION['error_tituloD'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_tituloD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_tituloD'] = '';
+  }
+  if (isset($_SESSION['error_enlaceD']) && !empty($_SESSION['error_enlaceD'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_enlaceD']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    // Vaciando la variable después de imprimir en pantalla
+    $_SESSION['error_enlaceD'] = '';
+  }
+
   // En caso de éxito
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
@@ -72,7 +101,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $_SESSION['registro'] = '';
   ?>
 <?php
-// Inclusión de pie de página
+  // Inclusión de pie de página
   include("../template/pie.php");
   // problemas con el usuario o el rol
 } else {

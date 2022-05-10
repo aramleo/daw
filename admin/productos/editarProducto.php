@@ -20,8 +20,10 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
     // Asingnación de variables
     $error_nombreP = $error_precioP = $error_refP = '';
     $id = $_POST['id'];
+    $_SESSION['id_edicion'] = $id;
     if (!isset($_POST['nombre'])) {
       $error_nombreP = "El campo nombre no puede estar vacío";
+      header('Location: formEditar.php');
     } else {
       $nombre = $sanea_valida->sanearNombre($_POST['nombre']);
       if (!empty($sanea_valida->validaLongitud($nombre, 3, 50, 'nombre de producto'))) {
@@ -55,8 +57,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       // Comrpobando si ha sido actualizado o no
       if ($datos === false) {
         $datos = 'El registro no se ha actualizado';
-        header('Location: formEditar.php');
         $_SESSION['error'] = $datos;
+        header('Location: formEditar.php');
+        
       }
       if ($datos === 'Registro actualizado') {
         $_SESSION['editado'] = 'El registro ha sido actualizado';
@@ -75,7 +78,6 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       if (isset($error_precioP) && !empty($error_precioP)) {
         $_SESSION['error_precioP'] = $error_precioP;
       }
-      $_SESSION['id_edicion'] = $id;
       header('Location: formEditar.php');
     }
   }

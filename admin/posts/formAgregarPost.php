@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   include("../template/cabecera2.php");
 ?>
-<!-- Formulario de datos -->
+  <!-- Formulario de datos -->
   <div class="col-md-5 mt-3">
     <div class="card">
       <div class="card-header">
@@ -15,7 +15,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
         <form action="agregarPost.php" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="titulo" class="form-label">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Título del post">
+            <input type="text" class="form-control" id="titulo" name="titulo" minlength="4" maxlength="50" required placeholder="Título del post">
           </div>
           <div class="mb-3">
             <label for="fecha" class="form-label">Fecha:</label>
@@ -23,7 +23,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
           </div>
           <div class="mb-3">
             <label for="texto" class="form-label">Texto:</label>
-            <input type="text" class="form-control" id="texto" name="texto" required placeholder="Texto del cuerpo del post">
+            <input type="text" class="form-control" id="texto" name="texto" minlength="5" required placeholder="Texto del cuerpo del post">
           </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen:</label>
@@ -46,11 +46,30 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
-  }
     // Vaciando la variable después de imprimir en pantalla en caso de existir
-  $_SESSION['error'] = '';
+    $_SESSION['error'] = '';
+  }
+  if (isset($_SESSION['error_tituloB']) && !empty($_SESSION['error_tituloB'])) {
   ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_tituloB']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php
+    // Vaciando la variable después de imprimir en pantalla en caso de existir
+    $_SESSION['error_tituloB'] = '';
+  }
+  if (isset($_SESSION['error_textoB']) && !empty($_SESSION['error_textoB'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_textoB']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    // Vaciando la variable después de imprimir en pantalla en caso de existir
+    $_SESSION['error_textoB'] = '';
+  }
+
   // Exito en el registro
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
@@ -63,9 +82,9 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
   $_SESSION['registro'] = '';
   ?>
 <?php
-// Inclusión del pie de página
-include('../template/pie.php');
-// Error en la comprobación de usuario y rol
+  // Inclusión del pie de página
+  include('../template/pie.php');
+  // Error en la comprobación de usuario y rol
 } else {
   header('Location: ../../');
 }

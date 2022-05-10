@@ -51,21 +51,37 @@ if (isset($_SESSION['usuario']) && $_SESSION['rol'] == '1') {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php
+    $_SESSION['error'] = '';
   }
-  $_SESSION['error'] = '';
+
+  if (isset($_SESSION['error_refS']) && !empty($_SESSION['error_refS'])) {
   ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_refS']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php
+    $_SESSION['error_refS'] = '';
+  }
+  if (isset($_SESSION['error_servicioS']) && !empty($_SESSION['error_servicioS'])) {
+  ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>¡Error!</strong> <?php echo $_SESSION['error_servicioS']; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+    $_SESSION['error_servicioS'] = '';
+  }
+
   if (isset($_SESSION['registro']) && !empty($_SESSION['registro'])) {
   ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>OK! </strong> <?php echo $_SESSION['registro']; ?>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  <?php
+<?php
   }
   $_SESSION['registro'] = '';
-  ?>
-<?php
 
   include("../template/pie.php");
 } else {
