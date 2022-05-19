@@ -47,7 +47,7 @@ if (isset($_SESSION['usuario']) && ($_SESSION['rol'] == '2' || $_SESSION['rol'] 
                             ?>
                             <img class="img-thumbnail img-fluid d-block w-100" src="<?php echo $imagen; ?>">
                             <div class="card-body">
-                                <h5 class="card-title">Nombre: <br><?php echo strtoupper($producto->nombre); ?></h5>
+                                <h5 class="card-title">Nombre: <br><?php echo $producto->nombre; ?></h5>
                                 <p class="card-text">Referencia: <?php echo strtoupper($producto->referencia); ?></p>
                                 <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
                                         <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
